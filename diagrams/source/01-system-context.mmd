@@ -1,0 +1,12 @@
+flowchart LR
+  P[Person] --> PWM[Personal World Model]
+  PWM --> HPL[Human Projection Layer]
+  HPL --> SW[Software AI]
+  HPL --> VEH[Vehicle]
+  HPL --> ROB[Robot]
+  HPL --> W0[Web0]
+  SW --> RET[Evidence / Learning Candidates]
+  VEH --> RET
+  ROB --> RET
+  W0 --> RET
+  RET --> PWM

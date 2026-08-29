@@ -1,0 +1,18 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="transparent", pad=0.3, nodesep=0.55, ranksep=0.8, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", fillcolor="white", color="#777777", fontname="Helvetica", fontsize=11, margin="0.18,0.12"];
+  edge [color="#777777", arrowsize=0.7, penwidth=1.2, fontname="Helvetica", fontsize=9];
+  person [label="Person + lived world", shape=oval];
+  pwm [label="PERSONAL WORLD MODEL\nsovereign · temporal · provenance-bearing", penwidth=1.8];
+  hpl [label="HUMAN PROJECTION LAYER\nminimize · authorize · bind · crystallize", penwidth=1.8];
+  sw [label="Software AI\nHCP / MCP"];
+  veh [label="Vehicle\nVSS · VISS · SOVD"];
+  rob [label="Robot\nROS 2 · MHS · OPC UA"];
+  web0 [label="Web0\nintent · negotiation · settlement"];
+  safe [label="Local authority / safety", shape=hexagon];
+  ret [label="Evidence + learning candidates", shape=oval];
+  person -> pwm -> hpl;
+  hpl -> sw; hpl -> veh; hpl -> rob; hpl -> web0;
+  sw -> ret; veh -> safe -> ret; rob -> safe; web0 -> ret;
+  ret -> pwm [constraint=false, label="reconcile"];
+}

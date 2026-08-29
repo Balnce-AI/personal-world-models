@@ -1,0 +1,14 @@
+digraph G {
+ graph [rankdir=TB,bgcolor="transparent",pad=0.3,nodesep=0.5,ranksep=0.6];
+ node [shape=box,style="rounded,filled",fillcolor="white",color="#777",fontname="Helvetica",fontsize=10];
+ edge [color="#777",arrowsize=0.7];
+ pwm[label="Canonical PWM\nSovereign",penwidth=1.8];
+ nep[label="NEP + HPL\nplacement / artifact selection",penwidth=1.8];
+ s0[label="S0 Sovereign\nphone · home · owned compute"];
+ s2[label="S2 Attested confidential\nTEE / confidential edge"];
+ s3[label="S3 Contracted foreign\ncloud · OEM · SaaS"];
+ s4[label="S4 Public/minimal\nWeb0 discovery"];
+ exec[label="Software / vehicle / robot execution",shape=hexagon];
+ ret[label="Receipts / learning candidates"];
+ pwm->nep;nep->s0;nep->s2;nep->s3;nep->s4;s0->exec;s2->exec;s3->exec;s4->exec;exec->ret;ret->pwm;
+}

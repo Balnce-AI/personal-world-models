@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hpl/arranger-manifest.schema.json",
+  "title": "Arranger Manifest",
+  "type": "object",
+  "required": [
+    "artifactId",
+    "artifactClasses",
+    "issuer",
+    "recipient",
+    "purpose",
+    "issuedAt",
+    "expiresAt",
+    "nonce",
+    "payloadHash",
+    "signature"
+  ],
+  "properties": {
+    "artifactId": {
+      "type": "string"
+    },
+    "artifactClasses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "issuer": {
+      "type": "string"
+    },
+    "recipient": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nonce": {
+      "type": "string"
+    },
+    "payloadHash": {
+      "type": "string"
+    },
+    "revocationHandle": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "departureRequirement": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

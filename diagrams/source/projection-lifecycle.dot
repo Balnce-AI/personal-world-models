@@ -1,0 +1,8 @@
+digraph G {
+ graph [rankdir=LR,bgcolor="transparent",pad=0.25,nodesep=0.3,ranksep=0.5];
+ node [shape=box,style="rounded,filled",fillcolor="white",color="#777",fontname="Helvetica",fontsize=9,margin="0.12,0.08"];
+ edge [color="#777",arrowsize=0.6];
+ discover->request->reground->authorize->place->crystallize->issue->execute->observe->revoke->depart->reconcile;
+ discover[label="DISCOVER"];request[label="REQUEST"];reground[label="RE-GROUND"];authorize[label="AUTHORIZE"];place[label="PLACE"];crystallize[label="CRYSTALLIZE"];issue[label="ISSUE"];execute[label="EXECUTE"];observe[label="OBSERVE"];revoke[label="REVOKE / EXPIRE"];depart[label="DEPART"];reconcile[label="RECONCILE"];
+ deny [label="DENY",shape=octagon]; authorize->deny [label="not allowed"];
+}

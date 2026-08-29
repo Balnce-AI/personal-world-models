@@ -1,0 +1,16 @@
+flowchart TB
+  PWM[Personal World Model] --> HPL[HPL]
+  HPL --> HCP[HCP profile]
+  HPL --> A2A[A2A]
+  HPL --> HF[Hyperframe carrier]
+  HCP --> LLM[Software AI]
+  A2A --> AG[Agents/Web0]
+  HF --> PHY[Physical adapters]
+  PHY --> MHS[MHS]
+  PHY --> ROS[ROS 2]
+  PHY --> VSS[VSS/VISS/SOVD]
+  PHY --> WOT[WoT]
+  MHS --> SAFE[Local runtime/safety]
+  ROS --> SAFE
+  VSS --> SAFE
+  WOT --> SAFE

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/pwm/relation.schema.json",
+  "title": "PWM Relation",
+  "type": "object",
+  "required": [
+    "id",
+    "relationType",
+    "members"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "relationType": {
+      "type": "string"
+    },
+    "members": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "entity"
+        ],
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "entity": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "validTime": {},
+    "privacyClass": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

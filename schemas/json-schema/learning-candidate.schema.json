@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hpl/learning-candidate.schema.json",
+  "title": "Learning Candidate",
+  "type": "object",
+  "required": [
+    "candidateId",
+    "source",
+    "claim",
+    "confidence",
+    "requiresReview"
+  ],
+  "properties": {
+    "candidateId": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "claim": {
+      "type": "object"
+    },
+    "confidence": {
+      "type": "object"
+    },
+    "requiresReview": {
+      "type": "boolean"
+    },
+    "sessionArtifact": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

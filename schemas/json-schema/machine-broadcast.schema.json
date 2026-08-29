@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/web0/machine-broadcast.schema.json",
+  "title": "Machine Broadcast",
+  "type": "object",
+  "required": [
+    "broadcastId",
+    "sender",
+    "kind",
+    "payload",
+    "issuedAt",
+    "expiresAt",
+    "signature"
+  ],
+  "properties": {
+    "broadcastId": {
+      "type": "string"
+    },
+    "sender": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "NEED",
+        "CAPABILITY",
+        "AVAILABILITY",
+        "FAILURE",
+        "OPPORTUNITY",
+        "SUPPORT_REQUEST",
+        "SERVICE_REQUEST",
+        "ENERGY_NEED",
+        "COMPUTE_CAPACITY",
+        "MAINTENANCE_ALERT"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "signature": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

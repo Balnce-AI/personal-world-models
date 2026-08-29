@@ -1,0 +1,15 @@
+digraph G {
+ graph [rankdir=LR,bgcolor="transparent",pad=0.3,nodesep=0.4,ranksep=0.8];
+ node [shape=box,style="rounded,filled",fillcolor="white",color="#777",fontname="Helvetica",fontsize=10];
+ edge [color="#777",arrowsize=0.7];
+ person[label="Person\nconsent · preferences"];
+ owner[label="Owner / Business\nmandate · contract"];
+ oem[label="OEM\nsupported capabilities"];
+ regulator[label="Regulator\nlegal constraints"];
+ physical[label="Machine state\nphysical bounds"];
+ covenant[label="COVENANT COMPOSITION\nvalidate · scope · conflict · explain",penwidth=1.8];
+ envelope[label="Permitted capability envelope",shape=hexagon];
+ hpl[label="HPL projection",penwidth=1.8];
+ person->covenant;owner->covenant;oem->covenant;regulator->covenant;physical->covenant;
+ covenant->envelope->hpl;
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hpl/departure-receipt.schema.json",
+  "title": "Departure Receipt",
+  "type": "object",
+  "required": [
+    "sessionId",
+    "artifactId",
+    "level",
+    "timestamp",
+    "recipient",
+    "evidence"
+  ],
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "artifactId": {
+      "type": "string"
+    },
+    "level": {
+      "enum": [
+        "KEY_INVALIDATED",
+        "DEACTIVATED",
+        "PROTOCOL_DEPARTURE",
+        "ATTESTED_DEPARTURE",
+        "VERIFIED_DEPARTURE",
+        "UNVERIFIED"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recipient": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

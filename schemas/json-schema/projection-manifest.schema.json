@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hpl/projection-manifest.schema.json",
+  "title": "HPL Projection Manifest",
+  "type": "object",
+  "required": [
+    "projectionId",
+    "purpose",
+    "recipient",
+    "issuedAt",
+    "expiresAt",
+    "fields",
+    "provenance"
+  ],
+  "properties": {
+    "projectionId": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "recipient": {
+      "type": "string"
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "allowedCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

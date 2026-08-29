@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/pwm/assertion.schema.json",
+  "title": "PWM Assertion",
+  "type": "object",
+  "required": [
+    "id",
+    "subject",
+    "predicate",
+    "object",
+    "epistemicStatus",
+    "recordTime"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "predicate": {
+      "type": "string"
+    },
+    "object": {},
+    "validTime": {},
+    "recordTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "epistemicStatus": {
+      "enum": [
+        "OBSERVED",
+        "ASSERTED",
+        "INFERRED",
+        "PREDICTED",
+        "DISPUTED",
+        "REVOKED",
+        "SUPERSEDED"
+      ]
+    },
+    "confidence": {
+      "type": "object"
+    },
+    "privacyClass": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

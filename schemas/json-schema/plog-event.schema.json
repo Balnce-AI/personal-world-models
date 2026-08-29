@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/reference/plog-event.schema.json",
+  "title": "Public PLOG Event Profile",
+  "description": "Reference interoperability profile; not the complete private Balnce PLOG/UOR certificate structure.",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "recordTime",
+    "actor",
+    "payload",
+    "parents"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string"
+    },
+    "recordTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "parents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contentHash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

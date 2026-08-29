@@ -1,0 +1,12 @@
+flowchart TB
+  PWM[Canonical PWM - sovereign] --> NEP[NEP placement / HPL compilation]
+  NEP --> S0[S0 sovereign compute]
+  NEP --> S2[S2 attested confidential edge]
+  NEP --> S3[S3 contracted foreign]
+  NEP --> S4[S4 public/minimal]
+  S0 --> V[Vehicle/robot/software]
+  S2 --> V
+  S3 --> V
+  S4 --> V
+  V --> LR[Learning/receipts]
+  LR --> PWM

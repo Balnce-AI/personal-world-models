@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hpl/authority-constraint.schema.json",
+  "title": "Authority Constraint",
+  "type": "object",
+  "required": [
+    "principal",
+    "effect",
+    "capabilities",
+    "constraintClass"
+  ],
+  "properties": {
+    "principal": {
+      "type": "string"
+    },
+    "effect": {
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ]
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraintClass": {
+      "enum": [
+        "PHYSICAL",
+        "LEGAL",
+        "COMMERCIAL",
+        "PERSONAL",
+        "CONTEXTUAL",
+        "ADVISORY"
+      ]
+    },
+    "validFrom": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "validUntil": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "jurisdiction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

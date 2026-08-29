@@ -1,0 +1,97 @@
+{
+  "projection": {
+    "projectionId": "urn:hpl:projection:sha256:43e5aebfd22e00c905949140b49c4063edbe5baba10e1945f5011755efeef883",
+    "purpose": "Deliver sealed parcel to kitchen counter",
+    "recipient": "did:example:robot:delivery-7",
+    "issuedAt": "2026-08-28T23:44:30.714628+00:00",
+    "expiresAt": "2026-08-28T23:54:30.714628+00:00",
+    "fields": [
+      {
+        "subject": "did:example:person:alice",
+        "predicate": "delivery.preferred_surface",
+        "object": "kitchen.counter.north",
+        "epistemicStatus": "ASSERTED",
+        "confidence": {
+          "explicit": 1.0
+        }
+      },
+      {
+        "subject": "did:example:person:alice",
+        "predicate": "accessibility.route",
+        "object": "avoid-stairs",
+        "epistemicStatus": "ASSERTED",
+        "confidence": {
+          "explicit": 1.0
+        }
+      }
+    ],
+    "allowedCapabilities": [
+      "navigate.allowed_zone",
+      "place.sealed_package"
+    ],
+    "forbiddenCapabilities": [
+      "map.export"
+    ],
+    "provenance": [
+      "urn:pwm:event:sha256:37e6254689834a031c9d9ff8893022c008beeb6fe39f2de48f34f6cfa6685f4d"
+    ]
+  },
+  "arranger": {
+    "artifactId": "urn:hpl:arranger:sha256:5f4e4344408fadae0b3c61dc487e09820df471745c282ff02131273216dab7e6",
+    "artifactClasses": [
+      "CONTEXT",
+      "AUTHORITY",
+      "PROCEDURE"
+    ],
+    "issuer": "did:example:person:alice",
+    "recipient": "did:example:robot:delivery-7",
+    "purpose": "Deliver sealed parcel to kitchen counter",
+    "issuedAt": "2026-08-28T23:44:30.720797+00:00",
+    "expiresAt": "2026-08-28T23:54:30.720797+00:00",
+    "nonce": "fb980edc4135104ecddcc48c4a9d2190",
+    "payloadHash": "urn:hpl:payload:sha256:9a9c81be264d4ff7030f10ed90e5b004109fcdf509336561feff94f140264bd8",
+    "revocationHandle": "IVYT2uvmHS51rGrd6v-AP_qHKCXq0WDm",
+    "provenance": [
+      "urn:pwm:event:sha256:37e6254689834a031c9d9ff8893022c008beeb6fe39f2de48f34f6cfa6685f4d"
+    ],
+    "departureRequirement": "PROTOCOL_DEPARTURE",
+    "signature": "X4D2zbmHWYRd1lXGiVB7PAllfwfCHOojojZrNIEcXxM3jDZk3wK3c56J5yJ/Uws5R1wXOG3V93pIDePOCEhXAA=="
+  },
+  "learningCandidate": {
+    "candidateId": "urn:hpl:learning:sha256:07e25aed2d9ad5f8f26cb3ac035f3a81278bc074bde64e427a17c7e9cb741ace",
+    "source": "did:example:robot:delivery-7",
+    "claim": {
+      "subject": "did:example:person:alice",
+      "predicate": "delivery.observed_success",
+      "object": true
+    },
+    "confidence": {
+      "sourceReliability": 0.8
+    },
+    "sessionArtifact": "urn:hpl:arranger:sha256:5f4e4344408fadae0b3c61dc487e09820df471745c282ff02131273216dab7e6",
+    "requiresReview": true
+  },
+  "departureReceipt": {
+    "sessionId": "session-demo",
+    "artifactId": "urn:hpl:arranger:sha256:5f4e4344408fadae0b3c61dc487e09820df471745c282ff02131273216dab7e6",
+    "recipient": "did:example:robot:delivery-7",
+    "level": "PROTOCOL_DEPARTURE",
+    "timestamp": "2026-08-28T23:44:30.721300+00:00",
+    "evidence": {
+      "acknowledged": true
+    },
+    "receiptId": "urn:hpl:departure:sha256:d7427d6df18f6946bf029f0e99a0d12aa0b269817322bc32b1107e15e7a3c4b2"
+  },
+  "machineBroadcast": {
+    "broadcastId": "urn:web0:broadcast:sha256:b197f5911970d588ca72dd42b1002aafdbf676f57f3f5d11ebd567e828719e19",
+    "sender": "did:example:robot:delivery-7",
+    "kind": "CAPABILITY",
+    "payload": {
+      "capability": "sealed-package-delivery",
+      "zone": "kitchen-only"
+    },
+    "issuedAt": "2026-08-28T23:44:30.721340+00:00",
+    "expiresAt": "2026-08-28T23:49:30.721340+00:00",
+    "signature": "Hfs+j93TrkF1i6NTwabtJiYsh4xmvgdqkXoZ3qdlndxdT1X4SUilooefDPragLwBXt1CujfBR8BTUhRNPMJ7Cw=="
+  }
+}

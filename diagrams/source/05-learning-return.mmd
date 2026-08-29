@@ -1,0 +1,9 @@
+flowchart LR
+  M[Foreign machine/AI] --> E[Signed observation/outcome]
+  E --> F[Policy + source-integrity filter]
+  F --> C[Learning Candidate]
+  C --> D{PWM decision}
+  D -->|Accept| P[PLOG derivation / PWM update]
+  D -->|Reject| R[Rejected evidence record]
+  D -->|Defer| Q[Review queue]
+  D -->|Branch| B[Alternative branch]
