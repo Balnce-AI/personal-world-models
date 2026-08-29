@@ -7,9 +7,9 @@ Let an action request contain capability set `Q` and each principal emit a const
 
 The public reference model uses:
 
-\[
+$$
 Q_{allowed}=Q \cap G - D
-\]
+$$
 
 where `G` is the union of valid scoped grants and `D` the union of applicable denials. Mandatory physical/legal denials always dominate grants.
 

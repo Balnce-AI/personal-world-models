@@ -6,9 +6,9 @@ version: 0.1.0
 
 A spatial projection is not a copy of a person's global map. It is a purpose-bounded view of geometry, topology, semantics, uncertainty and permissions.
 
-\[
+$$
 S = \langle V,E,\Phi,\Gamma,\Theta,\Sigma \rangle
-\]
+$$
 
 - `V`: spatial entities;
 - `E`: spatial/topological relations;

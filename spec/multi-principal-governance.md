@@ -10,9 +10,9 @@ HPL MUST NOT assume that "the user always wins."
 
 Each authority input is normalized to a typed constraint:
 
-\[
+$$
 \Gamma_i = \langle principal, mandate, scope, time, jurisdiction, class, effect, evidence \rangle
-\]
+$$
 
 Constraint classes include:
 

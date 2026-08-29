@@ -9,21 +9,21 @@ This repository depends conceptually on prior UOR work, but deliberately separat
 
 The recovered UOR corpus defines a finite ring
 
-\[
+$$
 R_n=\mathbb{Z}/2^n\mathbb{Z}
-\]
+$$
 
 with the byte implementation `R_8 = Z/256Z`, and two primitive involutive/affine operations conventionally written `neg` and `bnot`. The critical byte-space identity is:
 
-\[
+$$
 \operatorname{neg}(\operatorname{bnot}(x))=\operatorname{succ}(x)
-\]
+$$
 
 because
 
-\[
+$$
 -(x\oplus(2^n-1))\equiv x+1 \pmod{2^n}.
-\]
+$$
 
 Prior Balnce work additionally treats the UOR address space as algebraically structured rather than merely hash-addressed, with observable distance/coherence operations and certificate/trace concepts.
 

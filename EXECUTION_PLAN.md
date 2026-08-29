@@ -47,26 +47,26 @@ Every benchmark task must also emit a machine-readable result containing reposit
 ### Task 1: Make status and claim evidence enforceable
 
 - **Purpose:** Eliminate maturity ambiguity before extending behavior.
-- **Current code evidence:** `STATUS.md` defines six statuses; most source/schema/test/benchmark files are undeclared; `research/evidence-ledger/seed.json` does not meet its README contract.
+- **Current code evidence:** `STATUS.md` defines six statuses; most source/schema/test/benchmark files are undeclared; major public claims are not mechanically linked to evidence or falsifiers.
 - **Canonical invariant:** Code existence is not a status upgrade; claims must name evidence or a falsifier.
 - **Classification:** `COMPLETE_EXISTING`.
-- **Files/modules:** create `spec/status-taxonomy.md`, `schemas/json-schema/evidence-record.schema.json`, `tests/test_status_taxonomy.py`, `tests/test_evidence_ledger.py`; modify `research/evidence-ledger/seed.json`, relevant module headers/adjacent manifests, and overbroad README claims.
+- **Files/modules:** create `spec/status-taxonomy.md`, `schemas/json-schema/evidence-record.schema.json`, `docs/EVIDENCE_INDEX.md`, `tests/test_status_taxonomy.py`, and `tests/test_evidence_index.py`; modify relevant module headers/adjacent manifests and overbroad README claims.
 - **Interface contracts:** one declared taxonomy value per significant artifact; evidence records require claim ID, exact claim, domain, source/version, source class, evidence status, implementation consequence, review date, reviewer, and falsifier/re-check trigger.
-- **Data migration:** migrate every seed record without discarding claim text; preserve previous status as migration provenance if vocabulary changes.
+- **Data migration:** register each existing public claim without discarding its text; keep internal source material outside the public repository.
 - **Security/privacy impact:** evidence records must not expose proprietary implementation details or private source content.
 - **Observability:** lint output lists every unclassified file and malformed evidence record.
 - **Tests:** add failures for an unknown status, missing status, missing source, missing review date, and missing falsifier; test all current records.
-- **Acceptance criteria:** zero unclassified significant artifacts; evidence ledger validates; README benchmark language matches actual harnesses.
+- **Acceptance criteria:** zero unclassified significant artifacts; the public evidence index validates; README benchmark language matches actual harnesses.
 - **Feature flag/rollout:** documentation/tooling-only; enforce in CI after the repository is clean.
-- **Rollback:** revert lint enforcement and migrated ledger together; do not restore inaccurate claims.
+- **Rollback:** revert lint enforcement and the public evidence index together; do not restore inaccurate claims.
 - **Public-repo synchronization:** this task is public-only; production claims remain external references, not copied internals.
 - **Commit:** `docs: enforce status and evidence taxonomy`.
 
-- [ ] Write failing taxonomy and evidence-ledger tests.
+- [ ] Write failing taxonomy and public-evidence-index tests.
 - [ ] Add the status spec and evidence schema.
-- [ ] Migrate records and annotate significant artifacts without upgrading maturity.
+- [ ] Register public claims and annotate significant artifacts without upgrading maturity.
 - [ ] Run focused tests, then the full suite.
-- [ ] Commit only the status/evidence files.
+- [ ] Commit only the status and public-evidence files.
 
 ### Task 2: Establish reproducible conformance infrastructure
 

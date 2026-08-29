@@ -7,15 +7,15 @@ Let `W` be an authorized source world state and `r` a candidate representation.
 
 A projection compiler can be treated as a constrained optimization:
 
-\[
+$$
 r^*=\arg\min_r \left(\lambda_L L(W,r)+\lambda_P P(r)+\lambda_D D(r)\right)
-\]
+$$
 
 subject to:
 
-\[
+$$
 U(r,T)\ge u_{min},\quad A(r)=1,\quad C(r,R,E)=1
-\]
+$$
 
 where:
 

@@ -35,9 +35,9 @@ A user correction MUST NOT require deletion of the provenance that explains why 
 
 An assertion is modeled as:
 
-\[
+$$
 a = \langle s,p,o,t_v,t_r,\sigma,c,\rho,\pi \rangle
-\]
+$$
 
 where:
 
@@ -53,9 +53,9 @@ where:
 
 Let `L≤t` be the authorized provenance/event closure available at time `t` and `q` a materialization profile:
 
-\[
+$$
 W_t = M(L_{\le t},q,\Pi,\Omega)
-\]
+$$
 
 The materializer SHOULD be deterministic for a pinned schema version, policy profile, and conflict-resolution profile.
 

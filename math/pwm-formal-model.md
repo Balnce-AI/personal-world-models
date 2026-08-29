@@ -5,9 +5,9 @@ status: PROPOSED
 
 At time `t`, define an authorized materialized Personal World Model:
 
-\[
+$$
 W_t=\langle G_t,B_t,I_t,\Pi_t,K_t,S_t,\Omega_t,\mathcal{P}_t\rangle
-\]
+$$
 
 - `G_t`: temporal semantic/metagraph view;
 - `B_t`: beliefs/assertions with evidence and revision state;

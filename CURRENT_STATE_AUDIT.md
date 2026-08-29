@@ -225,7 +225,7 @@ The README claim that initial harnesses cover disclosure minimization, authority
 | Threat model | `security/THREAT_MODEL.md`, undeclared | Identifies assets, adversaries, and required controls. | Most lifecycle controls are fields only, not enforced. |
 | Trust assumptions | `security/TRUST_ASSUMPTIONS.md`, undeclared | Correctly bounds opaque deletion, signatures, attestation, safety, and root compromise. | No recovery or assurance implementation. |
 | Standards mappings | HCP/ROS/COVESA/WoT `PROPOSED`; MHS `RESEARCH` | Correct adapter boundary posture. | No pinned upstream versions, hashes, licenses, normative URLs, or conformance suites. |
-| Research evidence | `research/`, mixed/undeclared | Honest open questions and proof backlog. | Seed ledger lacks required sources, reviewers, dates, and falsifiers; status vocabulary drifts. |
+| Public claim evidence | README, papers, and release documents, mixed/undeclared | Major claims identify broad evidence categories and caveats. | No public claim index consistently records sources, reviewers, dates, and falsifiers. |
 | Papers | Two `PROPOSED` outlines | PWM paper includes a falsifier. | No experiments, datasets, results, bibliography, or HPL-level falsifier. |
 
 ## Examples and demonstrations

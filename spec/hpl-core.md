@@ -22,24 +22,24 @@ It decides:
 
 ## Projection operator
 
-\[
+$$
 \mathcal{H}(W,T,A,R,E) \rightarrow \mathcal{R}
-\]
+$$
 
 `W` is an authorized world view, `T` the task/purpose, `A` composed authority, `R` recipient/runtime profile, `E` environment/trust evidence, and `R`-script output is the derived representation set.
 
 The compiler seeks a representation that meets task utility while minimizing disclosure:
 
-\[
+$$
 \min_{r}\; \operatorname{Leakage}(W,r)
-\]
+$$
 
 subject to:
 
-\[
+$$
 \operatorname{Utility}(r,T) \ge u_{min},\quad
 \operatorname{Allowed}(r,A,R,E)=1
-\]
+$$
 
 Physical execution adds the separate condition that the recipient's **local safety system** accepts the action. HPL cannot waive it.
 

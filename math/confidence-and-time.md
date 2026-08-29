@@ -5,9 +5,9 @@ status: PROPOSED
 
 A generic confidence component may include source reliability, measurement quality, corroboration, context completeness and age:
 
-\[
+$$
 C(a,t)=F(c_{source},c_{measure},c_{agreement},c_{context},D_\tau(t-t_r))
-\]
+$$
 
 No universal decay function is permitted.
 
