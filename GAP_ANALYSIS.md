@@ -43,12 +43,12 @@ These public classifications do not replace the production classifications in `.
 | Status taxonomy specification | `CREATE_FROM_SPEC` | Root taxonomy exists; mandated spec path and status coverage do not. |
 | Artifact status linting | `CREATE_FROM_SPEC` | Policy exists without enforcement. |
 | Evidence ledger contract and populated source records | `COMPLETE_EXISTING` | Seed ledger omits source/version/class, reviewer/date, and falsifier fields and uses divergent statuses. |
-| Terminology/canon map | `COMPLETE_EXISTING` | Glossary and ADRs exist, but no machine-checkable protected-term audit exists. |
+| Terminology/canon map | `COMPLETE_EXISTING` | Glossary and architectural invariants exist, but no machine-checkable protected-term audit exists. |
 | Primary-source archive with hashes and review dates | `CREATE_FROM_SPEC` | Standards and competitor claims are unpinned. |
 | Public/private boundary documentation | `HARDEN_EXISTING` | The boundary is clear in prose but should be enforced by status/claim tests. |
 | Production current-state ledger | `DEFER` | No Balnce/Reasn repository was supplied; do not infer production ownership. |
 | Production integration decisions | `DEFER` | Requires live canonical package/file/type/store/API evidence. |
-| New parallel HPL authority, carrier, runtime, edge twin, or UOR-lite | `REJECT` | Violates canonical synthesis, master instruction, and accepted ADRs. |
+| New parallel HPL authority, carrier, runtime, edge twin, or UOR-lite | `REJECT` | Violates the published architectural invariants. |
 
 ### Wave 1: provenance and PWM core
 
@@ -62,10 +62,10 @@ These public classifications do not replace the production classifications in `.
 | Normative and intentional object support | `CREATE_FROM_SPEC` | Required by PWM core, absent from schemas and materializer. |
 | Provenance and projection reference contracts | `CREATE_FROM_SPEC` | Named by the spec but not independently modeled. |
 | Conflict, dispute, correction, and supersession fixtures | `CREATE_FROM_SPEC` | Core constitutional distinctions are not exercised. |
-| Checkpoints/caches with reconstruction proof | `EXTEND_EXISTING` | ADR permits caching only if event reconstruction remains authoritative. |
+| Checkpoints/caches with reconstruction proof | `EXTEND_EXISTING` | The PWM core permits caching only if event reconstruction remains authoritative. |
 | Canonical UOR implementation in this public repo | `REJECT` | Conventional hashes may support independent execution but must not be labeled UOR. |
 | Higher-dimensional UOR/Clifford/sheaf implementation claims | `RESEARCH_ONLY` | Proof-status document identifies unresolved or invalid generalizations. |
-| Production PWM/PLOG/UOR serialization adapter | `DEFER` | Requires unavailable production source discovery and ADR reconciliation. |
+| Production PWM/PLOG/UOR serialization adapter | `DEFER` | Requires unavailable production source discovery and architectural reconciliation. |
 
 ### Wave 2: HPL projection and authority
 
@@ -99,7 +99,7 @@ These public classifications do not replace the production classifications in `.
 | Learning review and PLOG reconciliation | `CREATE_FROM_SPEC` | No accept/reject/defer/branch/merge transition materializes an authorized derivation. |
 | Signed departure receipt | `COMPLETE_EXISTING` | Tier vocabulary exists but evidence is not authenticated or level-validated. |
 | Attested/verified departure proof profiles | `RESEARCH_ONLY` | Claims depend on specific hardware/runtime evidence and bounded assumptions. |
-| Universal foreign deletion guarantee | `REJECT` | Contradicts ADR-0006 and the threat model. |
+| Universal foreign deletion guarantee | `REJECT` | Contradicts `spec/departure-assurance.md` and the threat model. |
 
 ### Wave 4: interoperability
 
@@ -114,7 +114,7 @@ These public classifications do not replace the production classifications in `.
 | MHS compatibility/parser | `RESEARCH_ONLY` | Normative source artifacts remain unavailable/unreviewed. |
 | A2A agent interaction profile | `CREATE_FROM_SPEC` | Canonical role is stated; no public protocol profile exists. |
 | MCP courier/tool profile | `CREATE_FROM_SPEC` | Must remain courier/tool-facing and not replace A2A. |
-| External vocabulary as internal ontology | `REJECT` | Violates ADR-0007. |
+| External vocabulary as internal ontology | `REJECT` | Violates the standards adapter boundary. |
 
 ### Wave 5: foreign execution, embodiment, and Web0
 
@@ -137,7 +137,7 @@ These public classifications do not replace the production classifications in `.
 |---|---|---|
 | Placement policy interface | `RESEARCH_ONLY` | Privacy, trust, latency, cost, compatibility, and connectivity objective requires production NEP discovery. |
 | Production NEP placement extension | `DEFER` | Must extend the live Neural Engine Protocol rather than create a standalone public substitute. |
-| Existing Edge Twin as delegated target | `DEFER` | Requires the live Edge Twin; ADR-0009 forbids duplication absent evidence. |
+| Existing Edge Twin as delegated target | `DEFER` | Requires the live Edge Twin; duplication is forbidden absent evidence. |
 | Local/edge/cloud/vehicle/robot failover | `EXPERIMENT` | Needs trust and failure simulations after lifecycle enforcement exists. |
 | Canonical PWM custody migration for convenience | `REJECT` | Execution placement does not move canonical authority. |
 
@@ -172,11 +172,11 @@ The requested milestone is not currently achieved as a complete interoperable fl
 | Foreign consumption | None | Reference runtime that cannot mutate canonical PWM | `CREATE_FROM_SPEC` |
 | Return/revocation | Candidate and receipt constructors | Revocation, authenticated return, review, reconciliation, and bounded cleanup evidence | `CREATE_FROM_SPEC` |
 
-## ADR and stop-condition assessment
+## Architectural stop-condition assessment
 
-No discovered evidence justifies replacing an accepted ADR. The current implementation is incomplete relative to proposed contracts, but it does not establish that the architectural decisions are invalid.
+No discovered evidence justifies replacing the published architectural invariants. The current implementation is incomplete relative to proposed contracts, but it does not establish that those decisions are invalid.
 
-Implementation must stop for a new or superseding ADR if work would:
+Implementation must stop for explicit architectural review if work would:
 
 - make public event/hash utilities claim canonical UOR semantics;
 - make `PLog` a generic log or a replacement for production PLOG;

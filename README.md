@@ -145,7 +145,6 @@ The repository does **not** claim to replace them.
 - [`benchmarks/`](benchmarks/) — falsifiable evaluation harnesses.
 - [`standards/`](standards/) — mapping profiles and integration discipline.
 - [`security/`](security/) — threat model and lifecycle guarantees.
-- [`architecture/`](architecture/) — ADRs and canonical diagrams.
 
 ## Quick start
 

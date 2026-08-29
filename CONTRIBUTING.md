@@ -11,4 +11,4 @@ Before proposing code:
 5. For security, physical actuation, identity, or cryptography changes, include a threat-model delta.
 6. For external standards, pin the source/version and avoid claiming normative compliance without conformance evidence.
 
-See `architecture/adrs/`, `STATUS.md`, and `PUBLIC_RELEASE_PLAN.md`.
+See `spec/`, `STATUS.md`, and `PUBLIC_RELEASE_PLAN.md`.

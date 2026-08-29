@@ -117,7 +117,7 @@ machine claim
 
 ```mermaid
 flowchart LR
-    ADR[Accepted ADRs] --> SPEC[Proposed specs]
+    INV[Published architectural invariants] --> SPEC[Proposed specs]
     SPEC --> SCH[JSON Schema / TypeScript]
     SPEC --> MATH[Math profiles]
     SPEC --> CODE[Reference code]
@@ -180,7 +180,7 @@ The carrier node is an explicit boundary, not permission to invent a new envelop
 
 | Layer | Inputs | Outputs | Must be true before dependents proceed |
 |---|---|---|---|
-| 0. Canon and evidence | Governing synthesis, ADRs, status taxonomy, source records | Versioned terminology and claim ledger | Protected meanings and evidence status are mechanically checkable. |
+| 0. Canon and evidence | Published specifications, status taxonomy, source records | Versioned terminology and claim ledger | Protected meanings and evidence status are mechanically checkable. |
 | 1. Public encoding | Canonicalization profile, schemas | Validated bytes and conventional IDs | Deterministic behavior is specified without claiming UOR. |
 | 2. Provenance profile | Validated events and parents | Immutable event DAG/closure | Parent/hash/time/signature rules fail closed. |
 | 3. Materialization | Authorized event closure, schema/conflict profile, point in time | Reproducible PWM view | History/current state and evidence/interpretation remain distinct. |

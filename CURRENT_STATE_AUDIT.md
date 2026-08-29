@@ -8,7 +8,7 @@ repository_version: 0.1.0
 
 ## Scope and authority
 
-This audit records the supplied public repository as observed before implementation work. It is governed, in order, by `../CANONICAL_SYNTHESIS_v1.md`, `../MASTER_INSTRUCTION.md`, the repository's accepted ADRs, and the specifications. It does not audit a production Balnce/Reasn repository because none was supplied in this workspace.
+This audit records the supplied public repository as observed before implementation work. It is governed by the published specifications and architectural invariants. It does not audit a production Balnce/Reasn repository because none was supplied in this workspace.
 
 The following distinctions govern every finding:
 
@@ -57,7 +57,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** none.
 - **Tests:** none directly.
 - **Known incompleteness:** duplicates the version in `pyproject.toml`; no explicit public export surface.
-- **Specification / ADR / benchmark:** repository-level profile; no direct benchmark.
+- **Specification / benchmark:** repository-level profile; no direct benchmark.
 
 ### `src/pwm_hpl_ref/canonical.py`
 
@@ -67,7 +67,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** Python `json` and `hashlib`.
 - **Tests:** indirect through event, projection, Arranger, receipt, and tamper tests.
 - **Known incompleteness:** not RFC 8785/JCS; permits non-standard floating-point values; lacks Unicode and numeric normalization; namespace is unchecked; no direct test vectors.
-- **Specification / ADR / benchmark:** `spec/pwm-core.md`; ADR-0001; `math/uor-proof-status.md`; no benchmark.
+- **Specification / benchmark:** `spec/pwm-core.md`; `math/uor-proof-status.md`; no benchmark.
 
 ### `src/pwm_hpl_ref/plog.py`
 
@@ -77,7 +77,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `canonical.sha256_urn`.
 - **Tests:** indirect through materialization and HPL-CONTEXT.
 - **Known incompleteness:** mutable payloads after hashing; no parent validation, cycle checks, signatures, persistence, schema enforcement, authorized closure, or certificate chain; ordering is lexical chronological order rather than guaranteed DAG-topological order; malformed timestamps are accepted.
-- **Specification / ADR / benchmark:** `spec/pwm-core.md`, `spec/projection-lifecycle.md`; ADR-0001; HPL-CONTEXT indirectly.
+- **Specification / benchmark:** `spec/pwm-core.md`, `spec/projection-lifecycle.md`; HPL-CONTEXT indirectly.
 
 ### `src/pwm_hpl_ref/pwm.py`
 
@@ -87,7 +87,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `plog.PLog`.
 - **Tests:** `test_materialization_is_deterministic`; projection test and benchmark indirectly.
 - **Known incompleteness:** only five event types; unknown events are silently marked applied; no valid-time evaluation, conflict profile, supersession semantics, authorized closure, schema version, checkpoint validation, relation/entity/policy revocation, or referential integrity. The determinism test repeats one in-memory fixture rather than varying insertion order or implementation.
-- **Specification / ADR / benchmark:** `spec/pwm-core.md`; ADR-0001; `math/pwm-formal-model.md`; partial HPL-CONTEXT support.
+- **Specification / benchmark:** `spec/pwm-core.md`; `math/pwm-formal-model.md`; partial HPL-CONTEXT support.
 
 ### `src/pwm_hpl_ref/authority.py`
 
@@ -97,7 +97,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** standard library only.
 - **Tests:** `test_deny_overrides_grant`; projection test indirectly.
 - **Known incompleteness:** `MANDATORY_CLASSES` is unused; no mandate, scope, time, jurisdiction, evidence, delegation, identity, obligation, or local-state evaluation; unknown effects are ignored; implicit no-grant denials lack reasons. This is not a Covenant Atom replacement.
-- **Specification / ADR / benchmark:** `spec/multi-principal-governance.md`; ADR-0005; `math/authority-algebra.md`; HPL-AUTH is not implemented.
+- **Specification / benchmark:** `spec/multi-principal-governance.md`; `math/authority-algebra.md`; HPL-AUTH is not implemented.
 
 ### `src/pwm_hpl_ref/projection.py`
 
@@ -107,7 +107,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `PWMState`, `Decision`, `sha256_urn`.
 - **Tests:** `test_projection_minimizes_and_excludes_sensitive_zone`; HPL-CONTEXT.
 - **Known incompleteness:** no utility threshold, representation/rung selection, field policy, recipient identity proof, environment evidence, compatibility, spatial clipping, pseudonymization, or uncertainty propagation; does not bind the authority decision to the exact request; omits field-local IDs, times, privacy, and provenance; accepts negative TTL.
-- **Specification / ADR / benchmark:** `spec/hpl-core.md`, `spec/projection-lifecycle.md`, `spec/spatial-projection.md`; ADR-0003/0004/0005; partial HPL-CONTEXT only.
+- **Specification / benchmark:** `spec/hpl-core.md`, `spec/projection-lifecycle.md`, `spec/spatial-projection.md`; partial HPL-CONTEXT only.
 
 ### `src/pwm_hpl_ref/crypto.py`
 
@@ -117,7 +117,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `cryptography`; `canonical.canonical_json`.
 - **Tests:** Arranger tamper test indirectly.
 - **Known incompleteness:** no key identifiers, serialization, rotation, trust resolution, secure storage, algorithm metadata, domain separation, or direct vectors; verification collapses all errors to `False`.
-- **Specification / ADR / benchmark:** supports Arranger and broadcast contracts; no dedicated spec, ADR, or benchmark.
+- **Specification / benchmark:** supports Arranger and broadcast contracts; no dedicated spec or benchmark.
 
 ### `src/pwm_hpl_ref/arranger.py`
 
@@ -127,7 +127,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `sha256_urn`, `sign_json`, `verify_json`, Ed25519 key objects.
 - **Tests:** `test_arranger_signature_detects_tamper`.
 - **Known incompleteness:** no Hyperframe carrier; no expiry, recipient, nonce, revocation, payload-hash, schema, or compatibility enforcement; required allowed/forbidden capabilities, runtime/model/hardware binding, and learning-return policy are absent; TTL may be negative.
-- **Specification / ADR / benchmark:** `spec/arranger.md`, `spec/projection-lifecycle.md`; ADR-0002/0004; no lifecycle benchmark.
+- **Specification / benchmark:** `spec/arranger.md`, `spec/projection-lifecycle.md`; no lifecycle benchmark.
 
 ### `src/pwm_hpl_ref/learning.py`
 
@@ -137,7 +137,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `sha256_urn`.
 - **Tests:** none.
 - **Known incompleteness:** unsigned and unauthenticated; no schema validation, poisoning controls, deduplication, replay defense, review workflow, or reconciliation event; callers can disable review.
-- **Specification / ADR / benchmark:** `spec/hpl-core.md`, lifecycle RECONCILE phase; ADR-0003; no benchmark.
+- **Specification / benchmark:** `spec/hpl-core.md`, lifecycle RECONCILE phase; no benchmark.
 
 ### `src/pwm_hpl_ref/departure.py`
 
@@ -147,7 +147,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `sha256_urn`.
 - **Tests:** `test_departure_receipt_is_bounded_claim` checks only the label.
 - **Known incompleteness:** arbitrary evidence can support any level; receipts are unsigned; no recipient or attestation verification. Emitted `receiptId` is rejected by the current schema because it is undeclared while `additionalProperties` is false. `PROTOCOL_DEPARTURE` therefore does not yet meet the specification's signed-acknowledgement requirement.
-- **Specification / ADR / benchmark:** `spec/departure-assurance.md`; ADR-0006; HPL-RESIDUE is absent.
+- **Specification / benchmark:** `spec/departure-assurance.md`; HPL-RESIDUE is absent.
 
 ### `src/pwm_hpl_ref/web0.py`
 
@@ -157,7 +157,7 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** `sha256_urn`, Ed25519 JSON signing.
 - **Tests:** none.
 - **Known incompleteness:** verification checks signature only; no ID recomputation, expiry, replay, identity/key resolution, revocation, discovery, network protocol, or payload validation. A capability broadcast is evidence, not authorization.
-- **Specification / ADR / benchmark:** public interface profile; ADR-0003/0005/0007 boundaries; no benchmark.
+- **Specification / benchmark:** public interface profile; no benchmark.
 
 ### `src/pwm_hpl_ref/demo.py`
 
@@ -167,18 +167,18 @@ Most Python modules, schemas, tests, benchmark files, security documents, diagra
 - **Dependencies:** all reference modules except adapter modules.
 - **Tests:** fixture functions support reference tests; `main()` is not tested end to end.
 - **Known incompleteness:** no Hyperframe transport, foreign runtime consumer, local safety decision, revocation/expiry, signed departure, or learning reconciliation; generated output is nondeterministic and is not schema-validated; fixture assertions omit schema-required `recordTime`.
-- **Specification / ADR / benchmark:** integrates core specifications and ADR-0001 through ADR-0007; HPL-CONTEXT only.
+- **Specification / benchmark:** integrates the core specifications; HPL-CONTEXT only.
 
 ## Adapter inventory
 
 | Adapter | Declared status | Public interface | Tests | Dependencies and incompleteness | Governing evidence |
 |---|---|---|---|---|---|
-| `adapters/hcp/adapter.py` | `EXPERIMENTAL` in README | `projection_to_preference_records(projection)` | `test_hcp_mapping_is_scoped` | No pinned HCP version/schema, validation, transport, identity, or conflict semantics; projection-wide provenance is copied to every record. | `standards/hcp-mapping.md`; ADR-0007. |
-| `adapters/covesa-vss/adapter.py` | `EXPERIMENTAL` in README | `DEFAULT_MAP`; `map_signal(vss_path, value, mapping=None)` | `test_vss_unknown_fails_semantically_closed` | Three paths only; no VSS version, units, types, VISS transport, timestamp, or conversion; unknown semantics correctly remain unknown. | `standards/covesa-mapping.md`; ADR-0007. |
-| `adapters/wot/adapter.py` | `EXPERIMENTAL` in README | `thing_description_capabilities(td)` | `test_wot_affordances_are_evidence_not_authority` | No TD validation, JSON-LD context, forms, operations, security definitions, versions, or protocol binding. | `standards/wot-mapping.md`; ADR-0007. |
-| `adapters/ros2/` | `PROPOSED` | Documentation only | None | No actions/services/messages, QoS, node identity, safety integration, or runtime fixture. | `standards/ros2-mapping.md`; ADR-0005/0007. |
-| `adapters/sovd/` | `PROPOSED` | Documentation only | None | No normative version, parser, endpoint profile, authorization, transport, or fixture. | Vehicle support example; ADR-0007. |
-| `adapters/mhs/` | `RESEARCH` | Documentation only | None | Normative artifacts are unavailable/unreviewed; compatibility claims are correctly withheld. | `standards/mhs-mapping.md`; ADR-0007. |
+| `adapters/hcp/adapter.py` | `EXPERIMENTAL` in README | `projection_to_preference_records(projection)` | `test_hcp_mapping_is_scoped` | No pinned HCP version/schema, validation, transport, identity, or conflict semantics; projection-wide provenance is copied to every record. | `standards/hcp-mapping.md`. |
+| `adapters/covesa-vss/adapter.py` | `EXPERIMENTAL` in README | `DEFAULT_MAP`; `map_signal(vss_path, value, mapping=None)` | `test_vss_unknown_fails_semantically_closed` | Three paths only; no VSS version, units, types, VISS transport, timestamp, or conversion; unknown semantics correctly remain unknown. | `standards/covesa-mapping.md`. |
+| `adapters/wot/adapter.py` | `EXPERIMENTAL` in README | `thing_description_capabilities(td)` | `test_wot_affordances_are_evidence_not_authority` | No TD validation, JSON-LD context, forms, operations, security definitions, versions, or protocol binding. | `standards/wot-mapping.md`. |
+| `adapters/ros2/` | `PROPOSED` | Documentation only | None | No actions/services/messages, QoS, node identity, safety integration, or runtime fixture. | `standards/ros2-mapping.md`. |
+| `adapters/sovd/` | `PROPOSED` | Documentation only | None | No normative version, parser, endpoint profile, authorization, transport, or fixture. | Vehicle support example. |
+| `adapters/mhs/` | `RESEARCH` | Documentation only | None | Normative artifacts are unavailable/unreviewed; compatibility claims are correctly withheld. | `standards/mhs-mapping.md`. |
 
 ## Public schema inventory
 

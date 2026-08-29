@@ -6,3 +6,7 @@ dist/
 build/
 *.egg-info/
 /research/
+/architecture/adrs/
+/ROADMAP.md
+/EXECUTION_PLAN.md
+/site/AI_LAB_PAGE.md
