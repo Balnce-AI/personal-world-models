@@ -105,6 +105,7 @@ No V2 performance claim is made. The V1 HPL-CONTEXT result is retained only as a
 - The source-authority corpus and public/private IP matrix are absent.
 - GitHub branch protection and required checks are not configured.
 - Current GitHub actions emit a non-blocking Node.js runtime deprecation warning.
+- The first Wave 00 CI run failed because default shallow checkouts omitted the pinned V1 commits required by the ledger parity test. Both history-dependent test jobs now use `fetch-depth: 0`; the conformance test was retained unchanged.
 
 ## Deferred Work
 
