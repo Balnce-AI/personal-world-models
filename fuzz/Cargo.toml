@@ -1,0 +1,27 @@
+[package]
+name = "pwm-public-profile-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "=0.4.13"
+pwm-canonical = { path = "../crates/pwm-canonical" }
+pwm-event = { path = "../crates/pwm-event" }
+
+[[bin]]
+name = "canonical_decode"
+path = "fuzz_targets/canonical_decode.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "event_body_decode"
+path = "fuzz_targets/event_body_decode.rs"
+test = false
+doc = false
+bench = false

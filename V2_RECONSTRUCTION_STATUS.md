@@ -6,8 +6,8 @@
 
 **Archive:** `public-v1-archive` at `363fe941b6c71a0235b8479a33ea7a7286e7dbe2`
 
-**Current wave:** Wave 00, repository forensics and archive
-**Gate:** `WAVE_00_PASS_WAVE_01_BLOCKED`
+**Current wave:** Wave 01, public provenance spine
+**Gate:** `WAVE_01_PASS`
 
 ## Canon
 
@@ -20,8 +20,9 @@ Memories are evidence, models are derived behavior, and the twelve phenomenologi
 | Wave | State | Evidence |
 |---:|---|---|
 | 00 | `PASS` | [`governance/WAVE_00_REPORT.md`](governance/WAVE_00_REPORT.md) |
-| 01 | `BLOCKED_BY_AUTHORITY` | Required source-authority documents and the public/private IP matrix are absent |
-| 02-13 | `BLOCKED_BY_PREDECESSOR` | Every wave has a hard dependency on the preceding gate |
+| 01 | `PASS` | [`governance/WAVE_01_REPORT.md`](governance/WAVE_01_REPORT.md) |
+| 02 | `READY_NOT_STARTED` | Wave 01 predecessor gate passed; no Wave 02 implementation has begun |
+| 03-13 | `BLOCKED_BY_PREDECESSOR` | Every wave has a hard dependency on the preceding gate |
 
 ## Wave 00 Outputs
 
@@ -34,9 +35,19 @@ Memories are evidence, models are derived behavior, and the twelve phenomenologi
 - Draft GitHub release with source archive and SHA-256
 - Dedicated branch `v2/reconstruction`
 
+## Wave 01 Outputs
+
+- [`spec/public-provenance-profile-v1.md`](spec/public-provenance-profile-v1.md)
+- [`governance/WAVE_01_AUTHORITY_RECORD.md`](governance/WAVE_01_AUTHORITY_RECORD.md)
+- [`governance/WAVE_01_REPORT.md`](governance/WAVE_01_REPORT.md)
+- [`governance/PUBLIC_CLAIM_LEDGER.json`](governance/PUBLIC_CLAIM_LEDGER.json)
+- Rust crates under [`crates/`](crates/)
+- Public vectors and independent Python oracle under [`conformance/`](conformance/)
+- Synthetic scale evidence in [`benchmarks/results/wave01-dag.json`](benchmarks/results/wave01-dag.json)
+
 ## Publication Holds
 
-Until the missing source-authority corpus and public/private IP matrix are supplied and verified, enabling implementations in these areas default to `HOLD_IP`:
+The source-authority corpus and founder-approved publication matrix authorized the bounded Wave 01 profile only. Enabling implementations in these other areas remain held unless their wave receives module-level approval:
 
 - authority beyond a safe public mechanism boundary;
 - context minimization and HPL lifecycle internals;
@@ -47,9 +58,9 @@ Until the missing source-authority corpus and public/private IP matrix are suppl
 
 Public schemas, explicit non-enabling profiles, conformance vectors, independent oracles, synthetic data, and bounded research fixtures remain eligible only after per-component review.
 
-## Missing Authority Inputs
+## Authority Inputs
 
-The thirteen source documents listed by hash in Package One's `SOURCE_MANIFEST.md` were not supplied with the package and are not present in the workspace. Their absence blocks any implementation decision that depends on semantics not reproduced explicitly in Package One.
+The 13 source-authority documents were supplied out of tree and matched both independent manifests by byte count and SHA-256. They were read in precedence order and were not copied into this public repository. The public-safe decision and bundle provenance are recorded in `governance/WAVE_01_AUTHORITY_RECORD.md`.
 
 ## Removed-Path Policy
 
@@ -57,4 +68,4 @@ Previously removed local paths, including `research/`, `architecture/adrs/`, `RO
 
 ## Next Gate
 
-Wave 00 passed its forensic and governance gate. Wave 01 must not begin until the missing source-authority corpus is hash-verified, the public/private IP matrix is supplied, and a public non-UOR/non-production-PLOG byte profile is explicitly approved for implementation.
+Wave 01 passed the local acceptance gate. Wave 02 may begin only under its package specification and must not reinterpret the public provenance profile as private UOR/PLOG identity or skip the metagraph, temporal, epistemic, and materialization acceptance requirements.

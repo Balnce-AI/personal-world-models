@@ -2,7 +2,7 @@
 
 > **A research specification and executable reference implementation for user-owned, provenance-bearing personal intelligence.**
 
-**Repository status:** `REFERENCE_IMPLEMENTATION + RESEARCH`  
+**Repository status:** `V2 RECONSTRUCTION + V1 REFERENCE`
 **License:** MIT
 
 ## The problem
@@ -95,6 +95,12 @@ actuation
 
 ## What this repository implements now
 
+- A V2 public provenance profile with restricted deterministic CBOR, typed domain-separated CIDs, Ed25519 signatures, signed append receipts, and deterministic causal-DAG replay.
+- Independent Rust and Python conformance verification over checked-in valid and malformed vectors.
+- An atomic SQLite reference store that re-verifies present records during recovery and fails closed on record mutation or edge inconsistency. Valid-suffix deletion and whole-database rollback require an externally protected expected head and are outside this reference profile.
+- A Rust CLI for vector generation, event verification, and replay.
+- A synthetic 1K/10K/100K DAG validation and replay benchmark with environment metadata and bounded claims.
+- The archived V1 Python reference capabilities listed below while their V2 successors are reconstructed wave by wave.
 - A deterministic, event-backed reference PWM materializer.
 - Typed entities, relations, assertions, temporal validity, epistemic status, and provenance references.
 - A scoped HPL projection compiler.
@@ -145,8 +151,22 @@ The repository does **not** claim to replace them.
 - [`benchmarks/`](benchmarks/) — falsifiable evaluation harnesses.
 - [`standards/`](standards/) — mapping profiles and integration discipline.
 - [`security/`](security/) — threat model and lifecycle guarantees.
+- [`crates/`](crates/) — V2 Rust public-profile implementations.
+- [`conformance/`](conformance/) — valid/invalid vectors and the independent Python oracle.
+- [`governance/`](governance/) — status metadata, authority records, and wave evidence.
 
 ## Quick start
+
+V2 public provenance profile:
+
+```bash
+cargo test --workspace
+cargo run -q -p pwm-cli -- event verify --bundle conformance/vectors/wave01-valid.json
+cargo run -q -p pwm-cli -- event replay --bundle conformance/vectors/wave01-valid.json
+python3 conformance/python/pwm_oracle.py conformance/vectors/wave01-valid.json
+```
+
+V1 Python reference:
 
 ```bash
 python -m venv .venv

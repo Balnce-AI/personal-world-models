@@ -5,6 +5,10 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+/target/
+*.cdx.json
+/fuzz/artifacts/
+/fuzz/corpus/
 /research/
 /architecture/adrs/
 /ROADMAP.md

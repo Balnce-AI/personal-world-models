@@ -1,0 +1,20 @@
+digraph signed_event_dag {
+  rankdir=LR;
+  graph [bgcolor="transparent", fontname="Helvetica"];
+  node [shape=box, style="rounded", fontname="Helvetica"];
+  edge [fontname="Helvetica"];
+
+  genesis [label="Genesis\nEventBody CID + author signature"];
+  left [label="Branch A\nverified parent + sequence"];
+  right [label="Branch B\nverified parent + sequence"];
+  merge [label="Merge\nsorted unique parents"];
+  receipt [label="Append receipt\ningestion order + key frontier"];
+  replay [label="Deterministic replay\ntopology + raw-CID tie-break"];
+
+  genesis -> left;
+  genesis -> right;
+  left -> merge;
+  right -> merge;
+  merge -> receipt [label="append authority"];
+  receipt -> replay [label="verify all records"];
+}

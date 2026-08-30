@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated Rust compiler artifacts"
+paths = [
+  '''^target/''',
+  '''^fuzz/target/''',
+]

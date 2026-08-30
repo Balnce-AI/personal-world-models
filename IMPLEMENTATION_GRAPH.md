@@ -6,6 +6,29 @@ repository_version: 0.1.0
 
 # Implementation Graph
 
+## V2 Wave 01 Provenance Spine
+
+```mermaid
+flowchart LR
+  Values[Restricted values] --> CBOR[Deterministic CBOR]
+  CBOR --> TCID[Domain-separated typed CID]
+  TCID --> AuthorSig[Ed25519 author signature]
+  AuthorSig --> DAG[Verified causal DAG]
+  Payload[Canonical payload bytes] --> DAG
+  Schema[Schema registry] --> DAG
+  KeyFrontier[Key-status frontier] --> DAG
+  DAG --> Receipt[Signed append receipt]
+  DAG --> SQLite[Atomic SQLite store]
+  SQLite --> Recovery[Fail-closed recovery]
+  DAG --> Replay[CID-tiebroken topological replay]
+  Vectors[Public vectors] --> RustVerifier[Rust verifier]
+  Vectors --> PythonOracle[Independent Python oracle]
+  RustVerifier --> Replay
+  PythonOracle --> Replay
+```
+
+This is a public interoperability profile only. It deliberately stops before metagraph semantics, PWM materialization, authority composition, HPL, NEP placement, Guardian policy, private UOR identity, and the private production PLOG.
+
 ## Reading the graph
 
 This is a dependency graph, not a directory tree. Solid edges describe imports or direct data dependencies present in the repository. Dashed edges describe specified but absent links required for the first milestone. A foreign runtime never becomes a source of canonical PWM state.

@@ -1,0 +1,40 @@
+{
+  "profile": "pwm-public-provenance-v1",
+  "environment": {
+    "operating_system": "macos",
+    "architecture": "aarch64",
+    "rust_version": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "build_profile": "release"
+  },
+  "cases": [
+    {
+      "events": 1000,
+      "replayed_events": 1000,
+      "append_nanoseconds": 104454416,
+      "replay_nanoseconds": 513834,
+      "append_events_per_second": 9573,
+      "replay_events_per_second": 1946153
+    },
+    {
+      "events": 10000,
+      "replayed_events": 10000,
+      "append_nanoseconds": 1024401083,
+      "replay_nanoseconds": 5203000,
+      "append_events_per_second": 9761,
+      "replay_events_per_second": 1921968
+    },
+    {
+      "events": 100000,
+      "replayed_events": 100000,
+      "append_nanoseconds": 10292497750,
+      "replay_nanoseconds": 117484709,
+      "append_events_per_second": 9715,
+      "replay_events_per_second": 851174
+    }
+  ],
+  "limitations": [
+    "Synthetic single-author linear DAG; not a production workload.",
+    "Wall-clock timing includes canonical encoding and Ed25519 signing and verification.",
+    "Results are descriptive for the recorded environment and are not a performance guarantee."
+  ]
+}

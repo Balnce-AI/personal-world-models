@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "claims": [
+    {
+      "claim_id": "W01-CBOR-001",
+      "claim": "The Rust encoder and independent Python oracle agree on the checked-in restricted deterministic CBOR records.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "conformance/vectors/wave01-valid.json",
+        "tests/test_cross_language_conformance.py",
+        "crates/pwm-canonical/tests/canonical_profile.rs"
+      ],
+      "falsifier": "A supported value encodes differently, or either implementation accepts a published malformed vector.",
+      "limitations": "Agreement is bounded to the published profile and corpus, not all RFC 8949 applications.",
+      "last_verified": "2026-08-29"
+    },
+    {
+      "claim_id": "W01-SIGN-001",
+      "claim": "Event and append-receipt signatures bind domain-separated typed CIDs and reject tested byte mutations.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "crates/pwm-crypto/tests/signature_profile.rs",
+        "crates/pwm-event/tests/sqlite_recovery.rs",
+        "tests/test_cross_language_conformance.py"
+      ],
+      "falsifier": "A mutated signed body, receipt, payload, CID, or signature is accepted as valid.",
+      "limitations": "This does not assess production key custody, recovery, trust routing, or side channels.",
+      "last_verified": "2026-08-29"
+    },
+    {
+      "claim_id": "W01-DAG-001",
+      "claim": "Valid branch and merge DAGs replay in deterministic topological order with a raw-CID tie-break.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "crates/pwm-event/tests/event_dag.rs",
+        "crates/pwm-event/tests/properties.rs",
+        "conformance/vectors/wave01-valid.json"
+      ],
+      "falsifier": "A valid input permutation changes replay order, a child precedes its parent, or a cycle is accepted.",
+      "limitations": "No world-model reducer or metagraph state semantics are included in Wave 01.",
+      "last_verified": "2026-08-29"
+    },
+    {
+      "claim_id": "W01-STORE-001",
+      "claim": "The SQLite reference store recovers from tested interrupted transactions and fails closed on tested mutation of records that remain present.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "crates/pwm-event/tests/sqlite_recovery.rs"
+      ],
+      "falsifier": "A simulated or process-abort append exposes a partial record after restart, or a tested mutation of a present record reopens successfully.",
+      "limitations": "Fault injection and one local SQLite implementation do not establish production durability across all filesystems or hardware. Valid-suffix deletion and whole-database rollback are not detectable without an externally protected expected head.",
+      "last_verified": "2026-08-29"
+    },
+    {
+      "claim_id": "W01-SCALE-001",
+      "claim": "The release-build reference completed append validation and deterministic replay for synthetic 1K, 10K, and 100K linear DAGs on the recorded environment.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "benchmarks/results/wave01-dag.json",
+        "crates/pwm-event/src/benchmark.rs"
+      ],
+      "falsifier": "The benchmark fails to append or replay the requested number of events, or replay count differs from input count.",
+      "limitations": "Single-run synthetic linear-DAG timing is not a production throughput, latency, concurrency, or capacity guarantee.",
+      "last_verified": "2026-08-29"
+    }
+  ]
+}

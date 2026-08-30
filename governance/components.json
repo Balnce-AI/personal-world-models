@@ -69,7 +69,7 @@
         "PWM Public Repository Reconstruction Package One v1.1"
       ],
       "limitations": [
-        "Wave 01 is blocked by missing source-authority and public/private IP inputs."
+        "Only Waves 00 and 01 have passed; later semantic and runtime capabilities are not implemented."
       ]
     },
     {
@@ -107,6 +107,114 @@
       ],
       "limitations": [
         "The generated SBOM describes CI resolution because V1 has no lockfile."
+      ]
+    },
+    {
+      "id": "wave-01-public-provenance-profile",
+      "path": "spec/public-provenance-profile-v1.md",
+      "truth_plane": "CANONICAL",
+      "evidence_status": "SPECIFIED",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "governance/WAVE_01_AUTHORITY_RECORD.md",
+        "PWM Public Repository Reconstruction Package One v1.1"
+      ],
+      "limitations": [
+        "Public interoperability profile only; not UOR or the private production PLOG."
+      ]
+    },
+    {
+      "id": "wave-01-rust-provenance-reference",
+      "path": "crates/pwm-event",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "spec/public-provenance-profile-v1.md",
+        "conformance/vectors/wave01-valid.json"
+      ],
+      "limitations": [
+        "Reference implementation only; excludes production key custody, policy, topology, and recovery operations."
+      ]
+    },
+    {
+      "id": "wave-01-python-conformance-oracle",
+      "path": "conformance/python/pwm_oracle.py",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "spec/public-provenance-profile-v1.md",
+        "tests/test_cross_language_conformance.py"
+      ],
+      "limitations": [
+        "Independent vector verifier only; not a second authority implementation or production service."
+      ]
+    },
+    {
+      "id": "wave-01-conformance-vectors",
+      "path": "conformance/vectors",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "crates/pwm-cli/src/main.rs",
+        "conformance/python/pwm_oracle.py"
+      ],
+      "limitations": [
+        "Synthetic vectors establish profile interoperability, not production identity or operational security."
+      ]
+    },
+    {
+      "id": "wave-01-dag-benchmark",
+      "path": "benchmarks/results/wave01-dag.json",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "REPRODUCED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "crates/pwm-event/src/benchmark.rs",
+        "governance/PUBLIC_CLAIM_LEDGER.json"
+      ],
+      "limitations": [
+        "Synthetic single-author linear workload on one machine; no production performance claim."
+      ]
+    },
+    {
+      "id": "wave-01-report",
+      "path": "governance/WAVE_01_REPORT.md",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "spec/public-provenance-profile-v1.md",
+        "governance/PUBLIC_CLAIM_LEDGER.json"
+      ],
+      "limitations": [
+        "The report covers only the Wave 01 public provenance profile and does not imply later-wave completion."
       ]
     }
   ]

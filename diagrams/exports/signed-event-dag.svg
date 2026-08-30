@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="300" viewBox="0 0 980 300" role="img" aria-labelledby="title desc">
+  <title id="title">Signed causal event DAG</title>
+  <desc id="desc">A signed genesis branches into two signed events, merges, receives an append receipt, and enters deterministic replay.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+  <rect width="980" height="300" fill="#f8fafc"/>
+  <g fill="#fff" stroke="#334155" stroke-width="2" font-family="Helvetica,Arial,sans-serif" text-anchor="middle">
+    <rect x="25" y="105" width="165" height="70" rx="10"/><rect x="245" y="35" width="165" height="70" rx="10"/><rect x="245" y="195" width="165" height="70" rx="10"/><rect x="465" y="105" width="165" height="70" rx="10"/><rect x="685" y="105" width="130" height="70" rx="10"/><rect x="855" y="105" width="100" height="70" rx="10"/>
+  </g>
+  <g stroke="#334155" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M190 130 L245 80"/><path d="M190 150 L245 220"/><path d="M410 80 L465 130"/><path d="M410 230 L465 150"/><path d="M630 140 L685 140"/><path d="M815 140 L855 140"/></g>
+  <g fill="#0f172a" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle"><text x="107" y="133">Genesis</text><text x="107" y="154">signed body</text><text x="327" y="63">Branch A</text><text x="327" y="84">verified sequence</text><text x="327" y="223">Branch B</text><text x="327" y="244">verified sequence</text><text x="547" y="133">Merge</text><text x="547" y="154">sorted parents</text><text x="750" y="133">Append receipt</text><text x="750" y="154">key frontier</text><text x="905" y="133">Replay</text><text x="905" y="154">CID tie-break</text></g>
+</svg>
