@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "tag": "public-v1-archive",
+  "commit": "363fe941b6c71a0235b8479a33ea7a7286e7dbe2",
+  "archive_asset": "public-v1-archive.tar",
+  "archive_format": "git archive --format=tar",
+  "sha256": "38b71f7274d65dba9260042da779386012ec5e16c8f841a0479e376881b4a0e8",
+  "tracked_file_count": 97,
+  "release_state": "DRAFT",
+  "claims": [
+    "Recoverable public V1 source baseline"
+  ],
+  "non_claims": [
+    "Reproducible dependency closure",
+    "Production readiness",
+    "Canonical UOR or production PLOG implementation",
+    "Complete HPL lifecycle enforcement",
+    "Safety certification"
+  ]
+}

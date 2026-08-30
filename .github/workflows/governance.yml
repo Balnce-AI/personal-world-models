@@ -1,0 +1,46 @@
+name: governance
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  status-and-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e '.[dev]'
+      - run: python scripts/check_status.py governance/components.json
+      - run: pytest tests/test_governance.py -q
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+
+  dependency-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e '.[dev]' pip-audit pip-licenses cyclonedx-bom
+      - run: pip-audit .
+      - run: pip-licenses --format=json --output-file=licenses.json
+      - run: cyclonedx-py environment --output-format JSON --output-file sbom.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dependency-evidence
+          path: |
+            licenses.json
+            sbom.json

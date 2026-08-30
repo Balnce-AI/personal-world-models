@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "components": [
+    {
+      "id": "public-v1-archive",
+      "path": "migration/V1_BASELINE_REPORT.md",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "BASELINE_CAPTURED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "public-v1-archive",
+        "Wave 00"
+      ],
+      "limitations": [
+        "Dependency closure is not reproducible because V1 has no lockfile."
+      ]
+    },
+    {
+      "id": "v1-file-ledger",
+      "path": "migration/v1_file_ledger.json",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "BASELINE_CAPTURED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "public-v1-archive",
+        "a83ccf2f133dbf90611cbb636a1e42f10b35c5df"
+      ],
+      "limitations": [
+        "Dispositions are migration decisions, not claims that V2 replacements exist."
+      ]
+    },
+    {
+      "id": "python-v1-reference",
+      "path": "src/pwm_hpl_ref",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "UNIT_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "public-v1-archive",
+        "migration/V1_BASELINE_REPORT.md"
+      ],
+      "limitations": [
+        "Bounded V1 reference only; not canonical UOR/PLOG or a production implementation."
+      ]
+    },
+    {
+      "id": "v2-reconstruction-program",
+      "path": "V2_RECONSTRUCTION_STATUS.md",
+      "truth_plane": "OPERATIONALIZING",
+      "evidence_status": "SPECIFIED",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "BASELINE_CAPTURED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "PWM Public Repository Reconstruction Package One v1.1"
+      ],
+      "limitations": [
+        "Wave 01 is blocked by missing source-authority and public/private IP inputs."
+      ]
+    },
+    {
+      "id": "wave-00-report",
+      "path": "governance/WAVE_00_REPORT.md",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "BASELINE_CAPTURED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "public-v1-archive",
+        "migration/V1_ARCHIVE_MANIFEST.json",
+        "migration/v1_file_ledger.json"
+      ],
+      "limitations": [
+        "This report establishes repository controls only; it does not validate V2 semantic behavior."
+      ]
+    },
+    {
+      "id": "third-party-notices",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "BASELINE_CAPTURED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-08-29",
+      "source_refs": [
+        "pyproject.toml",
+        ".github/workflows/governance.yml"
+      ],
+      "limitations": [
+        "The generated SBOM describes CI resolution because V1 has no lockfile."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,830 @@
+{
+  "schema_version": "1.0.0",
+  "archive_commit": "363fe941b6c71a0235b8479a33ea7a7286e7dbe2",
+  "archive_tag": "public-v1-archive",
+  "initial_public_corpus_commit": "a83ccf2f133dbf90611cbb636a1e42f10b35c5df",
+  "archive_file_count": 97,
+  "union_file_count": 116,
+  "allowed_dispositions": [
+    "KEEP",
+    "PORT",
+    "REWRITE",
+    "DELETE",
+    "HISTORY_ONLY"
+  ],
+  "policy": "The latest founder-approved public HEAD is the archive baseline. Files previously removed from that branch are history-only and are not republished by this ledger.",
+  "files": [
+    {
+      "path": ".github/workflows/test.yml",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": ".gitignore",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "KEEP",
+      "reason": "Retain unchanged as repository hygiene or licensing foundation, subject to normal review."
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "CURRENT_STATE_AUDIT.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "EXECUTION_PLAN.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "GAP_ANALYSIS.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "IMPLEMENTATION_GRAPH.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "LICENSE",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "KEEP",
+      "reason": "Retain unchanged as repository hygiene or licensing foundation, subject to normal review."
+    },
+    {
+      "path": "PUBLIC_RELEASE_PLAN.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "ROADMAP.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "SECURITY.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "STATUS.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "adapters/covesa-vss/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/covesa-vss/adapter.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/hcp/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/hcp/adapter.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/mhs/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/ros2/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/sovd/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/wot/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "adapters/wot/adapter.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Retain boundary research where useful, but rebuild against pinned upstream versions and V2 contracts."
+    },
+    {
+      "path": "architecture/adrs/0001-pwm-materialized-over-provenance.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0002-arranger-is-artifact-hyperframe-is-carrier.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0003-no-canonical-pwm-on-foreign-infra.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0004-five-rung-crystallization.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0005-hpl-not-safety-kernel.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0006-departure-assurance.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0007-standards-as-adapters.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0008-uhr-name-protected.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "architecture/adrs/0009-edge-twin-extended-not-duplicated.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "benchmarks/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "benchmarks/hpl-context/run.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "benchmarks/results/hpl-context-smoke.txt",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/exports/multi-principal.svg",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/exports/projection-lifecycle.svg",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/exports/sovereign-grid.svg",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/exports/system-context.svg",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/01-system-context.mmd",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/02-projection-lifecycle.mmd",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/03-standards-map.mmd",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/04-multi-principal.mmd",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/05-learning-return.mmd",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/06-sovereign-grid.mmd",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/multi-principal.dot",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/projection-lifecycle.dot",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/sovereign-grid.dot",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "diagrams/source/system-context.dot",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "docs/GLOSSARY.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "examples/fleet-authority-conflict/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "examples/generated/demo-output.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Nondeterministic generated V1 output; replace with reproducible signed result artifacts."
+    },
+    {
+      "path": "examples/robot-kitchen-delivery/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "examples/vehicle-service-support/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "math/authority-algebra.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "math/confidence-and-time.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "math/projection-operator.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "math/pwm-formal-model.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "math/uor-proof-status.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "papers/01-personal-world-model/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "papers/02-human-projection-layer/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "pyproject.toml",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "research/evidence-ledger/README.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "research/evidence-ledger/seed.json",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "research/landscape/CLAIM_MATRIX.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "research/landscape/COMPETITOR_MAP.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "research/open-questions/README.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "research/prior-art/README.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "research/terminology-provenance/README.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "rfcs/0001-pwm-core-profile.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "rfcs/0002-hpl-projection-profile.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/arranger-manifest.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/authority-constraint.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/departure-receipt.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/learning-candidate.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/machine-broadcast.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/plog-event.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/projection-manifest.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/pwm-assertion.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/pwm-entity.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/json-schema/pwm-relation.schema.json",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "schemas/typescript/index.ts",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "security/THREAT_MODEL.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "security/TRUST_ASSUMPTIONS.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "site/AI_LAB_PAGE.md",
+      "in_archive_head": false,
+      "in_initial_public_corpus": true,
+      "disposition": "HISTORY_ONLY",
+      "reason": "Explicitly removed from the current public branch before reconstruction; retain only in Git history unless separately adjudicated."
+    },
+    {
+      "path": "spec/arranger.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/departure-assurance.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/hpl-core.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/multi-principal-governance.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/projection-lifecycle.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/public-interface-profile.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/pwm-core.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "spec/spatial-projection.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "src/pwm_hpl_ref/__init__.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/arranger.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/authority.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/canonical.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/crypto.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/demo.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/departure.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/learning.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/plog.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/projection.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/pwm.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "src/pwm_hpl_ref/web0.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "standards/README.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "standards/covesa-mapping.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "standards/hcp-mapping.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "standards/mhs-mapping.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "standards/ros2-mapping.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "standards/wot-mapping.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "tests/test_adapters.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "tests/test_markdown_math.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": false,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "tests/test_reference.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "tests/test_schemas.py",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "REWRITE",
+      "reason": "Replace or substantially revise for the V2 architecture, evidence bar, and reproducibility contract."
+    },
+    {
+      "path": "vision/category-thesis.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    },
+    {
+      "path": "vision/ten-principles.md",
+      "in_archive_head": true,
+      "in_initial_public_corpus": true,
+      "disposition": "PORT",
+      "reason": "Preserve reviewed concepts and non-claims while translating them into the V2 contract and status system."
+    }
+  ]
+}
