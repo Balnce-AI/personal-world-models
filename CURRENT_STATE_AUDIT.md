@@ -6,6 +6,8 @@ repository_version: 0.1.0
 
 # Current State Audit
 
+This document is the historical pre-reconstruction audit for repository version `0.1.0`. It is retained as migration evidence; current implementation and conformance status is recorded in `PLATFORM_STABILIZATION_STATUS.md`, `conformance/manifest.json`, and `governance/PUBLIC_CLAIM_LEDGER.json`.
+
 ## Scope and authority
 
 This audit records the supplied public repository as observed before implementation work. It is governed by the published specifications and architectural invariants. It does not audit a production Balnce/Reasn repository because none was supplied in this workspace.

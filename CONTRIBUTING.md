@@ -2,6 +2,26 @@
 
 This repository separates normative specifications, executable reference code, ecosystem extensions and open research. A contribution must say which boundary it changes.
 
+## Development setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e '.[dev,research]'
+pytest -q
+cargo test --workspace
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets -- -D warnings
+```
+
+Run signed semantic interoperability checks with:
+
+```bash
+pwm-conformance verify --implementation rust-signed-semantic --profile PWM-MODEL-ECOLOGY-1
+pwm-conformance verify --implementation python-signed-semantic --profile PWM-MODEL-ECOLOGY-1
+pwm-conformance compare --implementations rust-signed-semantic python-signed-semantic --suite PWM-SIGNED-SEMANTICS-V1
+```
+
 ## Before proposing code
 
 1. Identify the invariant, falsifiable claim or benchmark being improved.
@@ -12,6 +32,7 @@ This repository separates normative specifications, executable reference code, e
 6. Add tests, conformance evidence or an explicit proof obligation and negative control.
 7. Use synthetic/public fixtures only. Never commit personal world-model data, credentials or provider responses containing private context.
 8. For external standards, pin the primary source/version and fail unknown semantics closed. Structural mapping is not normative compliance.
+9. During the current architectural freeze, prefer bug fixes, conformance corrections, documentation, external implementation support, benchmarks and scoped security work. A major new subsystem requires evidence and explicit architectural review.
 
 ## Pull requests
 

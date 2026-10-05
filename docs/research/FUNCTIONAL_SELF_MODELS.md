@@ -1,6 +1,6 @@
 # Functional Self-Models
 
-**Status:** `EXPERIMENTAL_REAL`
+**Status:** `EXPERIMENTAL` with executable evidence
 
 `ModelRecord` distinguishes an evidence-backed, revisable model from a raw assertion. Models have kind, family, perspective, subjects, bitemporal fields, fixed-point confidence, uncertainty, provenance, dependencies, privacy, and lineage. `ModelLifecycle.propose` creates a candidate only; `accept` is an explicit reviewed transition by the modeled perspective in this bounded reference. Updates pass through a new proposal and supersede rather than erase history, and disputes remain queryable.
 

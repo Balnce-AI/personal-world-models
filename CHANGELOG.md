@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.2.0 - 2026-10-05
+
 - Added the provisional Signed Semantic Conformance v1 profile, authenticated principal grants, deterministic signed bundles, independent Rust/Python reducers, semantic diff tooling, and exact cross-implementation agreement gates.
 - Published commit- and suite-digest-bound `PWM-MODEL-ECOLOGY-1` claims with byte-identical Rust and Python result artifacts and explicit production exclusions.
 - Added provisional model-ecology and HPL semantic profiles and language-neutral conformance fixtures.
@@ -10,5 +12,6 @@
 - Added the experimental `pwm` Python facade, role-specific adapter protocols, extension manifests, and quickstart examples.
 - Added capability-first HPL negotiation, bounded projections, target profiles, lifecycle/revocation records, and non-actuating physical-AI simulations.
 - Added architecture, portability, synchronization/federation, multimodal/streaming, security, contribution, versioning, and public ADR guidance.
+- Added publication-ready README, citation metadata, release notes, contribution templates, explicit architecture freeze, and public-boundary hygiene.
 
 These changes do not promote the experimental semantic layer to canonical V2 or establish production authority, safety, deletion, or foundation-model performance claims.

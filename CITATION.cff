@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software or its conformance artifacts, please cite it using this metadata."
+title: "Personal World Models"
+type: software
+version: 0.2.0
+date-released: 2026-10-05
+authors:
+  - family-names: Schenkler
+    given-names: Zachary
+license: MIT
+repository-code: "https://github.com/Balnce-AI/personal-world-models"
+url: "https://github.com/Balnce-AI/personal-world-models"
+abstract: >-
+  Public specifications, reference implementations, conformance suites, and
+  research protocols for sovereign, temporal, provenance-bearing Personal
+  World Models and bounded Human Projection Layer interfaces.
+keywords:
+  - personal world model
+  - world model
+  - provenance
+  - privacy
+  - conformance
+  - human projection layer
+  - AI research

@@ -1,6 +1,6 @@
 # Foundation-Model Augmentation
 
-**Status:** `EXPERIMENTAL_REAL`
+**Status:** `EXPERIMENTAL` with executable evidence
 
 `ReasoningModel` receives a task and a bounded `ModelProjection`. Implementations include a local callable adapter and OpenAI-compatible HTTP/Ollama clients. Credentials remain external. The model never receives a canonical write handle; returned model candidates require `ModelLifecycle` proposal and reviewed acceptance. `ModelQuery` enforces declared subject, status, temporal, confidence, privacy, provenance, and edge bounds, but the experimental query API is not a substitute for a production HPL authority decision; callers must authorize recipient and purpose before external disclosure.
 

@@ -1,6 +1,6 @@
 # PWM Model Requirement Analysis
 
-**Status:** `PROPOSED_METHOD`
+**Status:** `PROPOSED` method
 
 PMRA asks which distinctions, variables, relationships, temporal context, perspectives, uncertainty, and authority evidence are minimally required for a scenario. The normalized table in `experiments/scenarios/corpus.json` maps all 25 scenarios to controlled category IDs, model-family IDs, model kinds, and primitive profiles. Model family answers "what domain is modeled"; model kind answers "whose or what level of model is represented." They are not interchangeable.
 

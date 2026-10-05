@@ -6,6 +6,8 @@ repository_version: 0.1.0
 
 # Gap Analysis
 
+This is the historical pre-reconstruction gap analysis for repository version `0.1.0`. Later implementation and claim status is authoritative in `PLATFORM_STABILIZATION_STATUS.md`, `conformance/manifest.json`, and `governance/PUBLIC_CLAIM_LEDGER.json`.
+
 ## Classification method
 
 Each public-repository capability receives exactly one requested classification:
@@ -19,7 +21,7 @@ Each public-repository capability receives exactly one requested classification:
 - `DEFER`: valid work that is not on the critical path or is blocked by unavailable authority/evidence.
 - `REJECT`: work that violates governing architecture or overstates evidence.
 
-These public classifications do not replace the production classifications in `../MASTER_INSTRUCTION.md`. Production classification is blocked until the live Balnce/Reasn repositories and canonical implementations are available for discovery.
+These classifications apply only to this public repository. They do not establish production status for external Balnce or Reasn systems; any future integration claim requires direct evidence from the relevant canonical implementation.
 
 ## Immediate contract defects
 
@@ -155,7 +157,7 @@ These public classifications do not replace the production classifications in `.
 | HPL-OFFLINE benchmark | `CREATE_FROM_SPEC` | Requires revocation/expiry and reconnection semantics. |
 | Memory-only baseline for PWM falsifier | `EXPERIMENT` | Necessary to test Paper 01's stated falsifier. |
 | UOR proof/counterexample executable suite | `EXPERIMENT` | Can test published finite claims without claiming full UOR implementation. |
-| Reproducibility package | `CREATE_FROM_SPEC` | No lockfile, environment manifest, seeded fixtures, or result provenance exists. |
+| Reproducibility package | `CREATE_FROM_SPEC` | At the time of this audit, no lockfile, environment manifest, seeded fixtures, or result provenance existed. This finding was superseded by the V2 stabilization work. |
 | Public release claim audit | `HARDEN_EXISTING` | Claims must match implemented tests, benchmarks, and evidence records. |
 
 ## First-milestone gap

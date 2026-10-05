@@ -1,0 +1,49 @@
+name: Bug report
+description: Report reproducible behavior that conflicts with code, schema, or specification.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, personal world-model data, or security-sensitive details. Use private vulnerability reporting for security issues.
+  - type: input
+    id: revision
+    attributes:
+      label: Revision and environment
+      description: Commit/tag, OS, Python/Rust version, and relevant dependency versions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal synthetic reproduction
+      description: Include exact commands, inputs, and the smallest public or synthetic fixture that reproduces the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior and authority
+      description: Cite the specification, schema, test, or documented behavior that establishes the expectation.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: boundary
+    attributes:
+      label: Affected boundary
+      options:
+        - Normative specification or schema
+        - Rust reference implementation
+        - Python reference implementation or SDK
+        - Conformance tooling or vectors
+        - HPL or simulation
+        - Research harness
+        - Documentation
+    validations:
+      required: true

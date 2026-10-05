@@ -36,4 +36,4 @@
 
 ## Explicit Exclusions
 
-No production distributed database, private Balnce/Web0 service, hardware driver, safety certification, deletion guarantee, blockchain infrastructure, or non-Python semantic implementation is claimed.
+No production distributed database, private Balnce/Web0 service, hardware driver, safety certification, deletion guarantee, blockchain infrastructure, or production semantic implementation is claimed. The Rust and Python reducers are public reference implementations only.

@@ -1,6 +1,6 @@
 # Metacognition
 
-**Status:** `EXPERIMENTAL_REAL`
+**Status:** `EXPERIMENTAL` with executable evidence
 
 Meta-models are ordinary provenance-bearing `ModelRecord` objects with `modelKind=META`. They describe limits such as staleness, source reliability, prediction accuracy, capability uncertainty, contradiction awareness, or policy uncertainty without mutating their target model.
 

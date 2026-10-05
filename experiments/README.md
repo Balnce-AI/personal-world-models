@@ -1,6 +1,6 @@
 # PWM Experiments
 
-**Status:** `EXPERIMENTAL_REAL`
+**Status:** `EXPERIMENTAL` with executable evidence
 
 This directory contains public synthetic data and generated experiment artifacts. `data/personas/longitudinal-persona.json` is the executable flagship fixture. Its health-like content is explicitly non-diagnostic and synthetic.
 

@@ -1,6 +1,6 @@
 # Physical AI HPL simulator scenarios
 
-**Status:** `EXPERIMENTAL_SIMULATION`
+**Status:** `EXPERIMENTAL` simulation
 
 These eight fixtures exercise contract behavior without controlling hardware. Expected execution dispositions are only `WOULD_DISPATCH` or `REFUSED`; `actuationPerformed` is always false. Local safety is an independent veto and this experiment makes no safety certification claim. The foreign runtime has no PWM or PLog handle, and every generated record declares `canonicalV2Effect: NONE`.
 

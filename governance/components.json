@@ -267,7 +267,7 @@
       "included_in_release": true,
       "last_verified": "2026-10-05",
       "source_refs": ["spec/self-models.md", "spec/contradictions.md", "tests/test_semantic_stabilization.py"],
-      "limitations": ["Reference semantics only; actor identity and semantic-event transport are not yet integrated with the signed V2 provenance profile."]
+      "limitations": ["The legacy Python semantic surface remains experimental; signed transport integration is separately implemented and claimed through the provisional pwm-signed-semantics-v1 profile."]
     },
     {
       "id": "provisional-platform-conformance",
@@ -280,7 +280,7 @@
       "included_in_release": true,
       "last_verified": "2026-10-05",
       "source_refs": ["spec/conformance-levels.md", "tests/test_platform_conformance.py"],
-      "limitations": ["Model-ecology and HPL vectors are provisional contracts; the manifest intentionally contains no implementation conformance claims."]
+      "limitations": ["Model-ecology and HPL contracts remain provisional; recorded Rust and Python claims are bounded to exact commits, suite digest, result artifacts, and exclusions."]
     },
     {
       "id": "experimental-python-sdk",

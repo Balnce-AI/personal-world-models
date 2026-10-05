@@ -1,0 +1,40 @@
+name: Research proposal
+description: Propose a falsifiable experiment, replication, benchmark, or conformance extension.
+title: "[Research]: "
+labels: ["research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: State one bounded question and why it matters.
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis and falsifier
+      description: State what result would support, weaken, or falsify the claim.
+    validations:
+      required: true
+  - type: textarea
+    id: controls
+    attributes:
+      label: Controls and measurements
+      description: Identify baselines, information/token matching, ablations, metrics, seeds, and uncertainty treatment.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data and privacy
+      description: Identify synthetic/public sources, licenses, consent, and privacy constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Architecture and status boundary
+      description: Explain whether this changes a specification, reference implementation, experimental method, or no architecture at all.
+    validations:
+      required: true

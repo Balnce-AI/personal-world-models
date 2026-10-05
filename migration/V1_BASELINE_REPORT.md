@@ -25,9 +25,15 @@ V1 has no lockfile, dependency hashes, supported upper bounds, container, or rep
 
 ## Commands And Results
 
+The original interpreter lived in an external temporary virtual environment. The portable transcription below assumes `BASELINE_VENV` names an equivalent environment:
+
+```bash
+BASELINE_VENV=/path/to/pwm-baseline-venv
+```
+
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-  /var/folders/pg/9h4dsz454rv4kr03wx1m8lr00000gn/T/opencode/pwm-baseline-venv/bin/python \
+  "$BASELINE_VENV/bin/python" \
   -m pytest -q -p no:cacheprovider
 ```
 
@@ -35,7 +41,7 @@ Result: `10 passed in 0.12s`.
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-  /var/folders/pg/9h4dsz454rv4kr03wx1m8lr00000gn/T/opencode/pwm-baseline-venv/bin/python \
+  "$BASELINE_VENV/bin/python" \
   -m pwm_hpl_ref.demo
 ```
 
@@ -43,7 +49,7 @@ Result: exit 0 and a JSON document containing a projection, Arranger artifact, l
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-  /var/folders/pg/9h4dsz454rv4kr03wx1m8lr00000gn/T/opencode/pwm-baseline-venv/bin/python \
+  "$BASELINE_VENV/bin/python" \
   benchmarks/hpl-context/run.py
 ```
 

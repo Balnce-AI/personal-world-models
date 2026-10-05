@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=70"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,15 +7,28 @@ name = "pwm-hpl-ref"
 version = "0.2.0"
 description = "Executable reference implementation of Personal World Model and Human Projection Layer profiles"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Zachary Schenkler" }]
 requires-python = ">=3.11"
 dependencies = ["cryptography>=45", "jsonschema>=4.20"]
+keywords = ["personal-world-model", "world-model", "provenance", "privacy", "conformance"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 
 [project.urls]
 Homepage = "https://github.com/Balnce-AI/personal-world-models"
 Documentation = "https://github.com/Balnce-AI/personal-world-models/tree/main/docs"
 Repository = "https://github.com/Balnce-AI/personal-world-models"
 Issues = "https://github.com/Balnce-AI/personal-world-models/issues"
+Changelog = "https://github.com/Balnce-AI/personal-world-models/blob/main/CHANGELOG.md"
+Conformance = "https://github.com/Balnce-AI/personal-world-models/tree/main/conformance"
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

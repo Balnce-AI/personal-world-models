@@ -64,7 +64,7 @@ The 13 source-authority documents were supplied out of tree and matched both ind
 
 ## Removed-Path Policy
 
-Previously removed local paths, including `research/`, `architecture/adrs/`, `ROADMAP.md`, `EXECUTION_PLAN.md`, and `site/AI_LAB_PAGE.md`, remain ignored and non-public. The reconstruction will not stage those retained local copies. Any future public path with a similar purpose must be newly authored, public-safe, and reviewed rather than restored silently.
+Previously removed planning paths, including `research/`, `architecture/adrs/`, `ROADMAP.md`, `EXECUTION_PLAN.md`, and `site/AI_LAB_PAGE.md`, remain ignored and excluded from the active release tree. Earlier public commits remain historical records and may contain superseded plans; they are not current architecture or implementation authority. Any future public path with a similar purpose must be newly authored, public-safe, and reviewed rather than restored silently.
 
 ## Next Gate
 
