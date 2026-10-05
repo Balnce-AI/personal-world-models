@@ -1,0 +1,151 @@
+{
+  "case_results": [
+    {
+      "case_id": "comprehensive",
+      "output_sha256": "edd78e4d650479c3bf9211050eef57430c0762f0fe63edfb178f5d992374e1e2",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "comprehensive-query",
+      "output_sha256": "f5016bff0b9ad75f1426d66dfba92e58a70d0cc0e7e046e9276fd86b66075931",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "comprehensive-hpl",
+      "output_sha256": "2dbe5df58d6b8e9d68f8a58e476f26e5d756f6fb0dabd163fd2c9c5720c50e64",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "unauthorized-operation",
+      "output_sha256": "eae770a7b3eb933939334aa93b31cf5f0f022de41c41003e18e6fa8f3e513171",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "invalid-principal-grant",
+      "output_sha256": "316a56e7b76b621e558d7e0ebff3b5efcb9cbd8c07f42c3a7da246dc094df1cb",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "family-kind",
+      "output_sha256": "1945c68451c114bbf79625cf65b1efac1151b3abaf887be3cfebf75563b36fcb",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "signature-and-semantic-invalid",
+      "output_sha256": "11fa0ddc413ad170b0e5c58702499fba835c495eda483ef5780e0e4390e549c8",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "subject-perspective",
+      "output_sha256": "1945c68451c114bbf79625cf65b1efac1151b3abaf887be3cfebf75563b36fcb",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "false-effective-privacy",
+      "output_sha256": "ec8dff1c47bd8c221c2a84248c623467c45476b87b539d5b48688dc83f387473",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "unauthorized-declassification",
+      "output_sha256": "fd9172449caf26ffb0930ed461457f388237dfd360b96b42d273bf4812f65219",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "contradiction-transition",
+      "output_sha256": "edb18a56e4792b4c59ef517ae8e4f410fd70f68e2804fc8d6c924daacd459aec",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "hpl-binding",
+      "output_sha256": "3b73dc6c81146ed6f8a5b6b4f85c5e3cbb97752d3a27e18ca09c132a6ac0775b",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "hpl-authorization-expired",
+      "output_sha256": "5229aaddd91d37da2d664d10edfb032e1f37e602f7b8d3edf95c4e46c4d27628",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "hpl-projection-replay",
+      "output_sha256": "39a5fee8d276cb3215b36f63f69caf8c37c45b6360a584b1b66f1b81e68c2b69",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "signature-mutation",
+      "output_sha256": "11fa0ddc413ad170b0e5c58702499fba835c495eda483ef5780e0e4390e549c8",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "payload-mutation",
+      "output_sha256": "c6c8355ed983e26de8bcbcb0fb0eb3013ed20b810303869fe7d4b14e6179d34e",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "body-cid-mismatch",
+      "output_sha256": "c6c8355ed983e26de8bcbcb0fb0eb3013ed20b810303869fe7d4b14e6179d34e",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "unknown-parent",
+      "output_sha256": "afdc04ab745c3ce06e4f3b29f85fabff95e03352b94e10c33774673df9655341",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "invalid-author-sequence",
+      "output_sha256": "94e93e96541ed23de158eee1e44bd1b8cde7f1c490d8ac0c009256f4312f9acd",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    },
+    {
+      "case_id": "invalid-principal-scope",
+      "output_sha256": "afdc04ab745c3ce06e4f3b29f85fabff95e03352b94e10c33774673df9655341",
+      "semantic_diff_count": 0,
+      "status": "PASS"
+    }
+  ],
+  "claim_version": "1.0.0",
+  "exclusions": [
+    "Interoperability beyond the exact profile, suite version, and suite digest in this claim.",
+    "Production identity, key custody, delegation, recovery, distributed synchronization, and storage durability.",
+    "Private Balnce internals, private PLOG semantics, physical actuation, and safety certification."
+  ],
+  "execution": {
+    "completed_at": "2026-10-05T22:10:00Z",
+    "environment": "darwin-arm64-rustc-1.96.0-python-3.14.5",
+    "result_uri": "https://github.com/Balnce-AI/personal-world-models/blob/65897466ae7e8d266699a743e4d208dced81ea47/conformance/results/python-signed-semantic-v1.json",
+    "runner_uri": "https://github.com/Balnce-AI/personal-world-models/blob/f89a72c9a751a093c9d595fcfdaed5b9431899bd/scripts/pwm_conformance.py",
+    "started_at": "2026-10-05T22:05:00Z"
+  },
+  "implementation": {
+    "adapter_version": "1.0.0",
+    "id": "python-signed-semantic",
+    "source_commit": "f89a72c9a751a093c9d595fcfdaed5b9431899bd",
+    "source_uri": "https://github.com/Balnce-AI/personal-world-models/tree/f89a72c9a751a093c9d595fcfdaed5b9431899bd",
+    "version": "1.0.0"
+  },
+  "profile": "pwm-signed-semantics-v1",
+  "profile_status": "PROVISIONAL",
+  "suite": {
+    "id": "PWM-SIGNED-SEMANTICS-V1",
+    "sha256": "f1fda71d804a3e03ec3157ba11d10696e8f7c57845b622f2ef4c048e6289778b",
+    "version": "1.0.0"
+  }
+}

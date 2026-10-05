@@ -104,7 +104,7 @@ actuation
 - An experimental functional model ecology with constrained self/other/relationship/world/meta/possible-world records, proposal/review/acceptance lifecycle, privacy-taint propagation, explicit contradictions, topology, deterministic queries, prediction resolution, and calibration.
 - A provider-neutral foundation-model protocol with local callable, OpenAI-compatible HTTP, and Ollama adapters; model outputs remain unaccepted candidates.
 - A normalized 25-scenario PMRA corpus, information ledgers, exact rendered-budget matching under declared tokenizer adapters, sixteen canonical research conditions/controls, and generated experiment and coverage manifests.
-- Provisional language-independent conformance levels and semantic vectors for model ecology and HPL behavior; no current implementation claims those provisional levels yet.
+- Provisional language-independent conformance levels and semantic vectors for model ecology and HPL behavior, with commit- and digest-bound Rust/Python claims for `PWM-MODEL-ECOLOGY-1`.
 - An experimental `pwm` Python SDK facade, role-specific adapter protocols, a namespaced third-party extension example, and deterministic simulation source.
 - Experimental HPL capability negotiation, eight illustrative target profiles, bounded projection artifacts, lifecycle/revocation records, and non-actuating physical-AI simulations.
 - The archived V1 Python reference capabilities listed below while their V2 successors are reconstructed wave by wave.

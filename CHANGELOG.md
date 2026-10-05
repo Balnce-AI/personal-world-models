@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added the provisional Signed Semantic Conformance v1 profile, authenticated principal grants, deterministic signed bundles, independent Rust/Python reducers, semantic diff tooling, and exact cross-implementation agreement gates.
+- Published commit- and suite-digest-bound `PWM-MODEL-ECOLOGY-1` claims with byte-identical Rust and Python result artifacts and explicit production exclusions.
 - Added provisional model-ecology and HPL semantic profiles and language-neutral conformance fixtures.
 - Added ontology constraints, `WORLD` model kind, privacy propagation, declassification boundaries, contradiction lifecycle, and bound possible worlds.
 - Added PMRA classification, information ledgers, matched representation conditions, tokenizer contracts, seeded repetitions, and generated coverage evidence.

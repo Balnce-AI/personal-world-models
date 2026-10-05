@@ -9,4 +9,4 @@ The normative levels are defined in `spec/conformance-levels.md`; this guide is 
 5. Publish per-case results, fixture digests, environment, implementation version, and supported extension manifests.
 6. Label incomplete evidence as partial testing, not conformance.
 
-Schema validation proves only structural validity. A conforming implementation also enforces temporal, lifecycle, contradiction, topology, privacy, world-isolation, and authorization semantics. The repository manifest intentionally contains no current implementation claims.
+Schema validation proves only structural validity. A conforming implementation also enforces temporal, lifecycle, contradiction, topology, privacy, world-isolation, and authorization semantics. Claims in the repository manifest are valid only for their recorded implementation commit, suite digest, result artifact, and exclusions.

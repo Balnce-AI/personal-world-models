@@ -48,7 +48,10 @@ def main() -> int:
     if not re.fullmatch(r"[0-9a-f]{40}", args.source_commit) or not re.fullmatch(r"[0-9a-f]{40}", args.evidence_commit):
         raise SystemExit("commit arguments must be full lowercase Git commits")
 
+    suite_document = json.loads(SUITE.read_text(encoding="utf-8"))
+    expected = {case["case_id"]: case["expected"] for case in suite_document["cases"]}
     suite_digest = hashlib.sha256(SUITE.read_bytes()).hexdigest()
+    outputs: dict[str, dict] = {}
     for implementation_id, (adapter, version) in IMPLEMENTATIONS.items():
         completed = subprocess.run(
             [
@@ -65,6 +68,17 @@ def main() -> int:
             check=True,
         )
         result = json.loads(completed.stdout)
+        actual = {case["id"]: case["actual"] for case in result["cases"]}
+        if actual != expected:
+            raise SystemExit(f"{implementation_id} does not match the signed suite expectations")
+        outputs[implementation_id] = result
+
+    encoded_outputs = {canonical(result) for result in outputs.values()}
+    if len(encoded_outputs) != 1:
+        raise SystemExit("signed semantic implementations do not agree")
+
+    for implementation_id, (_, version) in IMPLEMENTATIONS.items():
+        result = outputs[implementation_id]
         result_path = ROOT / f"conformance/results/{implementation_id}-v1.json"
         result_path.parent.mkdir(parents=True, exist_ok=True)
         result_path.write_bytes(canonical(result))

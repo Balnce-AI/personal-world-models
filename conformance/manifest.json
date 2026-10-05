@@ -52,5 +52,18 @@
     {"id": "HPL-BOUNDARY-1", "ordinal": 4, "features": ["hpl.authorization.binding", "hpl.projection.least-disclosure"], "requiredSuites": ["PWM-PROVENANCE-WAVE01", "PWM-MODEL-ECOLOGY-V1", "HPL-PROJECTION-V1"]},
     {"id": "PWM-RESEARCH-1", "ordinal": 5, "features": ["pwm.research.calibration-scope", "pwm.research.family-registry", "pwm.research.lineage", "pwm.research.stability-labels"], "requiredSuites": ["PWM-PROVENANCE-WAVE01", "PWM-MODEL-ECOLOGY-V1", "HPL-PROJECTION-V1"]}
   ],
-  "claims": []
+  "claims": [
+    {
+      "implementation": "rust-signed-semantic",
+      "version": "0.2.0-alpha.1",
+      "level": "PWM-MODEL-ECOLOGY-1",
+      "evidence": "conformance/claims/rust-signed-semantic-v1.json"
+    },
+    {
+      "implementation": "python-signed-semantic",
+      "version": "1.0.0",
+      "level": "PWM-MODEL-ECOLOGY-1",
+      "evidence": "conformance/claims/python-signed-semantic-v1.json"
+    }
+  ]
 }

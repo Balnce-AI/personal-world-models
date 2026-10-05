@@ -1,4 +1,5 @@
 import hashlib
+import hashlib
 import json
 import subprocess
 import sys
@@ -117,6 +118,26 @@ def test_runner_compares_rust_and_python_signed_semantics():
         ])
         assert verified.returncode == 0, verified.stdout + verified.stderr
         assert "21 cases" in verified.stdout
+
+
+def test_formal_claims_bind_suite_commit_and_identical_results():
+    checks = validators()
+    claim_validator = checks["https://personal-world-models.org/schema/implementation-claim/1-0-0"]
+    suite_digest = hashlib.sha256(SUITE.read_bytes()).hexdigest()
+    results = []
+    for implementation in ("rust-signed-semantic", "python-signed-semantic"):
+        claim = json.loads((ROOT / f"conformance/claims/{implementation}-v1.json").read_text())
+        claim_validator.validate(claim)
+        assert claim["suite"]["sha256"] == suite_digest
+        assert len(claim["case_results"]) == 20
+        result_path = ROOT / f"conformance/results/{implementation}-v1.json"
+        result = json.loads(result_path.read_text())
+        actual = {case["id"]: case["actual"] for case in result["cases"]}
+        for case in claim["case_results"]:
+            encoded = (json.dumps(actual[case["case_id"]], sort_keys=True, separators=(",", ":")) + "\n").encode()
+            assert case["output_sha256"] == hashlib.sha256(encoded).hexdigest()
+        results.append(result_path.read_bytes())
+    assert results[0] == results[1]
 
 
 def test_suite_digest_is_stable_hex():

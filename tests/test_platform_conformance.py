@@ -43,10 +43,14 @@ def test_schema_catalog_is_complete_and_resolvable():
     assert cataloged_public == actual_public
 
 
-def test_conformance_manifest_references_suites_and_files_without_claiming_conformance():
+def test_conformance_manifest_references_suites_files_and_bounded_claims():
     manifest = load("conformance/manifest.json")
     validate("conformance/schemas/conformance-manifest.schema.json", manifest)
-    assert manifest["claims"] == []
+    assert {claim["implementation"] for claim in manifest["claims"]} == {
+        "rust-signed-semantic",
+        "python-signed-semantic",
+    }
+    assert all((ROOT / claim["evidence"]).is_file() for claim in manifest["claims"])
 
     suites = {suite["id"]: suite for suite in manifest["suites"]}
     assert len(suites) == len(manifest["suites"])

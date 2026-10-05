@@ -84,7 +84,7 @@
       "status": "SUPPORTED",
       "evidence": ["conformance/manifest.json", "schemas/catalog.json", "tests/test_platform_conformance.py"],
       "falsifier": "A referenced suite, schema, extension, vector, feature, or expected invariant is missing, duplicated, malformed, or requires importing the Python reference implementation to interpret its envelope.",
-      "limitations": "The model-ecology and HPL suites are PROVISIONAL, and the conformance manifest intentionally records no current implementation claims.",
+      "limitations": "The model-ecology and HPL suites are PROVISIONAL. Recorded implementation claims are bounded to their exact suite digest, source commit, evidence artifact, and exclusions.",
       "last_verified": "2026-10-05"
     },
     {
@@ -103,6 +103,21 @@
       "evidence": ["tests/test_sdk_platform.py", "tests/test_extension_example.py", "examples/quickstart/README.md"],
       "falsifier": "The wheel cannot import the pwm facade, a documented A-G example fails, or the example extension requires private APIs or accepts unknown semantics.",
       "limitations": "Only the Python SDK is implemented; other-language portability is specified through schemas and provisional conformance vectors rather than demonstrated ports.",
+      "last_verified": "2026-10-05"
+    },
+    {
+      "claim_id": "SIGNED-SEMANTICS-001",
+      "claim": "The independent Rust and Python reducers produce identical normalized outputs for all 20 cases in the exact published Signed Semantic Conformance v1 suite and each also passes the cumulative 21-case PWM-MODEL-ECOLOGY-1 level.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "conformance/claims/rust-signed-semantic-v1.json",
+        "conformance/claims/python-signed-semantic-v1.json",
+        "conformance/results/rust-signed-semantic-v1.json",
+        "conformance/results/python-signed-semantic-v1.json",
+        "tests/test_signed_semantic_cross_language.py"
+      ],
+      "falsifier": "Either implementation differs from the signed suite expectation, the normalized result artifacts differ, or deterministic regeneration changes the suite bytes.",
+      "limitations": "The claim is bounded to the provisional profile, exact suite digest, source commit, synthetic keys, and documented exclusions. It is not a production identity, key-custody, distributed-systems, private-PLOG, actuation, or safety-certification claim.",
       "last_verified": "2026-10-05"
     }
   ]
