@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/signed-semantic-output/1-0-0",
+  "title": "Signed Semantic Normalized Output",
+  "type": "object",
+  "required": ["output_version", "profile", "source_id", "implementation", "decision", "processed_records", "last_committed_log_sequence", "state_sha256"],
+  "properties": {
+    "output_version": {"const": "1.0.0"},
+    "profile": {"const": "pwm-signed-semantics-v1"},
+    "source_id": {"$ref": "#/$defs/id"},
+    "implementation": {"$ref": "#/$defs/implementation"},
+    "decision": {"enum": ["ACCEPT", "REJECT"]},
+    "processed_records": {"type": "integer", "minimum": 0},
+    "last_committed_log_sequence": {"oneOf": [{"type": "integer", "minimum": 0}, {"type": "null"}]},
+    "state_sha256": {"$ref": "#/$defs/hex32"},
+    "result": {"$ref": "#/$defs/result"},
+    "error": {"$ref": "#/$defs/error"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "ACCEPT"}}},
+      "then": {"required": ["result"], "not": {"required": ["error"]}}
+    },
+    {
+      "if": {"properties": {"decision": {"const": "REJECT"}}},
+      "then": {"required": ["error"], "not": {"required": ["result"]}}
+    }
+  ],
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "hex32": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "cid": {"type": "string", "pattern": "^b[a-z2-7]+$"},
+    "implementation": {
+      "type": "object",
+      "required": ["id", "version", "adapter_version"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/id"},
+        "adapter_version": {"const": "1.0.0"}
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["operation", "state_sha256", "value"],
+      "properties": {
+        "operation": {"enum": ["REDUCE", "QUERY", "PROJECT", "EVALUATE"]},
+        "state_sha256": {"$ref": "#/$defs/hex32"},
+        "value": {"$ref": "#/$defs/value"}
+      },
+      "additionalProperties": false
+    },
+    "value": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "boolean"},
+        {"type": "integer"},
+        {"type": "string"},
+        {"type": "array", "items": {"$ref": "#/$defs/value"}},
+        {"type": "object", "additionalProperties": {"$ref": "#/$defs/value"}}
+      ]
+    },
+    "error_code": {
+      "enum": [
+        "SOURCE_SCHEMA_INVALID", "CBOR_INVALID", "CBOR_NON_CANONICAL", "CID_INVALID", "CID_MISMATCH",
+        "PUBLIC_KEY_INVALID", "SIGNATURE_INVALID", "KEY_FRONTIER_INVALID", "RECEIPT_INVALID", "PARENT_INVALID",
+        "AUTHOR_SEQUENCE_INVALID", "REPLAY_CYCLE", "ROOT_TRUST_MISMATCH", "UNSUPPORTED_EVENT_KIND",
+        "UNSUPPORTED_SCHEMA_VERSION", "PAYLOAD_ENVELOPE_INVALID", "PAYLOAD_FIELD_INVALID", "GRANT_NOT_FOUND",
+        "GRANT_NOT_ACTIVE", "PRINCIPAL_AMBIGUOUS", "CAPABILITY_NOT_GRANTED", "REFERENCE_NOT_FOUND",
+        "IDENTIFIER_CONFLICT", "LIFECYCLE_PRECONDITION_MISSING", "REVIEW_SEPARATION_VIOLATION",
+        "FAMILY_KIND_NOT_ALLOWED", "WORLD_SCOPE_VIOLATION", "TOPOLOGY_CYCLE",
+        "PRIVACY_EFFECTIVE_CLASS_MISMATCH", "AUTHORITY_SCOPE_VIOLATION", "AUTHORITY_EXPIRED",
+        "COMMAND_UNSUPPORTED", "OUTPUT_SCHEMA_INVALID", "INTERNAL_ERROR"
+      ]
+    },
+    "error": {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": {"$ref": "#/$defs/error_code"},
+        "at_event_body_cid": {"$ref": "#/$defs/cid"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

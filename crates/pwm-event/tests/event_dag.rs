@@ -164,6 +164,46 @@ fn validates_genesis_branch_merge_and_deterministic_replay() {
     assert_eq!(replay.last(), Some(&merge.body_cid));
     assert!(replay.iter().position(|id| id == &left.body_cid).unwrap() < 3);
     assert!(replay.iter().position(|id| id == &right.body_cid).unwrap() < 3);
+
+    let verified = dag.verified_replay().unwrap();
+    let verified_cids: Vec<_> = verified
+        .iter()
+        .map(|record| record.event().body_cid)
+        .collect();
+    assert_eq!(verified_cids, replay);
+    assert_eq!(verified.first().unwrap().payload_bytes(), gen_payload);
+    assert_eq!(verified.last().unwrap().payload_bytes(), merge_payload);
+    assert_eq!(verified.last().unwrap().receipt(), &receipt);
+}
+
+#[test]
+fn retained_payload_is_isolated_from_caller_mutation() {
+    let author = SigningKey::from_seed([31; 32]);
+    let appender = SigningKey::from_seed([32; 32]);
+    let mut keys = KeyRegistry::new();
+    keys.activate("key:a", author.public_key(), 0).unwrap();
+    let schemas = registry();
+    let mut dag = MemoryDag::new("append:local", appender.public_key());
+    let (payload_cid, mut bytes) = payload("retained");
+    let original = bytes.clone();
+    let genesis = event(
+        &author,
+        "key:a",
+        "person:test",
+        "pwm.genesis",
+        0,
+        vec![],
+        payload_cid,
+        0,
+    );
+
+    dag.append(&genesis, &bytes, 1, &keys, &schemas, &appender)
+        .unwrap();
+    bytes.fill(0);
+
+    let record = dag.verified_record(&genesis.body_cid).unwrap();
+    assert_eq!(record.event(), &genesis);
+    assert_eq!(record.payload_bytes(), original);
 }
 
 #[test]

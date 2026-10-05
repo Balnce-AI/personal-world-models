@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/signed-semantic-source/1-0-0",
+  "title": "Signed Semantic Conformance Source",
+  "type": "object",
+  "required": ["source_version", "source_id", "profile", "trust_anchor", "bundle", "command"],
+  "properties": {
+    "source_version": {"const": "1.0.0"},
+    "source_id": {"$ref": "#/$defs/id"},
+    "profile": {"const": "pwm-signed-semantics-v1"},
+    "trust_anchor": {"$ref": "#/$defs/trust_anchor"},
+    "bundle": {"$ref": "#/$defs/bundle"},
+    "command": {"$ref": "#/$defs/command"}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "hex32": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "hex64": {"type": "string", "pattern": "^[0-9a-f]{128}$"},
+    "hex": {"type": "string", "pattern": "^(?:[0-9a-f]{2})+$"},
+    "cid": {"type": "string", "pattern": "^b[a-z2-7]+$"},
+    "uint": {"type": "integer", "minimum": 0},
+    "trust_anchor": {
+      "type": "object",
+      "required": ["key_id", "public_key_hex"],
+      "properties": {
+        "key_id": {"$ref": "#/$defs/id"},
+        "public_key_hex": {"$ref": "#/$defs/hex32"}
+      },
+      "additionalProperties": false
+    },
+    "author_key": {
+      "type": "object",
+      "required": ["key_id", "public_key_hex", "active_from_log_sequence", "revoked_at_log_sequence"],
+      "properties": {
+        "key_id": {"$ref": "#/$defs/id"},
+        "public_key_hex": {"$ref": "#/$defs/hex32"},
+        "active_from_log_sequence": {"$ref": "#/$defs/uint"},
+        "revoked_at_log_sequence": {"oneOf": [{"$ref": "#/$defs/uint"}, {"type": "null"}]}
+      },
+      "additionalProperties": false
+    },
+    "schema_registration": {
+      "type": "object",
+      "required": ["event_kind", "schema_version"],
+      "properties": {
+        "event_kind": {"$ref": "#/$defs/id"},
+        "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}
+      },
+      "additionalProperties": false
+    },
+    "record": {
+      "type": "object",
+      "required": ["body_cbor_hex", "body_cid", "event_signature_hex", "payload_cbor_hex", "receipt_body_cbor_hex", "receipt_cid", "receipt_signature_hex"],
+      "properties": {
+        "body_cbor_hex": {"$ref": "#/$defs/hex"},
+        "body_cid": {"$ref": "#/$defs/cid"},
+        "event_signature_hex": {"$ref": "#/$defs/hex64"},
+        "payload_cbor_hex": {"$ref": "#/$defs/hex"},
+        "receipt_body_cbor_hex": {"$ref": "#/$defs/hex"},
+        "receipt_cid": {"$ref": "#/$defs/cid"},
+        "receipt_signature_hex": {"$ref": "#/$defs/hex64"}
+      },
+      "additionalProperties": false
+    },
+    "bundle": {
+      "type": "object",
+      "required": ["profile", "appender_key_id", "appender_public_key_hex", "author_keys", "schemas", "records"],
+      "properties": {
+        "profile": {"const": "pwm-public-provenance-v1"},
+        "appender_key_id": {"$ref": "#/$defs/id"},
+        "appender_public_key_hex": {"$ref": "#/$defs/hex32"},
+        "author_keys": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/author_key"}},
+        "schemas": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/schema_registration"}},
+        "records": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/record"}}
+      },
+      "additionalProperties": false
+    },
+    "query": {
+      "type": "object",
+      "required": ["authority_id", "world_id", "as_of_valid_ns", "recipient_id", "purpose", "model_ids", "include_disputed"],
+      "properties": {
+        "authority_id": {"$ref": "#/$defs/id"},
+        "world_id": {"$ref": "#/$defs/id"},
+        "as_of_valid_ns": {"type": "integer"},
+        "recipient_id": {"$ref": "#/$defs/id"},
+        "purpose": {"$ref": "#/$defs/id"},
+        "model_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "include_disputed": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "command": {
+      "type": "object",
+      "required": ["operation", "evaluation_log_sequence"],
+      "properties": {
+        "operation": {"enum": ["REDUCE", "QUERY", "PROJECT", "EVALUATE"]},
+        "evaluation_log_sequence": {"$ref": "#/$defs/uint"},
+        "query": {"$ref": "#/$defs/query"},
+        "projection_id": {"$ref": "#/$defs/id"},
+        "evaluation_id": {"$ref": "#/$defs/id"}
+      },
+      "allOf": [
+        {"if": {"properties": {"operation": {"const": "REDUCE"}}}, "then": {"not": {"anyOf": [{"required": ["query"]}, {"required": ["projection_id"]}, {"required": ["evaluation_id"]}]}}},
+        {"if": {"properties": {"operation": {"const": "QUERY"}}}, "then": {"required": ["query"], "not": {"anyOf": [{"required": ["projection_id"]}, {"required": ["evaluation_id"]}]}}},
+        {"if": {"properties": {"operation": {"const": "PROJECT"}}}, "then": {"required": ["projection_id"], "not": {"anyOf": [{"required": ["query"]}, {"required": ["evaluation_id"]}]}}},
+        {"if": {"properties": {"operation": {"const": "EVALUATE"}}}, "then": {"required": ["evaluation_id"], "not": {"anyOf": [{"required": ["query"]}, {"required": ["projection_id"]}]}}}
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

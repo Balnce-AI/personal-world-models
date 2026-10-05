@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 EVENT_BODY_DOMAIN = b"pwm:event-body:v1\0"
@@ -170,7 +171,10 @@ def cid_text(raw: bytes) -> str:
 def verify_signature(public_key: bytes, domain: bytes, cid_bytes: bytes, signature: bytes) -> None:
     if len(cid_bytes) != 36 or not cid_bytes.startswith(CID_PREFIX):
         raise ProfileError("invalid CID profile")
-    Ed25519PublicKey.from_public_bytes(public_key).verify(signature, domain + cid_bytes[2:])
+    try:
+        Ed25519PublicKey.from_public_bytes(public_key).verify(signature, domain + cid_bytes[2:])
+    except InvalidSignature as error:
+        raise ProfileError("signature invalid") from error
 
 
 def require_exact_fields(value: Any, fields: set[str], record_name: str) -> dict[str, Any]:
@@ -250,8 +254,7 @@ def validate_receipt_body(value: Any) -> dict[str, Any]:
     return receipt
 
 
-def verify_bundle(path: Path) -> list[str]:
-    bundle = json.loads(path.read_text(encoding="utf-8"))
+def _verify_bundle_data(bundle: dict[str, Any]) -> tuple[list[str], list[dict[str, Any]]]:
     if bundle.get("profile") != "pwm-public-provenance-v1":
         raise ProfileError("unsupported profile")
     appender = bytes.fromhex(bundle["appender_public_key_hex"])
@@ -290,6 +293,7 @@ def verify_bundle(path: Path) -> list[str]:
             capture_frontier()
     schemas = {item["event_kind"]: item["schema_version"] for item in bundle["schemas"]}
     events: dict[bytes, dict[str, Any]] = {}
+    verified_records: dict[bytes, dict[str, Any]] = {}
     sequence_index: set[tuple[str, str, int]] = set()
 
     for expected_log_sequence, record in enumerate(bundle["records"]):
@@ -351,8 +355,35 @@ def verify_bundle(path: Path) -> list[str]:
             raise ProfileError("receipt binding mismatch")
         verify_signature(appender, RECEIPT_SIGNATURE_DOMAIN, receipt_cid, bytes.fromhex(record["receipt_signature_hex"]))
         events[body_cid] = body
+        verified_records[body_cid] = {
+            "body_cid": cid_text(body_cid),
+            "receipt_cid": cid_text(receipt_cid),
+            "log_sequence": expected_log_sequence,
+            "body": body,
+            "payload": decode_canonical(payload),
+            "receipt": receipt,
+        }
 
-    return topological_order(events)
+    order = topological_order(events)
+    by_text = {cid_text(raw): record for raw, record in verified_records.items()}
+    return order, [by_text[item] for item in order]
+
+
+def verify_bundle(path: Path) -> list[str]:
+    """Verify a Wave01 bundle and return its deterministic replay order."""
+    bundle = json.loads(path.read_text(encoding="utf-8"))
+    return _verify_bundle_data(bundle)[0]
+
+
+def verify_bundle_records(path: Path) -> list[dict[str, Any]]:
+    """Verify a complete Wave01 bundle before exposing decoded replay records."""
+    bundle = json.loads(path.read_text(encoding="utf-8"))
+    return _verify_bundle_data(bundle)[1]
+
+
+def verify_bundle_object(bundle: dict[str, Any]) -> list[dict[str, Any]]:
+    """Verify an embedded Wave01 bundle and expose records only on full success."""
+    return _verify_bundle_data(bundle)[1]
 
 
 def ancestor_contains(events: dict[bytes, dict[str, Any]], parents: list[bytes], target: tuple[str, str, int]) -> bool:

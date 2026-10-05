@@ -97,6 +97,7 @@ actuation
 
 - A V2 public provenance profile with restricted deterministic CBOR, typed domain-separated CIDs, Ed25519 signatures, signed append receipts, and deterministic causal-DAG replay.
 - Independent Rust and Python conformance verification over checked-in valid and malformed vectors.
+- Independent Rust and Python reducers that agree on the provisional signed semantic suite after Wave 01 verification.
 - An atomic SQLite reference store that re-verifies present records during recovery and fails closed on record mutation or edge inconsistency. Valid-suffix deletion and whole-database rollback require an externally protected expected head and are outside this reference profile.
 - A Rust CLI for vector generation, event verification, and replay.
 - A synthetic 1K/10K/100K DAG validation and replay benchmark with environment metadata and bounded claims.
@@ -162,6 +163,7 @@ The repository does **not** claim to replace them.
 - [`standards/`](standards/) — mapping profiles and integration discipline.
 - [`security/`](security/) — threat model and lifecycle guarantees.
 - [`crates/`](crates/) — V2 Rust public-profile implementations.
+- [`crates/pwm-semantic/`](crates/pwm-semantic/) — provisional Rust reducer over verified signed semantic records.
 - [`conformance/`](conformance/) — valid/invalid vectors and the independent Python oracle.
 - [`governance/`](governance/) — status metadata, authority records, and wave evidence.
 - [`experiments/`](experiments/) — synthetic personas, scenario requirements, generated research artifacts, and limitations.
@@ -182,6 +184,7 @@ cargo test --workspace
 cargo run -q -p pwm-cli -- event verify --bundle conformance/vectors/wave01-valid.json
 cargo run -q -p pwm-cli -- event replay --bundle conformance/vectors/wave01-valid.json
 python3 conformance/python/pwm_oracle.py conformance/vectors/wave01-valid.json
+pwm-conformance compare --implementations rust-signed-semantic python-signed-semantic --suite PWM-SIGNED-SEMANTICS-V1
 ```
 
 V1 Python reference:

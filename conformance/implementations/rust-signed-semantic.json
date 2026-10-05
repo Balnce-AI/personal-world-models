@@ -1,0 +1,14 @@
+{
+  "name": "rust-signed-semantic",
+  "version": "0.2.0-alpha.1",
+  "language": "Rust",
+  "command": [
+    "{python}",
+    "{root}/conformance/python/signed_semantic_adapter.py",
+    "--implementation", "rust",
+    "--bundle", "{bundle}",
+    "--profile", "{profile}",
+    "--suite", "{suite}"
+  ],
+  "profiles": ["pwm-public-provenance-v1", "pwm-signed-semantics-v1"]
+}

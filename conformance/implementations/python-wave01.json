@@ -1,0 +1,14 @@
+{
+  "name": "python-wave01",
+  "version": "0.2.0",
+  "language": "Python",
+  "command": [
+    "{python}",
+    "-c",
+    "import json,sys;from pathlib import Path;from conformance.python.pwm_oracle import verify_bundle;order=verify_bundle(Path(sys.argv[1]));result={'cases':[{'actual':{'acceptedRecordCount':len(order),'expectedReplayOrder':order},'id':'wave01-valid'}],'contract':'pwm-conformance-result-v1','profile':sys.argv[2],'suite':sys.argv[3]};print(json.dumps(result,ensure_ascii=False,allow_nan=False,sort_keys=True,separators=(',',':')))",
+    "{bundle}",
+    "{profile}",
+    "{suite}"
+  ],
+  "profiles": ["pwm-public-provenance-v1"]
+}

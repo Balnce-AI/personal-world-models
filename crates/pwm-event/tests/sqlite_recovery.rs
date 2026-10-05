@@ -58,6 +58,11 @@ fn reopens_and_reverifies_committed_records() {
         SqliteDag::open(&path, "append:test", appender.public_key(), &keys, &schemas).unwrap();
     assert_eq!(reopened.replay().unwrap(), vec![event.body_cid]);
     assert_eq!(reopened.receipt(&event.body_cid), Some(&receipt));
+    let replay = reopened.verified_replay().unwrap();
+    assert_eq!(replay.len(), 1);
+    assert_eq!(replay[0].event(), &event);
+    assert_eq!(replay[0].payload_bytes(), payload);
+    assert_eq!(replay[0].receipt(), &receipt);
 }
 
 #[test]

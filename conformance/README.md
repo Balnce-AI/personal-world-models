@@ -6,6 +6,7 @@ This directory provides language-neutral evidence inputs. `manifest.json` identi
 
 - `wave01-*.json` are the unchanged, authoritative fixtures for `pwm-public-provenance-v1`. Their canonical CBOR, CID, signature, receipt, and key-state semantics are governed by the Wave01 profile.
 - `model-ecology-*.json` and `hpl-*.json` use `semantic-vector-v1` envelopes and the `pwm-json-semantics-v1` profile. Event objects are an abstract JSON test notation, not canonical signed records.
+- Future `signed-semantic-suite-v1` assets use complete Wave01 bundles through `signed-semantic-source.schema.json`. The `pwm-signed-semantics-v1` profile is provisional and has no fixture silently implied by the existing manifest.
 
 `spec/wave01-bundle-profile.md` defines the JSON envelope, key-status frontier construction, processing order, and replay tie-break needed in addition to the canonical record profile. `expectations/wave01-valid.json` publishes replay output without requiring implementers to derive expected results from Rust or Python source.
 
@@ -14,3 +15,5 @@ This directory provides language-neutral evidence inputs. `manifest.json` identi
 For an `ACCEPT` case, an implementation MUST accept all input events and produce the stated observable outcomes. For a `REJECT` case, it MUST reject the operation with the specified `error.code` before committing the invalid transition. Comparisons ignore object-member ordering but not array ordering unless an invariant states otherwise.
 
 An evidence report SHOULD record implementation version, suite ID and version, fixture digest, adapter version, pass/fail per case, and execution environment. The repository currently makes no full-conformance claim; an empty `claims` array in `manifest.json` is deliberate.
+
+A signed-semantic invalid case declares `decision: REJECT`, one precedence-selected `error_code`, and `state_digest_unchanged: true`. It embeds a schema-valid full source except when `SOURCE_SCHEMA_INVALID` intentionally tests a malformed source object. Implementations use the neutral `REDUCE`, `QUERY`, `PROJECT`, or `EVALUATE` command contract and compare normalized outputs using `docs/semantic-diff-format.md`.

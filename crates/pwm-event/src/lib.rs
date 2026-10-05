@@ -473,7 +473,43 @@ impl SchemaRegistry {
 #[derive(Clone)]
 struct StoredEvent {
     event: SignedEvent,
+    payload_bytes: Vec<u8>,
     receipt: SignedAppendReceipt,
+}
+
+/// An immutable view of an event record accepted by a DAG's verification path.
+///
+/// Its fields and construction are private so callers cannot represent an
+/// arbitrary event as verified.
+#[derive(Clone, Copy, Debug)]
+pub struct VerifiedRecordRef<'a> {
+    event: &'a SignedEvent,
+    payload_bytes: &'a [u8],
+    receipt: &'a SignedAppendReceipt,
+}
+
+impl<'a> VerifiedRecordRef<'a> {
+    pub fn event(&self) -> &'a SignedEvent {
+        self.event
+    }
+
+    pub fn payload_bytes(&self) -> &'a [u8] {
+        self.payload_bytes
+    }
+
+    pub fn receipt(&self) -> &'a SignedAppendReceipt {
+        self.receipt
+    }
+}
+
+impl<'a> From<&'a StoredEvent> for VerifiedRecordRef<'a> {
+    fn from(stored: &'a StoredEvent) -> Self {
+        Self {
+            event: &stored.event,
+            payload_bytes: &stored.payload_bytes,
+            receipt: &stored.receipt,
+        }
+    }
 }
 
 #[derive(Clone)]
@@ -515,7 +551,7 @@ impl MemoryDag {
             return Err(DagError::PayloadCidMismatch);
         }
         if let Some(stored) = self.events.get(&event.body_cid) {
-            if &stored.event != event {
+            if &stored.event != event || stored.payload_bytes != payload_bytes {
                 return Err(DagError::RetryMismatch);
             }
             return Ok(stored.receipt.clone());
@@ -560,6 +596,7 @@ impl MemoryDag {
             event.body_cid,
             StoredEvent {
                 event: event.clone(),
+                payload_bytes: payload_bytes.to_vec(),
                 receipt: receipt.clone(),
             },
         );
@@ -669,6 +706,22 @@ impl MemoryDag {
         self.events.get(cid).map(|stored| &stored.receipt)
     }
 
+    pub fn verified_record(&self, cid: &EventBodyCid) -> Option<VerifiedRecordRef<'_>> {
+        self.events.get(cid).map(VerifiedRecordRef::from)
+    }
+
+    pub fn verified_replay(&self) -> Result<Vec<VerifiedRecordRef<'_>>, DagError> {
+        self.replay()?
+            .into_iter()
+            .map(|cid| {
+                self.events
+                    .get(&cid)
+                    .map(VerifiedRecordRef::from)
+                    .ok_or(DagError::CorruptStorage)
+            })
+            .collect()
+    }
+
     pub fn import_verified(
         &mut self,
         event: SignedEvent,
@@ -708,8 +761,14 @@ impl MemoryDag {
             ),
             (event.body.author_sequence, event.body_cid),
         );
-        self.events
-            .insert(event.body_cid, StoredEvent { event, receipt });
+        self.events.insert(
+            event.body_cid,
+            StoredEvent {
+                event,
+                payload_bytes: payload_bytes.to_vec(),
+                receipt,
+            },
+        );
         self.author_heads.insert(author_head.0, author_head.1);
         self.next_log_sequence += 1;
         Ok(())
@@ -893,6 +952,14 @@ impl SqliteDag {
 
     pub fn receipt(&self, cid: &EventBodyCid) -> Option<&SignedAppendReceipt> {
         self.memory.receipt(cid)
+    }
+
+    pub fn verified_record(&self, cid: &EventBodyCid) -> Option<VerifiedRecordRef<'_>> {
+        self.memory.verified_record(cid)
+    }
+
+    pub fn verified_replay(&self) -> Result<Vec<VerifiedRecordRef<'_>>, DagError> {
+        self.memory.verified_replay()
     }
 }
 

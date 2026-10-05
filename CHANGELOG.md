@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added the provisional Signed Semantic Conformance v1 profile, authenticated principal grants, deterministic signed bundles, independent Rust/Python reducers, semantic diff tooling, and exact cross-implementation agreement gates.
 - Added provisional model-ecology and HPL semantic profiles and language-neutral conformance fixtures.
 - Added ontology constraints, `WORLD` model kind, privacy propagation, declassification boundaries, contradiction lifecycle, and bound possible worlds.
 - Added PMRA classification, information ledgers, matched representation conditions, tokenizer contracts, seeded repetitions, and generated coverage evidence.

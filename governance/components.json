@@ -307,6 +307,58 @@
       "last_verified": "2026-10-05",
       "source_refs": ["spec/hpl-negotiation.md", "profiles/hpl-targets", "tests/test_hpl_platform.py"],
       "limitations": ["Non-actuating simulator and unsigned bounded artifacts; no production authority, device trust, deletion proof, or safety certification claim."]
+    },
+    {
+      "id": "signed-semantic-profile-v1",
+      "path": "spec/signed-semantic-conformance-v1.md",
+      "truth_plane": "OPERATIONALIZING",
+      "evidence_status": "SPECIFIED",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["spec/public-provenance-profile-v1.md", "conformance/vectors/signed-semantic-suite.json"],
+      "limitations": ["Profile remains PROVISIONAL and does not change the STABLE status of Wave 01 or claim production authority completeness."]
+    },
+    {
+      "id": "rust-signed-semantic-reference",
+      "path": "crates/pwm-semantic",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["spec/signed-semantic-conformance-v1.md", "tests/test_signed_semantic_cross_language.py"],
+      "limitations": ["Reference reducer for the provisional profile; no production identity, storage, synchronization, or policy-completeness claim."]
+    },
+    {
+      "id": "python-signed-semantic-oracle",
+      "path": "conformance/python/pwm_semantic_oracle.py",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "CONFORMANCE_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["spec/signed-semantic-conformance-v1.md", "tests/test_signed_semantic_cross_language.py"],
+      "limitations": ["Independent conformance oracle only; does not import the Python reference runtime and is not a production service."]
+    },
+    {
+      "id": "signed-semantic-conformance-suite",
+      "path": "conformance/vectors/signed-semantic-suite.json",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "REPRODUCED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["crates/pwm-semantic/examples/generate_signed_suite.rs", "scripts/pwm_conformance.py"],
+      "limitations": ["Fixed synthetic keys and fixtures establish reproducible interoperability only; they are not deployment credentials or security certification."]
     }
   ]
 }

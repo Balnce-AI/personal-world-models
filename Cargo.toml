@@ -3,6 +3,7 @@ members = [
   "crates/pwm-canonical",
   "crates/pwm-crypto",
   "crates/pwm-event",
+  "crates/pwm-semantic",
   "crates/pwm-cli",
 ]
 resolver = "3"

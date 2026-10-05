@@ -622,6 +622,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "pwm-semantic"
+version = "0.2.0-alpha.1"
+dependencies = [
+ "hex",
+ "pwm-canonical",
+ "pwm-crypto",
+ "pwm-event",
+ "serde",
+ "serde_json",
+ "sha2 0.11.0",
+ "thiserror",
+]
+
+[[package]]
 name = "quick-error"
 version = "1.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"

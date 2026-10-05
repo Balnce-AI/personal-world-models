@@ -19,7 +19,7 @@
         "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]+$"},
         "version": {"$ref": "#/$defs/version"},
         "profile": {"type": "string", "minLength": 1},
-        "format": {"enum": ["wave01-profile-v1", "semantic-vector-v1"]},
+        "format": {"enum": ["wave01-profile-v1", "semantic-vector-v1", "signed-semantic-suite-v1"]},
         "status": {"enum": ["EXPERIMENTAL", "PROVISIONAL", "STABLE", "DEPRECATED"]},
         "features": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^(pwm|hpl|conformance)\\.[a-z0-9.-]+$"}},
         "fixtures": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^conformance/(?:vectors|expectations)/.+\\.json$"}}

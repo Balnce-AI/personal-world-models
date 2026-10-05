@@ -21,8 +21,11 @@
 - Distributed synchronization, selective replicas, federation, and anti-rollback checkpoints.
 - Multimodal/streaming transport and durable-promotion protocols.
 - Edge/Micro/Full deployment profiles and hardware compatibility negotiation.
-- Signed semantic payload bridge from the V2 provenance spine.
 - Production identity, consent, declassification authority, device attestation, and safety integration.
+
+## Provisional Signed Conformance
+
+`pwm-signed-semantics-v1` now carries canonical semantic payloads through Wave 01 and is independently reduced by Rust and Python. Its suite remains `PROVISIONAL`; conformance is scoped to exact suite version and digest and does not promote semantic or HPL interfaces to `STABLE`.
 
 ## Research-Only Questions
 

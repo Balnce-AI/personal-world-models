@@ -1,0 +1,14 @@
+{
+  "name": "python-signed-semantic",
+  "version": "1.0.0",
+  "language": "Python",
+  "command": [
+    "{python}",
+    "{root}/conformance/python/signed_semantic_adapter.py",
+    "--implementation", "python",
+    "--bundle", "{bundle}",
+    "--profile", "{profile}",
+    "--suite", "{suite}"
+  ],
+  "profiles": ["pwm-public-provenance-v1", "pwm-signed-semantics-v1"]
+}

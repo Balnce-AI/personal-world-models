@@ -4,6 +4,10 @@
   "entries": [
     {"id": "conformance-manifest", "classification": "NORMATIVE", "path": "conformance/schemas/conformance-manifest.schema.json"},
     {"id": "conformance-vector", "classification": "NORMATIVE", "path": "conformance/schemas/conformance-vector.schema.json"},
+    {"id": "signed-semantic-suite", "classification": "NORMATIVE", "path": "conformance/schemas/signed-semantic-suite.schema.json"},
+    {"id": "signed-semantic-source", "classification": "NORMATIVE", "path": "conformance/schemas/signed-semantic-source.schema.json"},
+    {"id": "signed-semantic-output", "classification": "NORMATIVE", "path": "conformance/schemas/signed-semantic-output.schema.json"},
+    {"id": "implementation-claim", "classification": "NORMATIVE", "path": "conformance/schemas/implementation-claim.schema.json"},
     {"id": "extension-manifest", "classification": "NORMATIVE", "path": "schemas/json-schema/extension-manifest.schema.json"},
     {"id": "arranger-manifest", "classification": "REFERENCE", "path": "schemas/json-schema/arranger-manifest.schema.json"},
     {"id": "authority-constraint", "classification": "REFERENCE", "path": "schemas/json-schema/authority-constraint.schema.json"},

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/signed-semantic-suite/1-0-0",
+  "title": "Signed Semantic Conformance Suite",
+  "type": "object",
+  "required": ["suite_version", "suite_id", "profile", "profile_status", "description", "trust_anchor", "cases"],
+  "properties": {
+    "suite_version": {"const": "1.0.0"},
+    "suite_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]+$"},
+    "profile": {"const": "pwm-signed-semantics-v1"},
+    "profile_status": {"const": "PROVISIONAL"},
+    "description": {"type": "string", "minLength": 1},
+    "trust_anchor": {"$ref": "#/$defs/trust_anchor"},
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "$defs": {
+    "case_id": {"type": "string", "pattern": "^[a-z][a-z0-9.-]+$"},
+    "id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "hex32": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "cid": {"type": "string", "pattern": "^b[a-z2-7]+$"},
+    "trust_anchor": {
+      "type": "object",
+      "required": ["key_id", "public_key_hex"],
+      "properties": {
+        "key_id": {"$ref": "#/$defs/id"},
+        "public_key_hex": {"$ref": "#/$defs/hex32"}
+      },
+      "additionalProperties": false
+    },
+    "error_code": {
+      "enum": [
+        "SOURCE_SCHEMA_INVALID", "CBOR_INVALID", "CBOR_NON_CANONICAL", "CID_INVALID", "CID_MISMATCH",
+        "PUBLIC_KEY_INVALID", "SIGNATURE_INVALID", "KEY_FRONTIER_INVALID", "RECEIPT_INVALID", "PARENT_INVALID",
+        "AUTHOR_SEQUENCE_INVALID", "REPLAY_CYCLE", "ROOT_TRUST_MISMATCH", "UNSUPPORTED_EVENT_KIND",
+        "UNSUPPORTED_SCHEMA_VERSION", "PAYLOAD_ENVELOPE_INVALID", "PAYLOAD_FIELD_INVALID", "GRANT_NOT_FOUND",
+        "GRANT_NOT_ACTIVE", "PRINCIPAL_AMBIGUOUS", "CAPABILITY_NOT_GRANTED", "REFERENCE_NOT_FOUND",
+        "IDENTIFIER_CONFLICT", "LIFECYCLE_PRECONDITION_MISSING", "REVIEW_SEPARATION_VIOLATION",
+        "FAMILY_KIND_NOT_ALLOWED", "WORLD_SCOPE_VIOLATION", "TOPOLOGY_CYCLE",
+        "PRIVACY_EFFECTIVE_CLASS_MISMATCH", "AUTHORITY_SCOPE_VIOLATION", "AUTHORITY_EXPIRED",
+        "COMMAND_UNSUPPORTED", "OUTPUT_SCHEMA_INVALID", "INTERNAL_ERROR"
+      ]
+    },
+    "valid_expected": {
+      "type": "object",
+      "required": ["decision", "output"],
+      "properties": {
+        "decision": {"const": "ACCEPT"},
+        "output": {"$ref": "#/$defs/implementation_neutral_output"}
+      },
+      "additionalProperties": false
+    },
+    "implementation_neutral_output": {
+      "type": "object",
+      "required": ["output_version", "profile", "source_id", "decision", "processed_records", "last_committed_log_sequence", "state_sha256", "result"],
+      "properties": {
+        "output_version": {"const": "1.0.0"},
+        "profile": {"const": "pwm-signed-semantics-v1"},
+        "source_id": {"$ref": "#/$defs/id"},
+        "decision": {"const": "ACCEPT"},
+        "processed_records": {"type": "integer", "minimum": 1},
+        "last_committed_log_sequence": {"type": "integer", "minimum": 0},
+        "state_sha256": {"$ref": "#/$defs/hex32"},
+        "result": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "invalid_expected": {
+      "type": "object",
+      "required": ["decision", "error_code", "state_digest_unchanged", "accepted_prefix_state_sha256"],
+      "properties": {
+        "decision": {"const": "REJECT"},
+        "error_code": {"$ref": "#/$defs/error_code"},
+        "at_event_body_cid": {"$ref": "#/$defs/cid"},
+        "state_digest_unchanged": {"const": true}
+        ,"accepted_prefix_state_sha256": {"$ref": "#/$defs/hex32"}
+      },
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "required": ["case_id", "description", "polarity", "source", "expected"],
+      "properties": {
+        "case_id": {"$ref": "#/$defs/case_id"},
+        "description": {"type": "string", "minLength": 1},
+        "polarity": {"enum": ["valid", "invalid"]},
+        "source": {"type": "object"},
+        "expected": {"oneOf": [{"$ref": "#/$defs/valid_expected"}, {"$ref": "#/$defs/invalid_expected"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"polarity": {"const": "valid"}}},
+          "then": {
+            "properties": {
+              "source": {"$ref": "https://personal-world-models.org/schema/signed-semantic-source/1-0-0"},
+              "expected": {"$ref": "#/$defs/valid_expected"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"polarity": {"const": "invalid"}}},
+          "then": {"properties": {"expected": {"$ref": "#/$defs/invalid_expected"}}}
+        },
+        {
+          "if": {
+            "properties": {
+              "expected": {
+                "properties": {"error_code": {"const": "SOURCE_SCHEMA_INVALID"}},
+                "required": ["error_code"]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source": {"not": {"$ref": "https://personal-world-models.org/schema/signed-semantic-source/1-0-0"}}
+            }
+          },
+          "else": {
+            "properties": {
+              "source": {"$ref": "https://personal-world-models.org/schema/signed-semantic-source/1-0-0"}
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
