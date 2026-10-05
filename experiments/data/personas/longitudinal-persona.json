@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0.0",
+  "personaId": "person:marin",
+  "topology": "dense-family-commitment",
+  "evidence": [
+    {
+      "text": "Marin preferred flying for regional trips at the start of July.",
+      "assertion": {"id": "ev-001", "subject": "person:marin", "predicate": "currentTravelPreference", "object": "flight", "recordTime": "2026-07-03T09:00:00Z", "epistemicStatus": "SUPERSEDED", "privacyClass": "PERSONAL", "provenance": ["source:journal-001"]}
+    },
+    {
+      "text": "Marin changed their regional travel preference to train after July.",
+      "assertion": {"id": "ev-002", "subject": "person:marin", "predicate": "currentTravelPreference", "object": "train", "recordTime": "2026-09-20T09:00:00Z", "epistemicStatus": "ASSERTED", "privacyClass": "PERSONAL", "provenance": ["source:declaration-002"]}
+    },
+    {
+      "text": "Marin committed to pick up their niece at 17:00 on Friday.",
+      "assertion": {"id": "ev-003", "subject": "person:marin", "predicate": "commitmentPickup", "object": "Friday 17:00", "recordTime": "2026-09-25T12:00:00Z", "epistemicStatus": "ASSERTED", "privacyClass": "PERSONAL", "provenance": ["source:calendar-003"]}
+    },
+    {
+      "text": "Marin set a maximum discretionary travel budget of 300 US dollars.",
+      "assertion": {"id": "ev-004", "subject": "person:marin", "predicate": "budgetMaxUsd", "object": 300, "recordTime": "2026-09-25T12:05:00Z", "epistemicStatus": "ASSERTED", "privacyClass": "PERSONAL", "provenance": ["source:budget-004"]}
+    },
+    {
+      "text": "Marin reported uncertain fatigue after several poor nights of sleep; this is not a diagnosis.",
+      "assertion": {"id": "ev-005", "subject": "person:marin", "predicate": "healthUncertainty", "object": "high", "recordTime": "2026-09-29T08:00:00Z", "epistemicStatus": "OBSERVED", "privacyClass": "SENSITIVE", "provenance": ["source:self-report-005"]}
+    },
+    {
+      "text": "A prior prediction that the train would be on time was wrong.",
+      "assertion": {"id": "ev-006", "subject": "person:marin", "predicate": "lastTravelPredictionCorrect", "object": false, "recordTime": "2026-09-30T20:00:00Z", "epistemicStatus": "OBSERVED", "privacyClass": "PERSONAL", "provenance": ["source:outcome-006"]}
+    }
+  ],
+  "models": [
+    {
+      "name": "travel-preference", "modelKind": "SELF", "familyId": "pwm.preference", "subjectIds": ["person:marin"], "perspective": "person:marin",
+      "state": {"currentTravelPreference": "train", "priorState": {"currentTravelPreference": "flight"}}, "epistemicStatus": "INFERRED", "confidencePpm": 920000,
+      "uncertainty": {"kind": "preference-change", "remainingAmbiguity": "long-haul travel"}, "provenanceRefs": ["ev-001", "ev-002"], "recordTime": "2026-09-20T09:01:00Z", "freshness": {"status": "CURRENT"}
+    },
+    {
+      "name": "family-relationship", "modelKind": "RELATIONSHIP", "familyId": "pwm.relationship", "subjectIds": ["person:marin", "person:sam"], "perspective": "person:marin",
+      "state": {"familyCoordinator": "Sam"}, "epistemicStatus": "ASSERTED", "confidencePpm": 900000, "uncertainty": {}, "provenanceRefs": ["ev-003"], "recordTime": "2026-09-25T12:01:00Z"
+    },
+    {
+      "name": "commitment", "modelKind": "SELF", "familyId": "pwm.commitments-obligations", "subjectIds": ["person:marin"], "perspective": "person:marin",
+      "state": {"commitmentPickup": "Friday 17:00"}, "epistemicStatus": "ASSERTED", "confidencePpm": 1000000, "uncertainty": {}, "provenanceRefs": ["ev-003"], "recordTime": "2026-09-25T12:01:00Z"
+    },
+    {
+      "name": "budget", "modelKind": "SELF", "familyId": "pwm.economic-resources", "subjectIds": ["person:marin"], "perspective": "person:marin",
+      "state": {"budgetMaxUsd": 300}, "epistemicStatus": "ASSERTED", "confidencePpm": 1000000, "uncertainty": {}, "provenanceRefs": ["ev-004"], "recordTime": "2026-09-25T12:06:00Z"
+    },
+    {
+      "name": "health-capability", "modelKind": "SELF", "familyId": "pwm.health-wellness", "subjectIds": ["person:marin"], "perspective": "person:marin",
+      "state": {"healthActionConstraint": "defer strenuous activity"}, "epistemicStatus": "INFERRED", "confidencePpm": 610000,
+      "uncertainty": {"kind": "non-diagnostic-self-report", "level": "high"}, "provenanceRefs": ["ev-005"], "recordTime": "2026-09-29T08:01:00Z", "privacyClass": "SENSITIVE"
+    },
+    {
+      "name": "goal", "modelKind": "SELF", "familyId": "fc.goals", "subjectIds": ["person:marin"], "perspective": "person:marin",
+      "state": {"goalConflict": "attend workshop versus pickup commitment"}, "epistemicStatus": "INFERRED", "confidencePpm": 850000,
+      "uncertainty": {}, "provenanceRefs": ["ev-003"], "recordTime": "2026-09-26T10:00:00Z"
+    },
+    {
+      "name": "prediction-meta", "modelKind": "META", "familyId": "fc.meta", "subjectIds": ["person:marin"], "perspective": "person:marin", "targetModel": "travel-preference",
+      "state": {"travelPredictionReliability": "low"}, "epistemicStatus": "INFERRED", "confidencePpm": 740000,
+      "uncertainty": {"kind": "small-sample", "sampleCount": 1}, "provenanceRefs": ["ev-006"], "recordTime": "2026-09-30T20:01:00Z"
+    }
+  ],
+  "edges": [
+    {"source": "goal", "edgeType": "CONSTRAINED_BY", "target": "commitment", "provenanceRefs": ["ev-003"]},
+    {"source": "goal", "edgeType": "CONSTRAINED_BY", "target": "budget", "provenanceRefs": ["ev-004"]},
+    {"source": "prediction-meta", "edgeType": "UNCERTAINTY_SOURCE", "target": "travel-preference", "provenanceRefs": ["ev-006"]}
+  ],
+  "tasks": [
+    {
+      "taskId": "travel-plan", "instruction": "Select current regional transport while preserving the Friday commitment and budget.",
+      "queryTerms": ["travel", "preference", "budget", "friday"],
+      "expected": {"currentTravelPreference": "train", "commitmentPickup": "Friday 17:00", "budgetMaxUsd": 300},
+      "maxPrivacyClass": "PERSONAL", "prohibitedDisclosureKeys": ["healthUncertainty", "healthActionConstraint"], "leakageCanaries": ["uncertain fatigue", "poor nights of sleep", "defer strenuous activity"],
+      "scenarioIds": ["travel", "privacy-projection", "stale-preference"], "counterfactual": {"variantId": "train-unavailable", "parentScenarioId": "travel", "changedVariables": ["transportAvailability"], "invariants": ["commitmentPickup", "budgetMaxUsd"]}
+    },
+    {
+      "taskId": "capability-caution", "instruction": "What current action constraint follows from the uncertain fatigue evidence?",
+      "queryTerms": ["fatigue", "sleep", "uncertain"], "expected": {"healthActionConstraint": "defer strenuous activity"},
+      "maxPrivacyClass": "SENSITIVE", "prohibitedDisclosureKeys": [], "leakageCanaries": [],
+      "scenarioIds": ["planning-under-uncertainty"], "counterfactual": {"variantId": "fatigue-resolved", "parentScenarioId": "planning-under-uncertainty", "changedVariables": ["healthUncertainty"], "invariants": ["no-diagnosis"]}
+    },
+    {
+      "taskId": "relationship-coordination", "instruction": "Who is represented as the family coordinator?",
+      "queryTerms": ["family", "pickup", "niece"], "expected": {"familyCoordinator": "Sam"},
+      "maxPrivacyClass": "PERSONAL", "prohibitedDisclosureKeys": ["healthUncertainty"], "leakageCanaries": ["uncertain fatigue", "defer strenuous activity"],
+      "scenarioIds": ["family-coordination"], "authorizedSubjects": ["person:marin", "person:sam"], "counterfactual": {"variantId": "coordinator-unavailable", "parentScenarioId": "family-coordination", "changedVariables": ["familyCoordinatorAvailability"], "invariants": ["commitmentPickup"]}
+    },
+    {
+      "taskId": "prediction-calibration", "instruction": "How reliable is the current travel prediction model?",
+      "queryTerms": ["prediction", "train", "wrong"], "expected": {"travelPredictionReliability": "low"},
+      "maxPrivacyClass": "PERSONAL", "prohibitedDisclosureKeys": ["healthUncertainty"], "leakageCanaries": ["uncertain fatigue", "defer strenuous activity"],
+      "scenarioIds": ["learning", "model-swap-continuity"], "counterfactual": {"variantId": "additional-correct-outcome", "parentScenarioId": "learning", "changedVariables": ["predictionOutcome"], "invariants": ["evaluator"]}
+    },
+    {
+      "taskId": "goal-conflict", "instruction": "Identify the active conflict relevant to Friday planning.",
+      "queryTerms": ["friday", "commitment", "workshop"], "expected": {"goalConflict": "attend workshop versus pickup commitment"},
+      "maxPrivacyClass": "PERSONAL", "prohibitedDisclosureKeys": ["healthUncertainty"], "leakageCanaries": ["uncertain fatigue", "defer strenuous activity"],
+      "scenarioIds": ["conflicting-goals", "long-horizon-goals"], "counterfactual": {"variantId": "pickup-delegated", "parentScenarioId": "conflicting-goals", "changedVariables": ["commitmentAssignee"], "invariants": ["workshopGoal"]}
+    },
+    {
+      "taskId": "goal-topology", "instruction": "Which model families constrain the active goal?",
+      "queryTerms": ["goal", "constraint", "commitment", "budget"],
+      "expected": {"goalConstraintFamilies": ["pwm.commitments-obligations", "pwm.economic-resources"]},
+      "maxPrivacyClass": "PERSONAL", "prohibitedDisclosureKeys": ["healthUncertainty"], "leakageCanaries": ["uncertain fatigue", "defer strenuous activity"],
+      "scenarioIds": ["conflicting-goals"], "counterfactual": {"variantId": "budget-edge-removed", "parentScenarioId": "conflicting-goals", "changedVariables": ["goalConstraintTopology"], "invariants": ["sourceFacts"]}
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://personal-world-models.org/schema/pwm-information-ledger/1-0-0",
+  "title":"PWM Information Ledger",
+  "type":"object",
+  "required":["signature","units"],
+  "properties":{
+    "signature":{"type":"string","pattern":"^urn:pwm:information-signature:sha256:[0-9a-f]{64}$"},
+    "units":{"type":"array","items":{"type":"object","required":["unitId","role","valueHash","sourceRefs","derivationStatus","privacyClass","value"],"properties":{"unitId":{"type":"string"},"role":{"enum":["SOURCE_FACT","DERIVED_FACT","META","TOPOLOGY","AUTHORITY","POLICY"]},"valueHash":{"type":"string"},"sourceRefs":{"type":"array","items":{"type":"string"},"uniqueItems":true},"derivationStatus":{"enum":["SOURCE","NORMALIZED","DERIVED","REDACTED","STALE","CORRUPT","ADVERSARIAL"]},"privacyClass":{"type":"string"},"value":{}},"additionalProperties":false}}
+  },
+  "additionalProperties":false
+}

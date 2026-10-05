@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:robot:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "ROBOT",
+  "recipient": "did:example:robot-7",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "robot.delivery.place",
+    "purposes": ["parcel-delivery"],
+    "requiredFields": ["delivery.allowed_surface"],
+    "optionalFields": ["access.step_free_route"],
+    "deniedFields": ["home.private_zone", "identity.full_name"],
+    "consentRequired": false,
+    "representation": "DIRECT"
+  }],
+  "canonicalV2Effect": "NONE"
+}

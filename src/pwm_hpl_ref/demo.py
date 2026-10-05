@@ -12,9 +12,10 @@ from .web0 import issue_broadcast
 def build_fixture():
     log=PLog(); actor="did:example:person:alice"
     e=log.append("entity.put",{"id":actor,"type":"Person","labels":["Alice"],"privacyClass":"PERSONAL","provenance":[]},actor)
-    log.append("assertion.put",{"id":"a1","subject":actor,"predicate":"delivery.preferred_surface","object":"kitchen.counter.north","epistemicStatus":"ASSERTED","confidence":{"explicit":1.0},"privacyClass":"PERSONAL","provenance":[e.event_id]},actor)
-    log.append("assertion.put",{"id":"a2","subject":actor,"predicate":"home.private_zone","object":"bedroom","epistemicStatus":"ASSERTED","confidence":{"explicit":1.0},"privacyClass":"SENSITIVE","provenance":[e.event_id]},actor)
-    log.append("assertion.put",{"id":"a3","subject":actor,"predicate":"accessibility.route","object":"avoid-stairs","epistemicStatus":"ASSERTED","confidence":{"explicit":1.0},"privacyClass":"PERSONAL","provenance":[e.event_id]},actor)
+    now="2026-01-01T00:00:00+00:00"
+    log.append("assertion.put",{"id":"a1","subject":actor,"predicate":"delivery.preferred_surface","object":"kitchen.counter.north","recordTime":now,"epistemicStatus":"ASSERTED","confidence":{"explicit":1.0},"privacyClass":"PERSONAL","provenance":[e.event_id]},actor)
+    log.append("assertion.put",{"id":"a2","subject":actor,"predicate":"home.private_zone","object":"bedroom","recordTime":now,"epistemicStatus":"ASSERTED","confidence":{"explicit":1.0},"privacyClass":"SENSITIVE","provenance":[e.event_id]},actor)
+    log.append("assertion.put",{"id":"a3","subject":actor,"predicate":"accessibility.route","object":"avoid-stairs","recordTime":now,"epistemicStatus":"ASSERTED","confidence":{"explicit":1.0},"privacyClass":"PERSONAL","provenance":[e.event_id]},actor)
     return log,actor
 
 def main():

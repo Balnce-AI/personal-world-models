@@ -1,0 +1,11 @@
+{
+  "status": "EXPERIMENTAL",
+  "claim": "REPLACE_WITH_FALSIFIABLE_CLAIM",
+  "datasetDigest": "sha256:REPLACE",
+  "implementationDigest": "sha256:REPLACE",
+  "seed": 0,
+  "baseline": "REPLACE",
+  "negativeControl": "REPLACE",
+  "metrics": {},
+  "limitations": ["Reference template; no result is claimed."]
+}

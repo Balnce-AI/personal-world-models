@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://personal-world-models.org/schema/pwm-pmra-classification/1-0-0",
+  "title":"PWM PMRA Classification",
+  "type":"object",
+  "required":["modelKinds","primitiveDimensions","primitiveProfiles","scenarios"],
+  "properties":{
+    "modelKinds":{"type":"array","items":{"enum":["SELF","RELATIONSHIP","WORLD","OTHER","META","POSSIBLE_WORLD"]},"uniqueItems":true},
+    "primitiveDimensions":{"const":["architectural","evidence","authority","query","policy","evaluation","topology"]},
+    "primitiveProfiles":{"type":"object","additionalProperties":{"type":"object","required":["architectural","evidence","authority","query","policy","evaluation","topology"],"additionalProperties":{"type":"array","minItems":1,"items":{"type":"string","pattern":"^[a-z]+\\.[a-z0-9-]+$"}}}},
+    "scenarios":{"type":"object","minProperties":25,"additionalProperties":{"type":"object","required":["categoryId","modelFamilies","modelKinds","primitiveProfileId"],"properties":{"categoryId":{"type":"string","pattern":"^[a-z]+(?:[.-][a-z]+)+$"},"modelFamilies":{"type":"array","minItems":1,"items":{"type":"string"},"uniqueItems":true},"modelKinds":{"type":"array","minItems":1,"items":{"type":"string"},"uniqueItems":true},"primitiveProfileId":{"type":"string"}},"additionalProperties":false}}
+  },
+  "additionalProperties":false
+}

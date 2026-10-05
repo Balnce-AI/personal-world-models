@@ -1,0 +1,9 @@
+{
+  "scenarioId": "revocation",
+  "targetProfile": "robot",
+  "revokeBeforeUse": true,
+  "expectedNegotiationStatus": "GRANTED",
+  "expectedDisposition": "REFUSED",
+  "expectedReasonCode": "REVOKED",
+  "claim": "A recipient stops using a previously granted projection after revocation."
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-self-model/1-0-0",
+  "title": "PWM Model Record",
+  "type": "object",
+  "required": ["modelId", "modelKind", "familyId", "subjectIds", "perspective", "state", "validTime", "recordTime", "epistemicStatus", "lifecycleStatus", "confidencePpm", "uncertainty", "provenanceRefs", "dependencyRefs", "predictionRefs", "policyRefs", "freshness", "calibration", "lineage", "privacyClass", "effectivePrivacyClass", "derivationRefs", "privacyBoundaries", "schemaVersion"],
+  "properties": {
+    "modelId": {"type": "string", "minLength": 1},
+    "modelKind": {"enum": ["SELF", "OTHER", "RELATIONSHIP", "WORLD", "META", "POSSIBLE_WORLD"]},
+    "familyId": {"type": "string", "minLength": 1},
+    "subjectIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "perspective": {"type": "string", "minLength": 1},
+    "state": {"type": "object"},
+    "validTime": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/timeInterval"}]},
+    "recordTime": {"type": "string", "format": "date-time"},
+    "epistemicStatus": {"enum": ["OBSERVED", "ASSERTED", "INFERRED", "PREDICTED", "DISPUTED"]},
+    "lifecycleStatus": {"enum": ["PROPOSED", "ACCEPTED", "DISPUTED", "SUPERSEDED", "REVOKED"]},
+    "confidencePpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "uncertainty": {"type": "object"},
+    "provenanceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "dependencyRefs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "predictionRefs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "policyRefs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "freshness": {"type": ["object", "null"]},
+    "calibration": {"type": ["object", "null"]},
+    "lineage": {"type": ["object", "null"]},
+    "privacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "effectivePrivacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "derivationRefs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "privacyBoundaries": {"type": "array", "items": {"$ref": "https://personal-world-models.org/schema/pwm-privacy-boundary/1-0-0"}},
+    "schemaVersion": {"const": "1.0.0"}
+    ,"statusReason": {"type": "string"}
+  },
+  "$defs": {
+    "timeInterval": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": ["string", "null"], "format": "date-time"},
+        "end": {"type": ["string", "null"], "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"modelKind": {"const": "RELATIONSHIP"}}}, "then": {"properties": {"subjectIds": {"minItems": 2}}}},
+    {"if": {"properties": {"modelKind": {"const": "META"}}}, "then": {"properties": {"state": {"required": ["targetModelId"]}}}},
+    {"if": {"properties": {"modelKind": {"const": "POSSIBLE_WORLD"}}}, "then": {"properties": {"state": {"required": ["worldId", "parentWorldId", "baseStateId", "baseTime", "privacyClass"]}}}}
+  ],
+  "additionalProperties": false
+}

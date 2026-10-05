@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "reservedNamespaces": ["pwm", "hpl", "fc", "conformance"],
+  "namespacePattern": "^(?:[a-z][a-z0-9-]*\\.)+[a-z][a-z0-9-]*$",
+  "stabilityLevels": ["EXPERIMENTAL", "PROVISIONAL", "STABLE", "DEPRECATED"],
+  "extensions": [
+    {
+      "extensionId": "org.example.acme.weather",
+      "version": "0.1.0",
+      "stability": "EXPERIMENTAL",
+      "manifest": "examples/third-party-adapter/extension-manifest.json"
+    }
+  ]
+}

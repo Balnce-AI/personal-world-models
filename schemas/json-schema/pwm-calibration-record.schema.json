@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-calibration-record/1-0-0",
+  "title": "PWM Calibration Record",
+  "type": "object",
+  "required": ["calibrationId", "metric", "metricValuePpm", "sampleCount", "pairs", "evaluatedAt", "procedureRef", "metricStatus", "schemaVersion"],
+  "properties": {
+    "calibrationId": {"type": "string"},
+    "metric": {"const": "BRIER_BINARY"},
+    "metricValuePpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "sampleCount": {"type": "integer", "minimum": 1},
+    "pairs": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["predictionId", "outcomeId"],
+        "properties": {"predictionId": {"type": "string"}, "outcomeId": {"type": "string"}},
+        "additionalProperties": false
+      }
+    },
+    "evaluatedAt": {"type": "string", "format": "date-time"},
+    "procedureRef": {"type": "string"},
+    "metricStatus": {"const": "EXPERIMENTAL"},
+    "schemaVersion": {"const": "1.0.0"}
+  },
+  "additionalProperties": false
+}

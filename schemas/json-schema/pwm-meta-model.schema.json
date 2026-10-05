@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-meta-model/1-0-0",
+  "title": "PWM Meta-Model Record",
+  "allOf": [
+    {"$ref": "https://personal-world-models.org/schema/pwm-self-model/1-0-0"},
+    {"properties": {"modelKind": {"const": "META"}}}
+  ]
+}

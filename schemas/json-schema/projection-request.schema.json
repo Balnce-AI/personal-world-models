@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/projection-request/0-1-0",
+  "title": "Experimental HPL Projection Request",
+  "type": "object",
+  "required": ["requestId", "requester", "recipient", "targetProfileId", "purpose", "capability", "requestedFields", "issuedAt", "expiresAt", "maxPrivacyClass", "consentEvidence", "canonicalV2Effect"],
+  "properties": {
+    "requestId": {"type": "string", "pattern": "^urn:hpl:request:sha256:[0-9a-f]{64}$"},
+    "requester": {"type": "string", "minLength": 1},
+    "recipient": {"type": "string", "minLength": 1},
+    "targetProfileId": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "capability": {"type": "string", "minLength": 1},
+    "requestedFields": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "issuedAt": {"type": "string", "format": "date-time"},
+    "expiresAt": {"type": "string", "format": "date-time"},
+    "maxPrivacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "consentEvidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

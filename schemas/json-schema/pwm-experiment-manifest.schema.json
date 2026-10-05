@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-experiment-manifest/2-0-0",
+  "title": "PWM Experiment Manifest",
+  "type": "object",
+  "required": ["experimentId", "generatedAt", "gitCommit", "gitDirty", "implementationHash", "datasetHash", "ontologyVersion", "foundationModel", "promptProfileHash", "evaluatorVersion", "modelParameters", "dependencyVersions", "seed", "repetitions", "tokenizer", "conditionTaxonomy", "scenarioIds", "runs", "failures", "metricStatus", "limitations", "artifacts"],
+  "properties": {
+    "experimentId": {"type": "string"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "gitCommit": {"type": "string"},
+    "gitDirty": {"type": "boolean"},
+    "implementationHash": {"type": "string"},
+    "datasetHash": {"type": "string"},
+    "ontologyVersion": {"type": "string"},
+    "foundationModel": {"type": "string"},
+    "promptProfileHash": {"type": "string"},
+    "evaluatorVersion": {"type": "string"},
+    "modelParameters": {"type": "object"},
+    "dependencyVersions": {"type": "object", "additionalProperties": {"type": "string"}},
+    "seed": {"type": "integer"},
+    "repetitions": {"type": "integer", "minimum": 1},
+    "tokenizer": {
+      "type": "object", "required": ["tokenizerId", "revision", "chatTemplateHash", "exact", "verified", "providerTokenTolerance"],
+      "properties": {"tokenizerId":{"type":"string"},"revision":{"type":"string"},"chatTemplateHash":{"type":"string"},"exact":{"type":"boolean"},"verified":{"type":"boolean"},"providerTokenTolerance":{"type":"integer","minimum":0}}, "additionalProperties": false
+    },
+    "conditionTaxonomy": {"type": "object", "additionalProperties": {"$ref": "#/$defs/taxonomy"}},
+    "scenarioIds": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "runs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/run"}},
+    "failures": {"type": "array", "items": {"$ref": "#/$defs/failure"}},
+    "metricStatus": {"const": "EXPERIMENTAL"},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "artifacts": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "taxonomy": {
+      "type": "object", "required": ["canonicalCondition", "representation", "selection", "derivation", "experimentClass"],
+      "properties": {"canonicalCondition":{"type":"string"},"representation":{"type":"string"},"selection":{"type":"string"},"derivation":{"type":"string"},"experimentClass":{"enum":["baseline","representation","selection","derivation","topology","provenance","freshness","confidence","evidence","structure"]}},
+      "additionalProperties": false
+    },
+    "failure": {
+      "type": "object", "required": ["condition", "repetition", "taskId", "errorType", "message"],
+      "properties": {"condition":{"type":"string"},"repetition":{"type":"integer","minimum":0},"taskId":{"type":"string"},"errorType":{"type":"string"},"message":{"type":"string"}}, "additionalProperties": false
+    },
+    "run": {
+      "type": "object", "required": ["condition", "repetition", "scenarioIds", "conditionTaxonomy", "expectedControlDirection", "informationSignatures", "tokenizerId", "tokenMatchingVerified", "localTokenMatchingVerified", "providerTokenMatchingVerified", "taskCount", "metrics", "tasks"],
+      "properties": {
+        "condition":{"type":"string"}, "repetition":{"type":"integer","minimum":0}, "scenarioIds":{"type":"array","items":{"type":"string"},"uniqueItems":true},
+        "conditionTaxonomy":{"$ref":"#/$defs/taxonomy"}, "expectedControlDirection":{"enum":["REFERENCE","EQUIVALENT_INFORMATION","LESS_OR_EQUAL_INFORMATION","ADDITIONAL_DERIVED_INFORMATION","NON_POSITIVE"]},
+        "informationSignatures":{"type":"array","items":{"type":"string"},"uniqueItems":true}, "tokenizerId":{"type":"string"}, "tokenMatchingVerified":{"type":"boolean"}, "localTokenMatchingVerified":{"type":"boolean"}, "providerTokenMatchingVerified":{"type":["boolean","null"]},
+        "taskCount":{"type":"integer","minimum":1}, "metrics":{"type":"object"}, "tasks":{"type":"array","minItems":1,"items":{"$ref":"#/$defs/task"}}
+      }, "additionalProperties": false
+    },
+    "task": {
+      "type": "object", "required": ["taskId", "scenarioIds", "counterfactual", "output", "usage", "informationSignature", "informationLedger", "tokenBudget", "controlApplicable", "failure", "correctPpm", "inputCanaryHitCount", "outputCanaryHitCount", "inputLeakageCanaries", "outputLeakageCanaries", "provenanceCoveragePpm", "contextBytes", "calibrationErrorPpm"],
+      "properties": {
+        "taskId":{"type":"string"}, "scenarioIds":{"type":"array","minItems":1,"items":{"type":"string"}}, "counterfactual":{"type":["object","null"]}, "output":{}, "usage":{"type":"object"},
+        "informationSignature":{"type":"string"}, "informationLedger":{"$ref":"https://personal-world-models.org/schema/pwm-information-ledger/1-0-0"}, "tokenBudget":{"$ref":"https://personal-world-models.org/schema/pwm-token-budget/1-0-0"}, "controlApplicable":{"type":["boolean","null"]}, "failure":{"oneOf":[{"$ref":"#/$defs/failure"},{"type":"null"}]},
+        "correctPpm":{"type":"integer"}, "inputCanaryHitCount":{"type":"integer","minimum":0}, "outputCanaryHitCount":{"type":"integer","minimum":0}, "inputLeakageCanaries":{"type":"array","items":{"type":"string"}}, "outputLeakageCanaries":{"type":"array","items":{"type":"string"}}, "provenanceCoveragePpm":{"type":"integer"}, "contextBytes":{"type":"integer","minimum":0}, "calibrationErrorPpm":{"type":"integer"}
+      }, "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

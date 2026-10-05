@@ -1,0 +1,8 @@
+{
+  "scenarioId": "stale-state",
+  "targetProfile": "robot",
+  "staleArtifact": "capability-manifest",
+  "expectedErrorCode": "MANIFEST_EXPIRED",
+  "expectedDisposition": "REFUSED",
+  "claim": "Stale discovery cannot support negotiation."
+}

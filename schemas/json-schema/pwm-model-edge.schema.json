@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-model-edge/1-0-0",
+  "title": "PWM Model Edge",
+  "type": "object",
+  "required": ["edgeId", "sourceModelId", "edgeType", "targetModelId", "confidencePpm", "privacyClass", "effectivePrivacyClass", "provenanceRefs", "schemaVersion"],
+  "properties": {
+    "edgeId": {"type": "string"},
+    "sourceModelId": {"type": "string"},
+    "edgeType": {"enum": ["DEPENDS_ON", "CONSTRAINED_BY", "INFORMED_BY", "UNCERTAINTY_SOURCE", "SUPERSEDES"]},
+    "targetModelId": {"type": "string"},
+    "confidencePpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "privacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "effectivePrivacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "provenanceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "schemaVersion": {"const": "1.0.0"}
+  },
+  "additionalProperties": false
+}

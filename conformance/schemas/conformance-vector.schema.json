@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/conformance-vector/1-0-0",
+  "type": "object",
+  "required": ["schemaVersion", "suiteId", "suiteVersion", "profile", "polarity", "cases"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "suiteId": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]+$"},
+    "suiteVersion": {"const": "1.0.0"},
+    "profile": {"const": "pwm-json-semantics-v1"},
+    "polarity": {"enum": ["valid", "invalid"]},
+    "extensions": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^(?:[a-z][a-z0-9-]*\\.)+[a-z][a-z0-9-]*$"}},
+    "cases": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/case"}}
+  },
+  "$defs": {
+    "event": {
+      "type": "object",
+      "required": ["eventId", "eventType", "recordedAt", "payload"],
+      "properties": {
+        "eventId": {"type": "string", "minLength": 1},
+        "eventType": {"type": "string", "pattern": "^(?:(?:pwm|hpl)\\.[a-z][a-z0-9.-]+|(?:[a-z][a-z0-9-]*\\.){2,}[a-z][a-z0-9.-]*)$"},
+        "recordedAt": {"type": "string", "format": "date-time"},
+        "validFrom": {"type": "string", "format": "date-time"},
+        "validTo": {"type": ["string", "null"], "format": "date-time"},
+        "parents": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "payload": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "expected": {
+      "type": "object",
+      "required": ["decision", "invariants"],
+      "properties": {
+        "decision": {"enum": ["ACCEPT", "REJECT"]},
+        "materialized": {},
+        "query": {},
+        "privacy": {},
+        "contradictions": {},
+        "topology": {},
+        "possibleWorlds": {},
+        "projection": {},
+        "error": {
+          "type": "object",
+          "required": ["code"],
+          "properties": {"code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"}},
+          "additionalProperties": false
+        },
+        "invariants": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      },
+      "allOf": [
+        {"if": {"properties": {"decision": {"const": "REJECT"}}}, "then": {"required": ["error"]}}
+      ],
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "required": ["id", "description", "input", "expected"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9.-]+$"},
+        "description": {"type": "string", "minLength": 1},
+        "input": {
+          "type": "object",
+          "properties": {
+            "events": {"type": "array", "items": {"$ref": "#/$defs/event"}},
+            "initialState": {"type": "object"},
+            "query": {"type": "object"},
+            "authority": {"type": "object"},
+            "projectionRequest": {"type": "object"}
+          },
+          "anyOf": [{"required": ["events"]}, {"required": ["initialState"]}],
+          "additionalProperties": false
+        },
+        "expected": {"$ref": "#/$defs/expected"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

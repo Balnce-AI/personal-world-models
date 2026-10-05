@@ -42,7 +42,7 @@
       "type": "object"
     },
     "privacyClass": {
-      "type": "string"
+      "enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]
     },
     "provenance": {
       "type": "array",

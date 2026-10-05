@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:accessibility:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "ACCESSIBILITY",
+  "recipient": "did:example:access-terminal-3",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "accessibility.interface.adapt",
+    "purposes": ["interface-access"],
+    "requiredFields": ["access.input_modality"],
+    "optionalFields": ["access.output_pacing"],
+    "deniedFields": ["health.diagnosis", "identity.legal_name"],
+    "consentRequired": false,
+    "representation": "DIRECT"
+  }],
+  "canonicalV2Effect": "NONE"
+}

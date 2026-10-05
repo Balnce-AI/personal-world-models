@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "specificationVersion": "0.1.0",
+  "suites": [
+    {
+      "id": "PWM-PROVENANCE-WAVE01",
+      "version": "1.0.0",
+      "profile": "pwm-public-provenance-v1",
+      "format": "wave01-profile-v1",
+      "status": "STABLE",
+      "features": ["pwm.provenance.canonical-cbor", "pwm.provenance.cid", "pwm.provenance.key-state", "pwm.provenance.receipt", "pwm.provenance.signature"],
+      "fixtures": ["conformance/vectors/wave01-valid.json", "conformance/vectors/wave01-invalid.json", "conformance/expectations/wave01-valid.json"]
+    },
+    {
+      "id": "PWM-MODEL-ECOLOGY-V1",
+      "version": "1.0.0",
+      "profile": "pwm-json-semantics-v1",
+      "format": "semantic-vector-v1",
+      "status": "PROVISIONAL",
+      "features": ["pwm.events.replay", "pwm.models.contradiction", "pwm.models.family-kind", "pwm.models.lifecycle", "pwm.models.possible-world-isolation", "pwm.models.temporal-validity", "pwm.query.filtering", "pwm.research.calibration-scope", "pwm.research.family-registry", "pwm.research.lineage", "pwm.research.stability-labels", "pwm.topology.acyclic-dependency"],
+      "fixtures": ["conformance/vectors/model-ecology-valid.json", "conformance/vectors/model-ecology-invalid.json"]
+    },
+    {
+      "id": "HPL-PROJECTION-V1",
+      "version": "1.0.0",
+      "profile": "pwm-json-semantics-v1",
+      "format": "semantic-vector-v1",
+      "status": "PROVISIONAL",
+      "features": ["hpl.authorization.binding", "hpl.privacy.propagation", "hpl.projection.least-disclosure", "hpl.query.authorization-filtering"],
+      "fixtures": ["conformance/vectors/hpl-valid.json", "conformance/vectors/hpl-invalid.json"]
+    }
+  ],
+  "levels": [
+    {"id": "PWM-CORE-1", "ordinal": 1, "features": ["pwm.provenance.canonical-cbor", "pwm.provenance.cid", "pwm.provenance.key-state", "pwm.provenance.receipt", "pwm.provenance.signature"], "requiredSuites": ["PWM-PROVENANCE-WAVE01"]},
+    {"id": "PWM-MODEL-ECOLOGY-1", "ordinal": 2, "features": ["pwm.models.contradiction", "pwm.models.family-kind", "pwm.models.lifecycle", "pwm.models.possible-world-isolation", "pwm.query.filtering", "pwm.topology.acyclic-dependency"], "requiredSuites": ["PWM-PROVENANCE-WAVE01", "PWM-MODEL-ECOLOGY-V1"]},
+    {"id": "PWM-SOVEREIGNTY-1", "ordinal": 3, "features": ["hpl.privacy.propagation", "hpl.query.authorization-filtering"], "requiredSuites": ["PWM-PROVENANCE-WAVE01", "PWM-MODEL-ECOLOGY-V1", "HPL-PROJECTION-V1"]},
+    {"id": "HPL-BOUNDARY-1", "ordinal": 4, "features": ["hpl.authorization.binding", "hpl.projection.least-disclosure"], "requiredSuites": ["PWM-PROVENANCE-WAVE01", "PWM-MODEL-ECOLOGY-V1", "HPL-PROJECTION-V1"]},
+    {"id": "PWM-RESEARCH-1", "ordinal": 5, "features": ["pwm.research.calibration-scope", "pwm.research.family-registry", "pwm.research.lineage", "pwm.research.stability-labels"], "requiredSuites": ["PWM-PROVENANCE-WAVE01", "PWM-MODEL-ECOLOGY-V1", "HPL-PROJECTION-V1"]}
+  ],
+  "claims": []
+}

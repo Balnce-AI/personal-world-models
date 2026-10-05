@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:vehicle:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "VEHICLE",
+  "recipient": "did:example:vehicle-17",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "vehicle.route.assist",
+    "purposes": ["accessible-trip"],
+    "requiredFields": ["mobility.route_constraints"],
+    "optionalFields": ["preference.cabin_temperature_band"],
+    "deniedFields": ["identity.medical_record", "home.private_zone"],
+    "consentRequired": false,
+    "representation": "DERIVED"
+  }],
+  "canonicalV2Effect": "NONE"
+}

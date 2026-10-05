@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/lifecycle-event/0-1-0",
+  "title": "Experimental HPL Lifecycle Event",
+  "type": "object",
+  "required": ["eventId", "negotiationId", "eventType", "fromState", "toState", "at", "evidence", "canonicalV2Effect"],
+  "properties": {
+    "eventId": {"type": "string", "pattern": "^urn:hpl:lifecycle-event:sha256:[0-9a-f]{64}$"}, "negotiationId": {"type": "string"},
+    "eventType": {"enum": ["NEGOTIATED", "ISSUED", "ACTIVE", "EXECUTED", "REFUSED", "REVOKED", "EXPIRED", "DEPARTED"]},
+    "fromState": {"enum": ["REQUESTED", "NEGOTIATED", "ISSUED", "ACTIVE", "EXECUTED"]},
+    "toState": {"enum": ["NEGOTIATED", "ISSUED", "ACTIVE", "EXECUTED", "REFUSED", "REVOKED", "EXPIRED", "DEPARTED"]},
+    "at": {"type": "string", "format": "date-time"}, "evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

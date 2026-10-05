@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "suiteId": "PWM-MODEL-ECOLOGY-V1",
+  "suiteVersion": "1.0.0",
+  "profile": "pwm-json-semantics-v1",
+  "polarity": "valid",
+  "cases": [
+    {
+      "id": "model.replay-lifecycle-temporal",
+      "description": "Proposal and review precede acceptance; update preserves historical lineage.",
+      "input": {"events": [
+        {"eventId":"evt-1p","eventType":"pwm.model.proposed","recordedAt":"2026-01-01T00:00:00Z","payload":{"modelId":"model-a-v1","familyId":"pwm.preference","kind":"SELF","subjectIds":["person:a"],"perspective":"person:a","value":"tea","evidenceRefs":["evidence-1"],"privacyClass":"PERSONAL"}},
+        {"eventId":"evt-1r","eventType":"pwm.model.reviewed","recordedAt":"2026-01-01T00:00:01Z","payload":{"modelId":"model-a-v1","proposalEventId":"evt-1p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"evt-1a","eventType":"pwm.model.accepted","recordedAt":"2026-01-01T00:00:02Z","validFrom":"2025-01-01T00:00:00Z","validTo":null,"payload":{"modelId":"model-a-v1","proposalEventId":"evt-1p","reviewEventId":"evt-1r"}},
+        {"eventId":"evt-2p","eventType":"pwm.model.proposed","recordedAt":"2026-02-01T00:00:00Z","payload":{"modelId":"model-a-v2","familyId":"pwm.preference","kind":"SELF","subjectIds":["person:a"],"perspective":"person:a","value":"coffee","evidenceRefs":["evidence-2"],"previousModelId":"model-a-v1","privacyClass":"PERSONAL"}},
+        {"eventId":"evt-2r","eventType":"pwm.model.reviewed","recordedAt":"2026-02-01T00:00:01Z","payload":{"modelId":"model-a-v2","proposalEventId":"evt-2p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"evt-2a","eventType":"pwm.model.updated","recordedAt":"2026-02-01T00:00:02Z","validFrom":"2026-02-01T00:00:00Z","validTo":null,"payload":{"modelId":"model-a-v2","proposalEventId":"evt-2p","reviewEventId":"evt-2r","previousModelId":"model-a-v1"}}
+      ],"query":{"asOfValidTime":"2026-02-02T00:00:00Z","includeStatuses":["ACCEPTED"]}},
+      "expected":{"decision":"ACCEPT","materialized":{"currentModelIds":["model-a-v2"],"historicalModelIds":["model-a-v1"]},"query":{"modelIds":["model-a-v2"]},"invariants":["Proposal and review precede each accepted version.","The predecessor remains historical.","Only records valid at query time are current."]}
+    },
+    {
+      "id":"model.contradiction-and-filtering",
+      "description":"Conflicting reviewed models and an accepted contradiction remain explicit.",
+      "input":{"events":[
+        {"eventId":"diet-1p","eventType":"pwm.model.proposed","recordedAt":"2026-03-01T00:00:00Z","payload":{"modelId":"diet-1","familyId":"pwm.preference","kind":"SELF","subjectIds":["person:a"],"perspective":"person:a","value":"vegetarian","evidenceRefs":["e1"],"privacyClass":"PERSONAL"}},
+        {"eventId":"diet-1r","eventType":"pwm.model.reviewed","recordedAt":"2026-03-01T00:00:01Z","payload":{"modelId":"diet-1","proposalEventId":"diet-1p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"diet-1a","eventType":"pwm.model.accepted","recordedAt":"2026-03-01T00:00:02Z","payload":{"modelId":"diet-1","proposalEventId":"diet-1p","reviewEventId":"diet-1r"}},
+        {"eventId":"diet-2p","eventType":"pwm.model.proposed","recordedAt":"2026-03-01T00:00:03Z","payload":{"modelId":"diet-2","familyId":"pwm.preference","kind":"SELF","subjectIds":["person:a"],"perspective":"person:a","value":"omnivore","evidenceRefs":["e2"],"privacyClass":"PERSONAL"}},
+        {"eventId":"diet-2r","eventType":"pwm.model.reviewed","recordedAt":"2026-03-01T00:00:04Z","payload":{"modelId":"diet-2","proposalEventId":"diet-2p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"diet-2a","eventType":"pwm.model.accepted","recordedAt":"2026-03-01T00:00:05Z","payload":{"modelId":"diet-2","proposalEventId":"diet-2p","reviewEventId":"diet-2r"}},
+        {"eventId":"evt-cd","eventType":"pwm.model.disputed","recordedAt":"2026-03-01T00:00:06Z","payload":{"modelId":"diet-2","reason":"conflicting evidence"}},
+        {"eventId":"contra-p","eventType":"pwm.contradiction.proposed","recordedAt":"2026-03-01T00:00:07Z","payload":{"contradictionId":"contra-1","modelIds":["diet-1","diet-2"],"status":"OPEN"}},
+        {"eventId":"contra-r","eventType":"pwm.contradiction.reviewed","recordedAt":"2026-03-01T00:00:08Z","payload":{"contradictionId":"contra-1","proposalEventId":"contra-p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"contra-a","eventType":"pwm.contradiction.accepted","recordedAt":"2026-03-01T00:00:09Z","payload":{"contradictionId":"contra-1","proposalEventId":"contra-p","reviewEventId":"contra-r"}}
+      ],"query":{"includeStatuses":["ACCEPTED"],"includeDisputed":false}},
+      "expected":{"decision":"ACCEPT","query":{"modelIds":["diet-1"]},"contradictions":{"active":[{"contradictionId":"contra-1","modelIds":["diet-1","diet-2"]}]},"invariants":["Contradiction is retained rather than resolved by last-write-wins.","Disputed models require explicit query inclusion."]}
+    },
+    {
+      "id":"model.possible-world-isolation",
+      "description":"A reviewed possible-world model remains outside actual-world state.",
+      "input":{"events":[
+        {"eventId":"evt-p1","eventType":"pwm.possible-world.created","recordedAt":"2026-04-01T00:00:00Z","payload":{"worldId":"world-move","parentWorldId":"world:actual","baseStateId":"base-1","baseTime":"2026-04-01T00:00:00Z"}},
+        {"eventId":"evt-p2","eventType":"pwm.model.proposed","recordedAt":"2026-04-01T00:00:01Z","payload":{"modelId":"future-home","familyId":"pwm.imagination-possible-worlds","kind":"POSSIBLE_WORLD","subjectIds":["person:a"],"perspective":"person:a","worldId":"world-move","parentWorldId":"world:actual","privacyClass":"PERSONAL"}},
+        {"eventId":"evt-p3","eventType":"pwm.model.reviewed","recordedAt":"2026-04-01T00:00:02Z","payload":{"modelId":"future-home","proposalEventId":"evt-p2","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"evt-p4","eventType":"pwm.model.accepted","recordedAt":"2026-04-01T00:00:03Z","payload":{"modelId":"future-home","proposalEventId":"evt-p2","reviewEventId":"evt-p3","worldId":"world-move"}}
+      ],"query":{"worldId":"world-move"}},
+      "expected":{"decision":"ACCEPT","materialized":{"actualWorldModelIds":[]},"possibleWorlds":{"world-move":["future-home"]},"invariants":["Possible-world acceptance does not mutate actual-world state.","World identity is part of query scope."]}
+    },
+    {
+      "id":"topology.acyclic-dependency",
+      "description":"A dependency edge is committed only after both reviewed models exist.",
+      "input":{"events":[
+        {"eventId":"m2p","eventType":"pwm.model.proposed","recordedAt":"2026-05-01T00:00:00Z","payload":{"modelId":"m-target","familyId":"pwm.preference","kind":"SELF","subjectIds":["person:a"],"perspective":"person:a","privacyClass":"PERSONAL"}},
+        {"eventId":"m2r","eventType":"pwm.model.reviewed","recordedAt":"2026-05-01T00:00:01Z","payload":{"modelId":"m-target","proposalEventId":"m2p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"m2a","eventType":"pwm.model.accepted","recordedAt":"2026-05-01T00:00:02Z","payload":{"modelId":"m-target","proposalEventId":"m2p","reviewEventId":"m2r"}},
+        {"eventId":"m1p","eventType":"pwm.model.proposed","recordedAt":"2026-05-01T00:00:03Z","payload":{"modelId":"m-source","familyId":"fc.meta","kind":"META","subjectIds":["person:a"],"perspective":"person:a","targetModelId":"m-target","privacyClass":"PERSONAL"}},
+        {"eventId":"m1r","eventType":"pwm.model.reviewed","recordedAt":"2026-05-01T00:00:04Z","payload":{"modelId":"m-source","proposalEventId":"m1p","decision":"ACCEPT","reviewer":"person:a"}},
+        {"eventId":"m1a","eventType":"pwm.model.accepted","recordedAt":"2026-05-01T00:00:05Z","payload":{"modelId":"m-source","proposalEventId":"m1p","reviewEventId":"m1r"}},
+        {"eventId":"edge","eventType":"pwm.topology.edge-added","recordedAt":"2026-05-01T00:00:06Z","payload":{"edgeId":"edge-1","sourceModelId":"m-source","edgeType":"DEPENDS_ON","targetModelId":"m-target","privacyClass":"PERSONAL"}}
+      ]},
+      "expected":{"decision":"ACCEPT","topology":{"edgeIds":["edge-1"],"dependsOnAcyclic":true},"invariants":["Both edge endpoints exist.","DEPENDS_ON remains acyclic."]}
+    },
+    {
+      "id":"model.research-lineage-calibration",
+      "description":"Research records retain extension stability, lineage, and evaluator-scoped calibration.",
+      "input":{"events":[
+        {"eventId":"evt-q1","eventType":"pwm.family.registered","recordedAt":"2026-05-02T00:00:00Z","payload":{"familyId":"org.example.behavior-forecast","allowedKinds":["SELF"],"stability":"EXPERIMENTAL"}},
+        {"eventId":"evt-q2","eventType":"pwm.model.derived","recordedAt":"2026-05-02T00:01:00Z","payload":{"modelId":"forecast-model","familyId":"org.example.behavior-forecast","kind":"SELF","sourceModelIds":["observations-1"],"privacyClass":"PERSONAL"}},
+        {"eventId":"evt-q3","eventType":"pwm.prediction.recorded","recordedAt":"2026-05-02T00:02:00Z","payload":{"predictionId":"prediction-1","modelId":"forecast-model","evaluatorId":"evaluation-local"}},
+        {"eventId":"evt-q4","eventType":"pwm.calibration.recorded","recordedAt":"2026-05-03T00:00:00Z","payload":{"predictionId":"prediction-1","evaluatorId":"evaluation-local","scorePpm":750000}}
+      ]},
+      "expected":{"decision":"ACCEPT","materialized":{"familyStability":"EXPERIMENTAL","lineage":{"forecast-model":["observations-1"]},"calibrationEvaluator":"evaluation-local"},"invariants":["Research stability is explicit.","Derived-model lineage is retained.","Calibration does not rewrite its prediction."]}
+    }
+  ]
+}

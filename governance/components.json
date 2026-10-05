@@ -187,7 +187,7 @@
       "truth_plane": "IMPLEMENTED",
       "evidence_status": "EXPERIMENTAL_REAL",
       "publication_class": "PUBLIC_FULL",
-      "assurance_level": "REPRODUCED",
+      "assurance_level": "UNIT_PASS",
       "release_disposition": "RELEASABLE",
       "included_in_release": true,
       "last_verified": "2026-08-29",
@@ -216,6 +216,97 @@
       "limitations": [
         "The report covers only the Wave 01 public provenance profile and does not imply later-wave completion."
       ]
+    },
+    {
+      "id": "functional-self-model-research-layer",
+      "path": "src/pwm_hpl_ref/self_models.py",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "UNIT_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-04",
+      "source_refs": [
+        "PWM Functional Self-Model Research Expansion v0.2",
+        "governance/FSM_RESEARCH_AUTHORITY_RECORD.md",
+        "spec/self-models.md",
+        "tests/test_self_models.py"
+      ],
+      "limitations": [
+        "Experimental Python semantic layer over the V1 reference log; it does not claim canonical V2 materialization or production PLOG integration."
+      ]
+    },
+    {
+      "id": "pwm-intelligence-fixture-control",
+      "path": "experiments/results/fixture-control.json",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "REPRODUCED",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-04",
+      "source_refs": [
+        "governance/FSM_RESEARCH_AUTHORITY_RECORD.md",
+        "benchmarks/pwm-intelligence/run.py",
+        "tests/test_research.py"
+      ],
+      "limitations": [
+        "Deterministic plumbing control only; it does not establish a cognitive benefit for any foundation model."
+      ]
+    },
+    {
+      "id": "pwm-semantic-stabilization",
+      "path": "spec/privacy-propagation.md",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "UNIT_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["spec/self-models.md", "spec/contradictions.md", "tests/test_semantic_stabilization.py"],
+      "limitations": ["Reference semantics only; actor identity and semantic-event transport are not yet integrated with the signed V2 provenance profile."]
+    },
+    {
+      "id": "provisional-platform-conformance",
+      "path": "conformance/manifest.json",
+      "truth_plane": "OPERATIONALIZING",
+      "evidence_status": "SPECIFIED",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "UNIT_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["spec/conformance-levels.md", "tests/test_platform_conformance.py"],
+      "limitations": ["Model-ecology and HPL vectors are provisional contracts; the manifest intentionally contains no implementation conformance claims."]
+    },
+    {
+      "id": "experimental-python-sdk",
+      "path": "src/pwm",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "UNIT_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["docs/SDK.md", "tests/test_sdk_platform.py"],
+      "limitations": ["Convenience facade over the Python reference; normative compatibility remains defined by specifications and conformance suites."]
+    },
+    {
+      "id": "experimental-hpl-platform",
+      "path": "src/pwm_hpl_ref/hpl_contracts.py",
+      "truth_plane": "IMPLEMENTED",
+      "evidence_status": "EXPERIMENTAL_REAL",
+      "publication_class": "PUBLIC_FULL",
+      "assurance_level": "UNIT_PASS",
+      "release_disposition": "RELEASABLE",
+      "included_in_release": true,
+      "last_verified": "2026-10-05",
+      "source_refs": ["spec/hpl-negotiation.md", "profiles/hpl-targets", "tests/test_hpl_platform.py"],
+      "limitations": ["Non-actuating simulator and unsigned bounded artifacts; no production authority, device trust, deletion proof, or safety certification claim."]
     }
   ]
 }

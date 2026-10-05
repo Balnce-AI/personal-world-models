@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "extensionId": "org.example.my-extension",
+  "version": "0.1.0",
+  "stability": "EXPERIMENTAL",
+  "description": "Replace with a bounded extension contract and its semantic effect.",
+  "required": false,
+  "contractUri": "https://example.org/pwm/extensions/my-extension/0.1.0",
+  "contractDigest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "entryPoint": "org.example.my_extension:Extension",
+  "protocolRoles": ["EVIDENCE"],
+  "features": ["org.example.my-extension.example-feature"],
+  "eventTypes": ["org.example.my-extension.example-event"],
+  "dependencies": []
+}

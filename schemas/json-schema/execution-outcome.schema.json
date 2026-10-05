@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/execution-outcome/0-1-0",
+  "title": "Experimental Non-Actuating HPL Execution Outcome",
+  "type": "object",
+  "required": ["outcomeId", "negotiationId", "requestId", "recipient", "capability", "disposition", "reasonCodes", "observedAt", "localSafetyDecisionId", "provenanceRefs", "actuationPerformed", "gracefulDegradation", "canonicalV2Effect"],
+  "properties": {
+    "outcomeId": {"type": "string", "pattern": "^urn:hpl:execution-outcome:sha256:[0-9a-f]{64}$"}, "negotiationId": {"type": "string"}, "requestId": {"type": "string"},
+    "recipient": {"type": "string"}, "capability": {"type": "string"}, "disposition": {"enum": ["WOULD_DISPATCH", "REFUSED"]},
+    "reasonCodes": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "observedAt": {"type": "string", "format": "date-time"},
+    "localSafetyDecisionId": {"type": "string"}, "provenanceRefs": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string"}},
+    "actuationPerformed": {"const": false},
+    "gracefulDegradation": {"enum": ["NOT_REQUIRED", "NO_ACTUATION_RETAIN_CONTROL"]},
+    "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

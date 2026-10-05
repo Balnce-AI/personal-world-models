@@ -4,19 +4,32 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pwm-hpl-ref"
-version = "0.1.0"
+version = "0.2.0"
 description = "Executable reference implementation of Personal World Model and Human Projection Layer profiles"
+readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.11"
 dependencies = ["cryptography>=45", "jsonschema>=4.20"]
 
+[project.urls]
+Homepage = "https://github.com/Balnce-AI/personal-world-models"
+Documentation = "https://github.com/Balnce-AI/personal-world-models/tree/main/docs"
+Repository = "https://github.com/Balnce-AI/personal-world-models"
+Issues = "https://github.com/Balnce-AI/personal-world-models/issues"
+
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+research = []
 
 [project.scripts]
 pwm-hpl-demo = "pwm_hpl_ref.demo:main"
+pwm-research = "pwm_hpl_ref.research_cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+
+[tool.setuptools.data-files]
+"share/pwm-hpl-ref/schemas" = ["schemas/json-schema/*.json"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

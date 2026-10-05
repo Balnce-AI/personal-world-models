@@ -1,0 +1,9 @@
+{
+  "scenarioId": "minimum-disclosure",
+  "targetProfile": "robot",
+  "requestedFields": ["delivery.allowed_surface", "home.private_zone"],
+  "expectedNegotiationStatus": "REDACTED",
+  "expectedGrantedFields": ["delivery.allowed_surface"],
+  "expectedDisposition": "WOULD_DISPATCH",
+  "claim": "A useful dispatch can omit a denied private-zone field."
+}

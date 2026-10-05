@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "suiteId": "HPL-PROJECTION-V1",
+  "suiteVersion": "1.0.0",
+  "profile": "pwm-json-semantics-v1",
+  "polarity": "valid",
+  "cases": [
+    {
+      "id": "hpl.privacy-query-filtering",
+      "description": "Projection filtering removes unauthorized fields and raises derived privacy to the most restrictive input.",
+      "input": {
+        "initialState": {"models": [
+          {"modelId": "delivery-surface", "field": "delivery.preferredSurface", "value": "entry-table", "privacyClass": "PERSONAL"},
+          {"modelId": "medication", "field": "health.medication", "value": "withheld", "privacyClass": "HIGHLY_SENSITIVE"},
+          {"modelId": "delivery-note", "inputModelIds": ["delivery-surface", "medication"], "privacyClass": "HIGHLY_SENSITIVE"}
+        ]},
+        "query": {"fields": ["delivery.preferredSurface", "health.medication"], "maximumPrivacyClass": "PERSONAL"},
+        "authority": {"principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "allowedFields": ["delivery.preferredSurface"], "expiresAt": "2026-07-01T01:00:00Z"},
+        "projectionRequest": {"principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "requestedFields": ["delivery.preferredSurface", "health.medication"], "at": "2026-07-01T00:30:00Z"}
+      },
+      "expected": {
+        "decision": "ACCEPT",
+        "query": {"returnedModelIds": ["delivery-surface"], "withheldModelIds": ["medication", "delivery-note"]},
+        "privacy": {"delivery-note": "HIGHLY_SENSITIVE"},
+        "projection": {"principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "fields": ["delivery.preferredSurface"]},
+        "invariants": ["Derived privacy is at least as restrictive as every input.", "Unauthorized and over-classified fields are withheld.", "Projection contains only fields needed and authorized for the request."]
+      }
+    },
+    {
+      "id": "hpl.authorization-binding",
+      "description": "A projection is bound to the authority principal, recipient, purpose, and expiry.",
+      "input": {
+        "initialState": {"models": [{"modelId": "zone", "field": "navigation.allowedZone", "value": "entry", "privacyClass": "LOW"}]},
+        "authority": {"authorityId": "auth-1", "principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "allowedFields": ["navigation.allowedZone"], "expiresAt": "2026-07-02T01:00:00Z"},
+        "projectionRequest": {"principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "requestedFields": ["navigation.allowedZone"], "at": "2026-07-02T00:30:00Z"}
+      },
+      "expected": {
+        "decision": "ACCEPT",
+        "projection": {"authorityId": "auth-1", "principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "expiresAt": "2026-07-02T01:00:00Z", "fields": ["navigation.allowedZone"]},
+        "invariants": ["Capability description is not used as authorization.", "Projection binding exactly matches the resolved authority."]
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "profileVersion": "0.1.0",
+  "status": "RESEARCH",
+  "source": "Bergmann, Functional Consciousness: A Proxy Metric Using Self-Models",
+  "sourceDoi": "10.20944/preprints202604.1390.v1",
+  "domains": [
+    {"sourceDomain":"Body","pwmFamilyId":"fc.embodied"},
+    {"sourceDomain":"Spatial","pwmFamilyId":"fc.spatial"},
+    {"sourceDomain":"Action","pwmFamilyId":"fc.action-capability"},
+    {"sourceDomain":"Goal","pwmFamilyId":"fc.goals"},
+    {"sourceDomain":"Cognitive","pwmFamilyId":"fc.cognitive"},
+    {"sourceDomain":"Information","pwmFamilyId":"fc.informational-epistemic"},
+    {"sourceDomain":"Emotional","pwmFamilyId":"fc.affective"},
+    {"sourceDomain":"Social","pwmFamilyId":"fc.social"},
+    {"sourceDomain":"Meta","pwmFamilyId":"fc.meta"},
+    {"sourceDomain":"Ethics","pwmFamilyId":"fc.ethical"}
+  ]
+}

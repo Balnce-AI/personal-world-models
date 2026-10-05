@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-prediction/1-0-0",
+  "title": "PWM Prediction",
+  "type": "object",
+  "required": ["predictionId", "subjectId", "predicate", "predictedValue", "probabilityPpm", "targetTime", "recordTime", "modelRefs", "provenanceRefs", "privacyClass", "schemaVersion", "status"],
+  "properties": {
+    "predictionId": {"type": "string"},
+    "subjectId": {"type": "string"},
+    "predicate": {"type": "string"},
+    "predictedValue": {},
+    "probabilityPpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "targetTime": {"type": "string", "format": "date-time"},
+    "recordTime": {"type": "string", "format": "date-time"},
+    "modelRefs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "provenanceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "privacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "schemaVersion": {"const": "1.0.0"},
+    "status": {"enum": ["OPEN", "RESOLVED"]}
+  },
+  "additionalProperties": false
+}

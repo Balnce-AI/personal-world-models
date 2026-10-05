@@ -1,0 +1,10 @@
+{
+  "scenarioId": "compromised-device-graceful-degradation",
+  "targetProfile": "robot",
+  "compromisedDeviceAssumed": true,
+  "fallback": "NO_ACTUATION_RETAIN_CONTROL",
+  "expectedDisposition": "REFUSED",
+  "expectedReasonCode": "COMPROMISED_DEVICE_ASSUMPTION",
+  "actuationPerformed": false,
+  "claim": "Assumed compromise refuses dispatch and leaves a non-actuating fallback."
+}

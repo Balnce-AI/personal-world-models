@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-model-topography/1-0-0",
+  "title": "PWM Model Topography Vector",
+  "type": "object",
+  "required": ["domain", "modelCount", "coveragePpm", "meanConfidencePpm", "provenanceQualityPpm", "contradictionLoadPpm", "connectivityPpm", "metricStatus"],
+  "properties": {
+    "domain": {"type": "string"},
+    "modelCount": {"type": "integer", "minimum": 0},
+    "coveragePpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "meanConfidencePpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "provenanceQualityPpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "contradictionLoadPpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "connectivityPpm": {"type": "integer", "minimum": 0, "maximum": 1000000},
+    "metricStatus": {"const": "EXPERIMENTAL"}
+  },
+  "additionalProperties": false
+}

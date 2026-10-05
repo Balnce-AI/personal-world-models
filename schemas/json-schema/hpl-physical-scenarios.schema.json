@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl-physical-scenarios/1-0-0",
+  "title": "Experimental HPL Physical-AI Scenario Matrix",
+  "type": "object",
+  "required": ["schemaVersion", "status", "scenarios"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "status": {"const": "EXPERIMENTAL"},
+    "scenarios": {
+      "type": "array", "minItems": 8, "maxItems": 8,
+      "items": {
+        "type": "object", "required": ["scenarioId", "targetProfile", "requirements"],
+        "properties": {
+          "scenarioId": {"type": "string"},
+          "targetProfile": {"enum": ["vehicle", "home", "robot", "accessibility", "storefront", "industrial", "caregiver", "shared-environment"]},
+          "requirements": {
+            "type": "array", "uniqueItems": true,
+            "items": {"enum": ["minimum-disclosure", "authority", "conflicting-humans", "stale-state", "revocation", "safety", "offline", "provenance", "device-compromise", "graceful-degradation"]}
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

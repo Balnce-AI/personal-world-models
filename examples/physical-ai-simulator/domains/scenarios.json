@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "EXPERIMENTAL",
+  "scenarios": [
+    {"scenarioId":"vehicle-personalization","targetProfile":"vehicle","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"home-environment","targetProfile":"home","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"service-robot","targetProfile":"robot","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"accessibility-interaction","targetProfile":"accessibility","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"retail-storefront","targetProfile":"storefront","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"industrial-worker-authorization","targetProfile":"industrial","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"temporary-delegated-caregiver","targetProfile":"caregiver","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]},
+    {"scenarioId":"multi-user-shared-environment","targetProfile":"shared-environment","requirements":["minimum-disclosure","authority","conflicting-humans","stale-state","revocation","safety","offline","provenance","device-compromise","graceful-degradation"]}
+  ]
+}

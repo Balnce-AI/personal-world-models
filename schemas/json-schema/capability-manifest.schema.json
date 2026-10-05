@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/capability-manifest/0-1-0",
+  "title": "Experimental HPL Capability Discovery Manifest",
+  "type": "object",
+  "required": ["manifestId", "targetId", "recipient", "targetProfileId", "targetProfileDigest", "discoveredAt", "expiresAt", "capabilities", "canonicalV2Effect"],
+  "properties": {
+    "manifestId": {"type": "string", "pattern": "^urn:hpl:capability-manifest:sha256:[0-9a-f]{64}$"},
+    "targetId": {"type": "string", "minLength": 1},
+    "recipient": {"type": "string", "minLength": 1},
+    "targetProfileId": {"type": "string", "minLength": 1},
+    "targetProfileDigest": {"type": "string", "minLength": 1},
+    "discoveredAt": {"type": "string", "format": "date-time"},
+    "expiresAt": {"type": "string", "format": "date-time"},
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["capabilityId", "available", "inputFields", "localSafetyControls"],
+        "properties": {
+          "capabilityId": {"type": "string", "minLength": 1},
+          "available": {"type": "boolean"},
+          "inputFields": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "localSafetyControls": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

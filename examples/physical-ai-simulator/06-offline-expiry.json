@@ -1,0 +1,9 @@
+{
+  "scenarioId": "offline-expiry",
+  "targetProfile": "robot",
+  "runtimeOnline": false,
+  "executeAfterExpiry": true,
+  "expectedDisposition": "REFUSED",
+  "expectedReasonCodes": ["EXPIRED", "OFFLINE_EXPIRY_FAIL_CLOSED"],
+  "claim": "A disconnected runtime fails closed at locally checkable expiry."
+}

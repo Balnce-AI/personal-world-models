@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:shared-environment:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "SHARED_ENVIRONMENT",
+  "recipient": "did:example:meeting-room-8",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "shared.environment.configure",
+    "purposes": ["meeting-access"],
+    "requiredFields": ["access.room_configuration"],
+    "optionalFields": ["preference.light_band"],
+    "deniedFields": ["identity.attendee_list", "health.diagnosis"],
+    "consentRequired": false,
+    "representation": "DERIVED"
+  }],
+  "canonicalV2Effect": "NONE"
+}

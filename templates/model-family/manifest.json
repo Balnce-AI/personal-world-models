@@ -1,0 +1,16 @@
+{
+  "familyId": "org.example.model-family",
+  "label": "Example model family",
+  "scope": "Replace with the bounded subject represented by this family.",
+  "status": "EXPERIMENTAL",
+  "description": "Replace with model semantics, evidence requirements, and known limits.",
+  "sourceRefs": ["https://example.org/model-family-definition"],
+  "constraints": {
+    "allowedModelKinds": ["SELF"],
+    "subjectCardinality": {"min": 1, "max": 1},
+    "perspectiveRule": "SUBJECT",
+    "requiresMetaTarget": false,
+    "requiresParentWorld": false,
+    "requiredStateFields": []
+  }
+}

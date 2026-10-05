@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "extensionId": "org.example.acme.weather",
+  "version": "0.1.0",
+  "stability": "EXPERIMENTAL",
+  "description": "Reference third-party weather evidence adapter using only public PWM protocols.",
+  "required": false,
+  "contractUri": "https://example.org/pwm/extensions/acme-weather/0.1.0",
+  "contractDigest": "sha256:97ca7b0b56fd0bcac6edc24025b60e786bc750f5d576793335f822929f62c830",
+  "entryPoint": "acme_weather.adapter:AcmeWeatherAdapter",
+  "protocolRoles": ["EVIDENCE"],
+  "features": [
+    "org.example.acme.weather.observe-temperature",
+    "org.example.acme.weather.observe-humidity"
+  ],
+  "eventTypes": [],
+  "dependencies": []
+}

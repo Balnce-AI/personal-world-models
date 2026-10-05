@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/extension-manifest/1-0-0",
+  "title": "PWM/HPL Extension Manifest",
+  "type": "object",
+  "required": ["schemaVersion", "extensionId", "version", "stability", "description", "required", "contractUri", "contractDigest", "entryPoint", "protocolRoles", "features", "eventTypes", "dependencies"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "extensionId": {"type": "string", "pattern": "^(?:[a-z][a-z0-9-]*\\.)+[a-z][a-z0-9-]*$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "stability": {"enum": ["EXPERIMENTAL", "PROVISIONAL", "STABLE", "DEPRECATED"]},
+    "description": {"type": "string", "minLength": 1},
+    "required": {"type": "boolean"},
+    "contractUri": {"type": "string", "format": "uri"},
+    "contractDigest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "entryPoint": {"type": "string", "minLength": 1},
+    "protocolRoles": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["STORAGE", "EVIDENCE", "IDENTITY", "TRANSPORT", "TOOL_AGENT", "DEVICE", "PROJECTION", "MODEL", "SCHEMA", "BENCHMARK", "SIMULATOR"]}},
+    "features": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "eventTypes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["extensionId", "versionRange"],
+        "properties": {
+          "extensionId": {"type": "string", "pattern": "^(?:[a-z][a-z0-9-]*\\.)+[a-z][a-z0-9-]*$"},
+          "versionRange": {"type": "string", "pattern": "^(?:\\^|~|>=)?[0-9]+\\.[0-9]+\\.[0-9]+$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "replacement": {"type": "string", "pattern": "^(?:[a-z][a-z0-9-]*\\.)+[a-z][a-z0-9-]*$"},
+    "removalPolicy": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"stability": {"const": "DEPRECATED"}}},
+      "then": {"required": ["removalPolicy"]}
+    }
+  ],
+  "additionalProperties": false
+}

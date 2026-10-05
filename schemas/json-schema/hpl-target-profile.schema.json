@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/target-profile/0-1-0",
+  "title": "Experimental HPL Target Profile",
+  "type": "object",
+  "required": ["targetProfileId", "profileVersion", "targetClass", "recipient", "illustrative", "capabilities", "canonicalV2Effect"],
+  "$defs": {
+    "capability": {
+      "type": "object",
+      "required": ["capabilityId", "purposes", "requiredFields", "optionalFields", "deniedFields", "consentRequired", "representation"],
+      "properties": {
+        "capabilityId": {"type": "string", "minLength": 1},
+        "purposes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "requiredFields": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "optionalFields": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "deniedFields": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "consentRequired": {"type": "boolean"},
+        "representation": {"enum": ["DIRECT", "TRANSFORMED", "DERIVED"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "targetProfileId": {"type": "string", "minLength": 1},
+    "profileVersion": {"type": "string", "const": "0.1.0"},
+    "targetClass": {"enum": ["VEHICLE", "ROBOT", "HOME", "STOREFRONT", "INDUSTRIAL", "ACCESSIBILITY", "CAREGIVER", "SHARED_ENVIRONMENT"]},
+    "recipient": {"type": "string", "minLength": 1},
+    "illustrative": {"const": true},
+    "capabilities": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/capability"}},
+    "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

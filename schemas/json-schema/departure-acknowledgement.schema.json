@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/departure-acknowledgement/0-1-0",
+  "title": "Experimental HPL Departure Acknowledgement",
+  "type": "object",
+  "required": ["acknowledgementId", "negotiationId", "recipient", "acknowledgedAt", "assurance", "statement", "canonicalV2Effect"],
+  "properties": {
+    "acknowledgementId": {"type": "string", "pattern": "^urn:hpl:departure-ack:sha256:[0-9a-f]{64}$"}, "negotiationId": {"type": "string"}, "recipient": {"type": "string"},
+    "acknowledgedAt": {"type": "string", "format": "date-time"},
+    "assurance": {"enum": ["PROTOCOL_ACKNOWLEDGED", "KEY_INVALIDATED", "DEACTIVATED", "UNVERIFIED"]},
+    "statement": {"type": "string", "minLength": 1}, "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-possible-world/1-0-0",
+  "title": "PWM Possible World",
+  "type": "object",
+  "required": ["worldId", "label", "parentWorldId", "baseStateId", "baseTime", "assumptions", "provenanceRefs", "privacyClass", "effectivePrivacyClass", "schemaVersion"],
+  "properties": {
+    "worldId": {"type": "string", "minLength": 1},
+    "label": {"type": "string", "minLength": 1},
+    "parentWorldId": {"type": "string", "minLength": 1},
+    "baseStateId": {"type": "string", "minLength": 1},
+    "baseTime": {"type": "string", "format": "date-time"},
+    "assumptions": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "provenanceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "privacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "effectivePrivacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "schemaVersion": {"const": "1.0.0"}
+  },
+  "additionalProperties": false
+}

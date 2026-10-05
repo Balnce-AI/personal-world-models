@@ -1,0 +1,11 @@
+{
+  "profile": "pwm-public-provenance-v1",
+  "fixture": "conformance/vectors/wave01-valid.json",
+  "acceptedRecordCount": 4,
+  "expectedReplayOrder": [
+    "bafkreib2zixtsqpynivrekvjcft45xt4wxg63uikvpdd5yys2ag7hebffq",
+    "bafkreibb6763d5mekmc56gqce4duk6d3k4p6zj2njh5c4osoimjmlh6f6a",
+    "bafkreid54cvhwaae5zf5i7kydl2i7fpsaswdep5tmn2osqieu7r3vnqoxi",
+    "bafkreibvy6yos7jgaxa6dupskxwaa3ux7t72zk4v5bfthj7ikawkjmkxei"
+  ]
+}

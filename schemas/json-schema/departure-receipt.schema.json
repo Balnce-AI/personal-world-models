@@ -4,6 +4,7 @@
   "title": "Departure Receipt",
   "type": "object",
   "required": [
+    "receiptId",
     "sessionId",
     "artifactId",
     "level",
@@ -12,6 +13,9 @@
     "evidence"
   ],
   "properties": {
+    "receiptId": {
+      "type": "string"
+    },
     "sessionId": {
       "type": "string"
     },

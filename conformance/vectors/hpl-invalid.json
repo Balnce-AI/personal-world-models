@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "suiteId": "HPL-PROJECTION-V1",
+  "suiteVersion": "1.0.0",
+  "profile": "pwm-json-semantics-v1",
+  "polarity": "invalid",
+  "cases": [
+    {
+      "id": "hpl.recipient-binding-rejection",
+      "description": "Authority for one recipient cannot authorize a projection to another.",
+      "input": {
+        "initialState": {"models": [{"modelId": "zone", "field": "navigation.allowedZone", "privacyClass": "LOW"}]},
+        "authority": {"authorityId": "auth-r", "principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "allowedFields": ["navigation.allowedZone"], "expiresAt": "2026-08-01T01:00:00Z"},
+        "projectionRequest": {"principalId": "person:alice", "recipientId": "robot:8", "purpose": "delivery", "requestedFields": ["navigation.allowedZone"], "at": "2026-08-01T00:30:00Z"}
+      },
+      "expected": {"decision": "REJECT", "error": {"code": "AUTHORITY_BINDING_MISMATCH"}, "projection": {"issued": false}, "invariants": ["No projection is issued to an unbound recipient."]}
+    },
+    {
+      "id": "hpl.expired-authority-rejection",
+      "description": "An expired authority cannot produce a projection.",
+      "input": {
+        "initialState": {"models": [{"modelId": "preference", "field": "delivery.preferredSurface", "privacyClass": "PERSONAL"}]},
+        "authority": {"authorityId": "auth-expired", "principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "allowedFields": ["delivery.preferredSurface"], "expiresAt": "2026-08-02T00:10:00Z"},
+        "projectionRequest": {"principalId": "person:alice", "recipientId": "robot:7", "purpose": "delivery", "requestedFields": ["delivery.preferredSurface"], "at": "2026-08-02T00:30:00Z"}
+      },
+      "expected": {"decision": "REJECT", "error": {"code": "AUTHORITY_EXPIRED"}, "projection": {"issued": false}, "invariants": ["Expiration is evaluated before projection issuance."]}
+    },
+    {
+      "id": "hpl.privacy-downgrade-rejection",
+      "description": "A derivation cannot claim a lower effective class than its highly sensitive input without an authorized boundary.",
+      "input": {"initialState": {"models": [
+        {"modelId": "health-source", "privacyClass": "HIGHLY_SENSITIVE"},
+        {"modelId": "health-summary", "inputModelIds": ["health-source"], "privacyClass": "PERSONAL", "effectivePrivacyClass": "PERSONAL", "privacyBoundaries": []}
+      ]}},
+      "expected": {"decision": "REJECT", "error": {"code": "PRIVACY_EFFECTIVE_CLASS_MISMATCH"}, "privacy": {"computedEffective": "HIGHLY_SENSITIVE", "claimedEffective": "PERSONAL"}, "invariants": ["Effective privacy cannot be less restrictive than its most restrictive input without an accepted boundary."]}
+    }
+  ]
+}

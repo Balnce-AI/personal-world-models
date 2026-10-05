@@ -100,6 +100,12 @@ actuation
 - An atomic SQLite reference store that re-verifies present records during recovery and fails closed on record mutation or edge inconsistency. Valid-suffix deletion and whole-database rollback require an externally protected expected head and are outside this reference profile.
 - A Rust CLI for vector generation, event verification, and replay.
 - A synthetic 1K/10K/100K DAG validation and replay benchmark with environment metadata and bounded claims.
+- An experimental functional model ecology with constrained self/other/relationship/world/meta/possible-world records, proposal/review/acceptance lifecycle, privacy-taint propagation, explicit contradictions, topology, deterministic queries, prediction resolution, and calibration.
+- A provider-neutral foundation-model protocol with local callable, OpenAI-compatible HTTP, and Ollama adapters; model outputs remain unaccepted candidates.
+- A normalized 25-scenario PMRA corpus, information ledgers, exact rendered-budget matching under declared tokenizer adapters, sixteen canonical research conditions/controls, and generated experiment and coverage manifests.
+- Provisional language-independent conformance levels and semantic vectors for model ecology and HPL behavior; no current implementation claims those provisional levels yet.
+- An experimental `pwm` Python SDK facade, role-specific adapter protocols, a namespaced third-party extension example, and deterministic simulation source.
+- Experimental HPL capability negotiation, eight illustrative target profiles, bounded projection artifacts, lifecycle/revocation records, and non-actuating physical-AI simulations.
 - The archived V1 Python reference capabilities listed below while their V2 successors are reconstructed wave by wave.
 - A deterministic, event-backed reference PWM materializer.
 - Typed entities, relations, assertions, temporal validity, epistemic status, and provenance references.
@@ -123,6 +129,9 @@ actuation
 - Long-horizon PWM ontology evolution.
 - OEM adoption of open HPL-style projection interfaces.
 - Higher-dimensional UOR/Clifford/sheaf extensions beyond the established UOR base substrate.
+- Whether structured PWM context improves real foundation-model cognition; the checked-in deterministic run validates the harness only.
+- The complete Bergmann 46-model mapping pending verification against the versioned primary catalog.
+- Production-grade signed semantic-event integration, multi-device reconciliation, remote declassification proofs, and safety-certified physical actuation.
 
 ## Standards are boundary tools, not replacements
 
@@ -147,6 +156,7 @@ The repository does **not** claim to replace them.
 - [`math/`](math/) — formal models, projection objective, authority algebra, temporal confidence, UOR proof-status notes.
 - [`schemas/`](schemas/) — machine-readable public profiles.
 - [`src/pwm_hpl_ref/`](src/pwm_hpl_ref/) — executable Python reference implementation.
+- [`src/pwm/`](src/pwm/) — experimental developer-facing Python facade over explicit reference boundaries.
 - [`examples/`](examples/) — bounded demonstrations.
 - [`benchmarks/`](benchmarks/) — falsifiable evaluation harnesses.
 - [`standards/`](standards/) — mapping profiles and integration discipline.
@@ -154,6 +164,14 @@ The repository does **not** claim to replace them.
 - [`crates/`](crates/) — V2 Rust public-profile implementations.
 - [`conformance/`](conformance/) — valid/invalid vectors and the independent Python oracle.
 - [`governance/`](governance/) — status metadata, authority records, and wave evidence.
+- [`experiments/`](experiments/) — synthetic personas, scenario requirements, generated research artifacts, and limitations.
+- [`profiles/functional-consciousness/`](profiles/functional-consciousness/) — attributed FC/FSMA compatibility profile and source-review boundary.
+- [`profiles/hpl-targets/`](profiles/hpl-targets/) — illustrative capability-first recipient profiles.
+- [`extensions/`](extensions/) — static namespaced extension catalog; no dynamic plugin execution.
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — normative, reference, ecosystem, and research boundaries.
+- [`docs/SDK.md`](docs/SDK.md) — layered embedding API and authority-visible developer path.
+- [`VERSIONING.md`](VERSIONING.md) — independent protocol, schema, ontology, suite, SDK, and extension version axes.
+- [`PLATFORM_STABILIZATION_STATUS.md`](PLATFORM_STABILIZATION_STATUS.md) — implemented, design-only, research-only, and excluded platform surfaces.
 
 ## Quick start
 
@@ -171,12 +189,37 @@ V1 Python reference:
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e '.[dev]'
+pip install -e '.[dev,research]'
 pytest
 pwm-hpl-demo
+pwm-research run --persona experiments/data/personas/longitudinal-persona.json --output experiments/results/fixture-control.json
+python examples/quickstart/a_create.py
 ```
 
 The demo constructs a bounded PWM fixture, evaluates authority, compiles a minimum projection for a kitchen-delivery robot, signs an Arranger, records a learning candidate, and issues a departure receipt.
+
+The research command runs the deterministic fixture control across baseline, structured-model, and negative-control conditions. Its generated result demonstrates end-to-end machinery, not foundation-model improvement. Researchers can implement the same `ReasoningModel` protocol with local or hosted models while keeping credentials external.
+
+Application developers can start with `from pwm import PersonalWorldModel`. The facade keeps event writes, model review, query authorization, HPL projection, possible worlds, adapters, and research hooks explicit rather than hiding sovereignty boundaries behind one opaque API. See `examples/quickstart/` for the complete A-G path.
+
+Minimal embedded reference:
+
+```python
+from pwm import EventDraft, InMemoryStorageAdapter, PersonalWorldModel
+
+pwm = PersonalWorldModel.open(
+    storage=InMemoryStorageAdapter(),
+    authorize=lambda operation, request: (
+        {"authorizationRef": "quickstart:local-write"}
+        if operation == "append_event" else None
+    ),
+)
+with pwm:
+    pwm.append_event(EventDraft("entity.put", {"id": "person:self", "type": "Person"}, "person:self"))
+    state = pwm.materialize()
+```
+
+This deliberately exposes storage and authorization dependencies. It is not a convenience API that silently grants access or mutates accepted models.
 
 ## Research discipline
 

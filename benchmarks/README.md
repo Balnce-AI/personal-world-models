@@ -24,3 +24,7 @@ cargo run --release -p pwm-event --example dag_benchmark
 ```
 
 The checked-in result is [`results/wave01-dag.json`](results/wave01-dag.json). It is descriptive evidence from one environment, not a latency service-level objective, production capacity claim, multi-author contention result, or comparison against an external baseline.
+
+## PWM intelligence research harness
+
+`pwm-intelligence/` executes the longitudinal synthetic-persona experiment across no-memory, flat-memory, retrieval, structured PWM, self-model, and metacognitive conditions plus negative controls. Results are emitted as machine-readable manifests under `experiments/results/`; the checked-in fixture-control result validates the harness and must not be cited as evidence of foundation-model cognitive gain.

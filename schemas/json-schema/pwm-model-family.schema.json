@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-model-family/1-0-0",
+  "title": "PWM Model Family",
+  "type": "object",
+  "required": ["familyId", "label", "scope", "status", "description", "sourceRefs", "constraints"],
+  "properties": {
+    "familyId": {"type": "string", "minLength": 1},
+    "label": {"type": "string", "minLength": 1},
+    "scope": {"type": "string", "minLength": 1},
+    "status": {"enum": ["REFERENCE_IMPLEMENTATION", "EXPERIMENTAL", "PROPOSED", "RESEARCH"]},
+    "description": {"type": "string", "minLength": 1},
+    "sourceRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "constraints": {
+      "type": "object",
+      "required": ["allowedModelKinds", "subjectCardinality", "perspectiveRule", "requiresMetaTarget", "requiresParentWorld", "requiredStateFields"],
+      "properties": {
+        "allowedModelKinds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["SELF", "OTHER", "RELATIONSHIP", "WORLD", "META", "POSSIBLE_WORLD"]}},
+        "subjectCardinality": {"type": "object", "required": ["min", "max"], "properties": {"min": {"type": "integer", "minimum": 1}, "max": {"type": ["integer", "null"], "minimum": 1}}, "additionalProperties": false},
+        "perspectiveRule": {"enum": ["ANY", "SUBJECT", "OUTSIDE_SUBJECT"]},
+        "requiresMetaTarget": {"type": "boolean"},
+        "requiresParentWorld": {"type": "boolean"},
+        "requiredStateFields": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

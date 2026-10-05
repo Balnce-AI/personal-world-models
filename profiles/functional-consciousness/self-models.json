@@ -1,0 +1,9 @@
+{
+  "profileVersion": "0.1.0",
+  "status": "SOURCE_REVIEW_REQUIRED",
+  "expectedSourceCatalogCount": 46,
+  "verifiedCatalogEntries": [],
+  "blockEvaluation": true,
+  "reason": "The reviewed DOI metadata establishes the paper and FSMA framing but does not expose the primary 46-entry catalog. Entries must not be reconstructed from secondary inference.",
+  "requiredEntryFields": ["id","sourceName","sourceDomain","sourceDescription","pwmMapping","pwmClass","ambiguities","prerequisites","evidenceSources","inferenceOperations","exampleQueries","exampleFalsifiers"]
+}

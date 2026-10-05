@@ -62,6 +62,48 @@
       "falsifier": "The benchmark fails to append or replay the requested number of events, or replay count differs from input count.",
       "limitations": "Single-run synthetic linear-DAG timing is not a production throughput, latency, concurrency, or capacity guarantee.",
       "last_verified": "2026-08-29"
+    },
+    {
+      "claim_id": "FSM-PIPELINE-001",
+      "claim": "The experimental Python reference executes candidate-only model proposal, explicit reviewed acceptance, ontology constraints, privacy propagation, contradiction lifecycle, deterministic model query, topology validation, prediction resolution, calibration, and the checked-in matched-control condition set over the longitudinal fixture.",
+      "status": "SUPPORTED",
+      "evidence": [
+        "tests/test_self_models.py",
+        "tests/test_research.py",
+        "tests/test_matched_research.py",
+        "tests/test_semantic_stabilization.py",
+        "experiments/results/fixture-control.json"
+      ],
+      "falsifier": "An unaccepted proposal materializes as accepted state, a generated record fails its public schema, or the checked-in end-to-end fixture cannot execute all declared conditions and controls.",
+      "limitations": "The V1 actor identifier is not cryptographically authenticated, so reviewed acceptance is not production governance. The deterministic-byte tokenizer proves reference budget accounting, not provider token equivalence. The control tests research plumbing and rubric sensitivity; they are not evidence that PWM improves foundation-model cognition, consciousness, or general intelligence.",
+      "last_verified": "2026-10-05"
+    },
+    {
+      "claim_id": "PLATFORM-CONFORMANCE-001",
+      "claim": "The repository publishes machine-readable provisional conformance levels, schema catalogs, extension namespaces, and semantic input/expected-output vectors that are independent of Python implementation code.",
+      "status": "SUPPORTED",
+      "evidence": ["conformance/manifest.json", "schemas/catalog.json", "tests/test_platform_conformance.py"],
+      "falsifier": "A referenced suite, schema, extension, vector, feature, or expected invariant is missing, duplicated, malformed, or requires importing the Python reference implementation to interpret its envelope.",
+      "limitations": "The model-ecology and HPL suites are PROVISIONAL, and the conformance manifest intentionally records no current implementation claims.",
+      "last_verified": "2026-10-05"
+    },
+    {
+      "claim_id": "HPL-SIM-001",
+      "claim": "The experimental HPL reference negotiates capability-first target profiles into bounded recipient/purpose/capability/expiry-bound projections and simulates local safety refusal without exposing a PWM/PLog handle or performing actuation.",
+      "status": "SUPPORTED",
+      "evidence": ["tests/test_hpl_platform.py", "profiles/hpl-targets", "examples/physical-ai-simulator/domains/scenarios.json"],
+      "falsifier": "A mismatched, altered, expired, revoked, unnegotiated, or locally vetoed projection reaches WOULD_DISPATCH, or a simulated outcome reports physical actuation.",
+      "limitations": "Artifacts are experimental and not a production signed transport, device-attestation system, deletion proof, or safety certification.",
+      "last_verified": "2026-10-05"
+    },
+    {
+      "claim_id": "SDK-EXTENSION-001",
+      "claim": "The built Python wheel exposes the experimental pwm facade, role-specific adapter protocols, and a namespaced third-party adapter example without private Balnce dependencies.",
+      "status": "SUPPORTED",
+      "evidence": ["tests/test_sdk_platform.py", "tests/test_extension_example.py", "examples/quickstart/README.md"],
+      "falsifier": "The wheel cannot import the pwm facade, a documented A-G example fails, or the example extension requires private APIs or accepts unknown semantics.",
+      "limitations": "Only the Python SDK is implemented; other-language portability is specified through schemas and provisional conformance vectors rather than demonstrated ports.",
+      "last_verified": "2026-10-05"
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "profile": "pwm-public-provenance-v1",
+  "status": "NON_NORMATIVE_MUTATION_RECIPES",
+  "baseFixture": "conformance/vectors/wave01-valid.json",
+  "cases": [
+    {"id":"event-body-mutation","operation":"flip one byte in body_cbor_hex without replacing CID/signature","expectedError":"EVENT_INTEGRITY"},
+    {"id":"payload-mutation","operation":"replace payload_cbor_hex without replacing payload CID/body/signature","expectedError":"PAYLOAD_CID_MISMATCH"},
+    {"id":"event-signature-mutation","operation":"flip one byte in event_signature_hex","expectedError":"EVENT_SIGNATURE_INVALID"},
+    {"id":"receipt-signature-mutation","operation":"flip one byte in receipt_signature_hex","expectedError":"RECEIPT_SIGNATURE_INVALID"},
+    {"id":"receipt-binding-mutation","operation":"change receipt body CID without replacing receipt signature","expectedError":"RECEIPT_BINDING_MISMATCH"},
+    {"id":"pre-activation-key","operation":"set author key activation sequence after its receipt log sequence","expectedError":"KEY_NOT_ACTIVE"},
+    {"id":"revoked-key","operation":"set author key revocation sequence at or before its receipt log sequence","expectedError":"KEY_REVOKED"},
+    {"id":"missing-parent","operation":"replace one parent CID with an absent event CID and re-sign the event","expectedError":"MISSING_PARENT"},
+    {"id":"cross-scope-parent","operation":"reference a parent from another principal scope and re-sign","expectedError":"PRINCIPAL_SCOPE_MISMATCH"},
+    {"id":"author-sequence-gap","operation":"increase author_sequence beyond the next contiguous value and re-sign","expectedError":"AUTHOR_SEQUENCE_INVALID"},
+    {"id":"cycle","operation":"construct two re-signed events whose parent edges form a cycle","expectedError":"CAUSAL_CYCLE"},
+    {"id":"schema-binding","operation":"replace schema_version with an unregistered value and re-sign","expectedError":"SCHEMA_UNSUPPORTED"},
+    {"id":"unknown-envelope-member","operation":"add an undeclared member to a bundle record","expectedError":"ENVELOPE_SHAPE_INVALID"}
+  ]
+}

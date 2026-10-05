@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "suiteId": "PWM-MODEL-ECOLOGY-V1",
+  "suiteVersion": "1.0.0",
+  "profile": "pwm-json-semantics-v1",
+  "polarity": "invalid",
+  "cases": [
+    {
+      "id": "model.family-kind-rejection",
+      "description": "A family restricted to SELF models rejects a META model.",
+      "input": {"events": [
+        {"eventId": "evt-f1", "eventType": "pwm.family.registered", "recordedAt": "2026-06-01T00:00:00Z", "payload": {"familyId": "family.preference", "allowedKinds": ["SELF"]}},
+        {"eventId": "evt-f2", "eventType": "pwm.model.proposed", "recordedAt": "2026-06-01T00:01:00Z", "payload": {"modelId": "bad-meta", "familyId": "family.preference", "kind": "META", "privacyClass": "PERSONAL"}}
+      ]},
+      "expected": {"decision": "REJECT", "error": {"code": "FAMILY_KIND_NOT_ALLOWED"}, "invariants": ["The rejected model is not materialized.", "Family constraints are evaluated before lifecycle commit."]}
+    },
+    {
+      "id": "topology.cycle-rejection",
+      "description": "Adding a reverse DEPENDS_ON edge would create a cycle.",
+      "input": {"initialState": {"models": [
+        {"modelId": "m-a", "familyId": "family.meta", "kind": "META", "privacyClass": "LOW"},
+        {"modelId": "m-b", "familyId": "family.meta", "kind": "META", "privacyClass": "LOW"}
+      ]}, "events": [
+        {"eventId": "evt-y3", "eventType": "pwm.topology.edge-added", "recordedAt": "2026-06-02T00:02:00Z", "payload": {"edgeId": "a-b", "sourceModelId": "m-a", "edgeType": "DEPENDS_ON", "targetModelId": "m-b"}},
+        {"eventId": "evt-y4", "eventType": "pwm.topology.edge-added", "recordedAt": "2026-06-02T00:03:00Z", "payload": {"edgeId": "b-a", "sourceModelId": "m-b", "edgeType": "DEPENDS_ON", "targetModelId": "m-a"}}
+      ]},
+      "expected": {"decision": "REJECT", "error": {"code": "DEPENDENCY_CYCLE"}, "topology": {"committedEdgeIds": ["a-b"]}, "invariants": ["The cycle-forming edge is not committed.", "Previously valid topology is unchanged."]}
+    },
+    {
+      "id": "model.possible-world-leakage-rejection",
+      "description": "A possible-world model cannot target actual state without governed acceptance.",
+      "input": {"events": [
+        {"eventId": "evt-w1", "eventType": "pwm.possible-world.created", "recordedAt": "2026-06-03T00:00:00Z", "payload": {"worldId": "world-alt", "parentWorldId": "actual"}},
+        {"eventId": "evt-w2", "eventType": "pwm.model.proposed", "recordedAt": "2026-06-03T00:01:00Z", "payload": {"modelId": "hypothesis-1", "familyId": "family.goal", "kind": "POSSIBLE_WORLD", "worldId": "actual", "parentWorldId": "world:actual", "privacyClass": "PERSONAL"}}
+      ]},
+      "expected": {"decision": "REJECT", "error": {"code": "POSSIBLE_WORLD_SCOPE_VIOLATION"}, "possibleWorlds": {"actualWorldUnchanged": true}, "invariants": ["Possible-world records cannot directly enter actual-world state."]}
+    }
+  ]
+}

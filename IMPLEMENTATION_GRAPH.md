@@ -4,6 +4,8 @@ audit_date: 2026-08-28
 repository_version: 0.1.0
 ---
 
+> Historical dependency audit. The current public platform map and status boundaries are in `docs/ARCHITECTURE.md` and `PLATFORM_STABILIZATION_STATUS.md`; this document remains useful for the original V1/V2 dependency analysis.
+
 # Implementation Graph
 
 ## V2 Wave 01 Provenance Spine

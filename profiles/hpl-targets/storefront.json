@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:storefront:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "STOREFRONT",
+  "recipient": "did:example:store-kiosk-2",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "storefront.product.filter",
+    "purposes": ["product-selection"],
+    "requiredFields": ["preference.product_constraints"],
+    "optionalFields": ["preference.size_band"],
+    "deniedFields": ["finance.balance", "identity.address"],
+    "consentRequired": true,
+    "representation": "DERIVED"
+  }],
+  "canonicalV2Effect": "NONE"
+}

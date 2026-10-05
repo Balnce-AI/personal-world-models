@@ -1,0 +1,465 @@
+{
+  "coverageHash": "urn:pwm:scenario-coverage:sha256:fcb4f11d111fb695c5279185055925c201c88b6807df2fe6137a69d1c8d11e18",
+  "scenarioCount": 25,
+  "scenarioTaskLinkCount": 15,
+  "scenarios": [
+    {
+      "categoryId": "health.safety",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "META"
+      ],
+      "primitiveProfileId": "fact",
+      "registeredFamilyIds": [
+        "fc.meta",
+        "pwm.health-wellness"
+      ],
+      "scenarioId": "medication-identification",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "coordination.family",
+      "coverageStatus": "EXECUTABLE",
+      "declaredExecutionStatus": "IMPLEMENTED",
+      "modelKinds": [
+        "SELF",
+        "RELATIONSHIP"
+      ],
+      "primitiveProfileId": "relational",
+      "registeredFamilyIds": [
+        "pwm.commitments-obligations",
+        "pwm.relationship"
+      ],
+      "scenarioId": "family-coordination",
+      "taskRefs": [
+        "person:marin:relationship-coordination"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "mobility.travel",
+      "coverageStatus": "EXECUTABLE",
+      "declaredExecutionStatus": "IMPLEMENTED",
+      "modelKinds": [
+        "SELF"
+      ],
+      "primitiveProfileId": "constrained",
+      "registeredFamilyIds": [
+        "pwm.commitments-obligations",
+        "pwm.economic-resources",
+        "pwm.preference"
+      ],
+      "scenarioId": "travel",
+      "taskRefs": [
+        "person:marin:travel-plan"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "work.problem-solving",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "META"
+      ],
+      "primitiveProfileId": "constrained",
+      "registeredFamilyIds": [
+        "fc.action-capability",
+        "pwm.predictive",
+        "pwm.professional-work"
+      ],
+      "scenarioId": "work-problem-solving",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "social.interpretation",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "RELATIONSHIP",
+        "OTHER",
+        "META"
+      ],
+      "primitiveProfileId": "relational",
+      "registeredFamilyIds": [
+        "fc.meta",
+        "pwm.other-mind",
+        "pwm.relationship"
+      ],
+      "scenarioId": "relationship-interpretation",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "temporal.scheduling",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "WORLD"
+      ],
+      "primitiveProfileId": "temporal",
+      "registeredFamilyIds": [
+        "pwm.commitments-obligations",
+        "pwm.temporal-life-trajectory"
+      ],
+      "scenarioId": "scheduling",
+      "taskRefs": [
+        "person:ivo:study-plan"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "finance.personal",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF"
+      ],
+      "primitiveProfileId": "constrained",
+      "registeredFamilyIds": [
+        "pwm.commitments-obligations",
+        "pwm.economic-resources"
+      ],
+      "scenarioId": "personal-finance",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "accessibility.routing",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "WORLD"
+      ],
+      "primitiveProfileId": "constrained",
+      "registeredFamilyIds": [
+        "fc.spatial",
+        "pwm.accessibility"
+      ],
+      "scenarioId": "accessibility",
+      "taskRefs": [
+        "person:noor:accessible-appointment"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "environment.physical",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "WORLD"
+      ],
+      "primitiveProfileId": "temporal",
+      "registeredFamilyIds": [
+        "fc.spatial",
+        "pwm.physical-environment"
+      ],
+      "scenarioId": "physical-environment",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "commerce.shopping",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "OTHER"
+      ],
+      "primitiveProfileId": "constrained",
+      "registeredFamilyIds": [
+        "pwm.economic-resources",
+        "pwm.preference",
+        "pwm.trust"
+      ],
+      "scenarioId": "shopping-commerce",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "social.trust",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "RELATIONSHIP",
+        "OTHER"
+      ],
+      "primitiveProfileId": "provenance",
+      "registeredFamilyIds": [
+        "pwm.relationship",
+        "pwm.trust"
+      ],
+      "scenarioId": "social-trust",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "learning.adaptation",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "META"
+      ],
+      "primitiveProfileId": "temporal",
+      "registeredFamilyIds": [
+        "fc.action-capability",
+        "fc.meta",
+        "pwm.predictive"
+      ],
+      "scenarioId": "learning",
+      "taskRefs": [
+        "person:ivo:study-plan",
+        "person:marin:prediction-calibration"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "goals.long-horizon",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "POSSIBLE_WORLD"
+      ],
+      "primitiveProfileId": "uncertain",
+      "registeredFamilyIds": [
+        "fc.action-capability",
+        "fc.goals",
+        "pwm.temporal-life-trajectory"
+      ],
+      "scenarioId": "long-horizon-goals",
+      "taskRefs": [
+        "person:marin:goal-conflict"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "planning.uncertainty",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "POSSIBLE_WORLD",
+        "META"
+      ],
+      "primitiveProfileId": "uncertain",
+      "registeredFamilyIds": [
+        "fc.meta",
+        "pwm.imagination-possible-worlds",
+        "pwm.risk"
+      ],
+      "scenarioId": "planning-under-uncertainty",
+      "taskRefs": [
+        "person:marin:capability-caution"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "goals.conflict",
+      "coverageStatus": "EXECUTABLE",
+      "declaredExecutionStatus": "IMPLEMENTED",
+      "modelKinds": [
+        "SELF"
+      ],
+      "primitiveProfileId": "constrained",
+      "registeredFamilyIds": [
+        "fc.goals",
+        "pwm.commitments-obligations"
+      ],
+      "scenarioId": "conflicting-goals",
+      "taskRefs": [
+        "person:marin:goal-conflict",
+        "person:marin:goal-topology"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "authority.conflict",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "WORLD"
+      ],
+      "primitiveProfileId": "authority",
+      "registeredFamilyIds": [
+        "fc.action-capability",
+        "pwm.permissions-authority"
+      ],
+      "scenarioId": "conflicting-authority",
+      "taskRefs": [
+        "person:noor:accessible-appointment"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "epistemics.disagreement",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "OTHER"
+      ],
+      "primitiveProfileId": "provenance",
+      "registeredFamilyIds": [
+        "fc.informational-epistemic",
+        "pwm.narrative"
+      ],
+      "scenarioId": "memory-disagreement",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "temporal.staleness",
+      "coverageStatus": "EXECUTABLE",
+      "declaredExecutionStatus": "IMPLEMENTED",
+      "modelKinds": [
+        "SELF"
+      ],
+      "primitiveProfileId": "temporal",
+      "registeredFamilyIds": [
+        "pwm.preference",
+        "pwm.temporal-life-trajectory"
+      ],
+      "scenarioId": "stale-preference",
+      "taskRefs": [
+        "person:marin:travel-plan"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "identity.change",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF"
+      ],
+      "primitiveProfileId": "temporal",
+      "registeredFamilyIds": [
+        "pwm.identity-persona",
+        "pwm.narrative",
+        "pwm.temporal-life-trajectory"
+      ],
+      "scenarioId": "changing-identity",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "authority.delegation",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "RELATIONSHIP"
+      ],
+      "primitiveProfileId": "authority",
+      "registeredFamilyIds": [
+        "pwm.permissions-authority",
+        "pwm.relationship"
+      ],
+      "scenarioId": "delegation",
+      "taskRefs": [
+        "person:noor:accessible-appointment"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "privacy.projection",
+      "coverageStatus": "EXECUTABLE",
+      "declaredExecutionStatus": "IMPLEMENTED",
+      "modelKinds": [
+        "SELF",
+        "META"
+      ],
+      "primitiveProfileId": "projection",
+      "registeredFamilyIds": [
+        "pwm.models-of-models",
+        "pwm.permissions-authority"
+      ],
+      "scenarioId": "privacy-projection",
+      "taskRefs": [
+        "person:marin:travel-plan"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "continuity.device",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "OTHER"
+      ],
+      "primitiveProfileId": "provenance",
+      "registeredFamilyIds": [
+        "pwm.digital-life",
+        "pwm.temporal-life-trajectory"
+      ],
+      "scenarioId": "multi-device-continuity",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "continuity.model",
+      "coverageStatus": "TASK_LINKED",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "META",
+        "OTHER"
+      ],
+      "primitiveProfileId": "projection",
+      "registeredFamilyIds": [
+        "pwm.models-of-models"
+      ],
+      "scenarioId": "model-swap-continuity",
+      "taskRefs": [
+        "person:marin:prediction-calibration"
+      ],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "continuity.agent",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "OTHER"
+      ],
+      "primitiveProfileId": "projection",
+      "registeredFamilyIds": [
+        "pwm.commitments-obligations",
+        "pwm.machine-agent"
+      ],
+      "scenarioId": "agent-handoff",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    },
+    {
+      "categoryId": "recovery.failure",
+      "coverageStatus": "CORPUS_ONLY",
+      "declaredExecutionStatus": "PROPOSED",
+      "modelKinds": [
+        "SELF",
+        "META"
+      ],
+      "primitiveProfileId": "provenance",
+      "registeredFamilyIds": [
+        "fc.goals",
+        "fc.meta",
+        "pwm.temporal-life-trajectory"
+      ],
+      "scenarioId": "failure-recovery",
+      "taskRefs": [],
+      "unregisteredFamilyIds": []
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "taskCount": 8
+}

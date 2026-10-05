@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-model-registry/1-0-0",
+  "title": "PWM Model Registry",
+  "type": "object",
+  "required": ["ontologyVersion", "families"],
+  "properties": {
+    "ontologyVersion": {"type": "string"},
+    "families": {
+      "type": "array",
+      "items": {"$ref": "https://personal-world-models.org/schema/pwm-model-family/1-0-0"}
+    }
+  },
+  "additionalProperties": false
+}

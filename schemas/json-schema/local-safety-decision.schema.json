@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/local-safety-decision/0-1-0",
+  "title": "Experimental Foreign Runtime Local Safety Decision",
+  "type": "object",
+  "required": ["decisionId", "negotiationId", "recipient", "capability", "decision", "reason", "decidedAt", "independentLocalAuthority", "safetyCertification", "canonicalV2Effect"],
+  "properties": {
+    "decisionId": {"type": "string", "pattern": "^urn:hpl:local-safety:sha256:[0-9a-f]{64}$"}, "negotiationId": {"type": "string"}, "recipient": {"type": "string"}, "capability": {"type": "string"},
+    "decision": {"enum": ["ALLOW", "VETO"]}, "reason": {"type": "string"}, "decidedAt": {"type": "string", "format": "date-time"},
+    "independentLocalAuthority": {"const": true}, "safetyCertification": {"const": "NOT_CLAIMED"}, "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

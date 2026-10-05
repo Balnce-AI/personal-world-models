@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:industrial:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "INDUSTRIAL",
+  "recipient": "did:example:industrial-cell-9",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "industrial.station.configure",
+    "purposes": ["operator-ergonomics"],
+    "requiredFields": ["ergonomics.reach_band"],
+    "optionalFields": ["access.control_mode"],
+    "deniedFields": ["health.condition", "employment.performance"],
+    "consentRequired": true,
+    "representation": "TRANSFORMED"
+  }],
+  "canonicalV2Effect": "NONE"
+}

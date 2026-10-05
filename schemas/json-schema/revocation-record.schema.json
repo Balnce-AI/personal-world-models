@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/revocation-record/0-1-0",
+  "title": "Experimental HPL Revocation Record",
+  "type": "object",
+  "required": ["revocationId", "negotiationId", "requestId", "revokedBy", "revokedAt", "reason", "previousState", "lifecycleEventId", "canonicalV2Effect"],
+  "properties": {
+    "revocationId": {"type": "string", "pattern": "^urn:hpl:revocation:sha256:[0-9a-f]{64}$"}, "negotiationId": {"type": "string"}, "requestId": {"type": "string"},
+    "revokedBy": {"type": "string"}, "revokedAt": {"type": "string", "format": "date-time"}, "reason": {"type": "string"},
+    "previousState": {"enum": ["REQUESTED", "NEGOTIATED", "ISSUED", "ACTIVE", "EXECUTED"]},
+    "lifecycleEventId": {"type": "string"}, "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

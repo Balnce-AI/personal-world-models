@@ -1,0 +1,9 @@
+{
+  "scenarioId": "safety-veto",
+  "targetProfile": "robot",
+  "localSafetyDecision": "VETO",
+  "expectedNegotiationStatus": "GRANTED",
+  "expectedDisposition": "REFUSED",
+  "expectedReasonCode": "LOCAL_SAFETY_VETO",
+  "claim": "HPL authorization cannot waive recipient-local safety."
+}

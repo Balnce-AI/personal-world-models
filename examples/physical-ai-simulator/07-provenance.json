@@ -1,0 +1,8 @@
+{
+  "scenarioId": "provenance",
+  "targetProfile": "robot",
+  "mappingEvidenceRequired": true,
+  "expectedDisposition": "WOULD_DISPATCH",
+  "expectedProvenanceRefs": ["mapping-source", "negotiation", "local-safety-decision"],
+  "claim": "The outcome links mapping, negotiation, and local-decision evidence."
+}

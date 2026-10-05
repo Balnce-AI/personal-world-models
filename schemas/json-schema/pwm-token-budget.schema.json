@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://personal-world-models.org/schema/pwm-token-budget/1-0-0",
+  "title":"PWM Token Budget",
+  "type":"object",
+  "required":["tokenizerId","exact","verified","paddingToken","naturalTokenCount","paddingTokenCount","finalTokenCount","targetTokenCount","providerPromptTokenCount","providerTokenTolerance","providerCountAgreement"],
+  "properties":{
+    "tokenizerId":{"type":"string"},"exact":{"type":"boolean"},"verified":{"type":"boolean"},"paddingToken":{"type":["string","null"]},
+    "naturalTokenCount":{"type":["integer","null"],"minimum":0},"paddingTokenCount":{"type":"integer","minimum":0},
+    "finalTokenCount":{"type":["integer","null"],"minimum":0},"targetTokenCount":{"type":["integer","null"],"minimum":0},
+    "providerPromptTokenCount":{"type":["integer","null"],"minimum":0},"providerTokenTolerance":{"type":"integer","minimum":0},"providerCountAgreement":{"type":["boolean","null"]}
+  },
+  "additionalProperties":false
+}

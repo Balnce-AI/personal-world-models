@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/hpl/capability-negotiation/0-1-0",
+  "title": "Experimental HPL Capability Negotiation",
+  "type": "object",
+  "required": ["negotiationId", "requestId", "requestDigest", "recipient", "targetProfileId", "capability", "purpose", "maxPrivacyClass", "status", "grantedFields", "deniedFields", "negotiatedAt", "expiresAt", "authorityEvidence", "mappingEvidence", "reason", "canonicalV2Effect"],
+  "$defs": {
+    "error": {
+      "type": "object",
+      "required": ["code", "message", "retryable"],
+      "properties": {"code": {"type": "string"}, "message": {"type": "string"}, "retryable": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "mapping": {
+      "type": "object",
+      "required": ["sourceField", "targetField", "transform", "confidence", "provenanceRefs"],
+      "properties": {
+        "sourceField": {"type": "string"}, "targetField": {"type": "string"}, "transform": {"enum": ["identity", "rename", "unit-conversion", "redact", "derive"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "provenanceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "negotiationId": {"type": "string", "pattern": "^urn:hpl:negotiation:sha256:[0-9a-f]{64}$"},
+    "requestId": {"type": "string"}, "requestDigest": {"type": "string"}, "recipient": {"type": "string"},
+    "targetProfileId": {"type": "string"}, "capability": {"type": "string"}, "purpose": {"type": "string"}, "maxPrivacyClass": {"enum": ["PUBLIC", "LOW", "PERSONAL", "SENSITIVE", "HIGHLY_SENSITIVE"]},
+    "status": {"enum": ["GRANTED", "DENIED", "UNAVAILABLE", "REDACTED", "TRANSFORMED", "DERIVED", "REQUIRES_CONSENT"]},
+    "grantedFields": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "deniedFields": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "negotiatedAt": {"type": "string", "format": "date-time"}, "expiresAt": {"type": "string", "format": "date-time"},
+    "authorityEvidence": {
+      "type": "object", "required": ["requested", "allowed", "denied", "reasons", "grantingPrincipals", "denyingPrincipals", "grantSources", "denySources", "requestDigest", "evidenceRefs"],
+      "properties": {
+        "requested": {"type": "array", "items": {"type": "string"}}, "allowed": {"type": "array", "items": {"type": "string"}},
+        "denied": {"type": "array", "items": {"type": "string"}}, "reasons": {"type": "array", "items": {"type": "string"}},
+        "grantingPrincipals": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "denyingPrincipals": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "grantSources": {"type": "array", "items": {"type": "object", "required": ["capability", "principal"], "properties": {"capability": {"type": "string"}, "principal": {"type": "string"}}, "additionalProperties": false}},
+        "denySources": {"type": "array", "items": {"type": "object", "required": ["capability", "principal"], "properties": {"capability": {"type": "string"}, "principal": {"type": "string"}}, "additionalProperties": false}},
+        "requestDigest": {"type": "string"}, "evidenceRefs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }, "additionalProperties": false
+    },
+    "mappingEvidence": {"type": "array", "items": {"$ref": "#/$defs/mapping"}},
+    "reason": {"type": "string"}, "error": {"$ref": "#/$defs/error"}, "canonicalV2Effect": {"const": "NONE"}
+  },
+  "additionalProperties": false
+}

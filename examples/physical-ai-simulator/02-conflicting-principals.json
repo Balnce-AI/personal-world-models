@@ -1,0 +1,9 @@
+{
+  "scenarioId": "conflicting-principals",
+  "targetProfile": "robot",
+  "authorityInputs": ["PERSONAL:ALLOW", "PHYSICAL:DENY"],
+  "expectedNegotiationStatus": "DENIED",
+  "expectedDisposition": "REFUSED",
+  "expectedErrorCode": "AUTHORITY_DENIED",
+  "claim": "The HPL record preserves an existing deny-overrides Decision as evidence."
+}

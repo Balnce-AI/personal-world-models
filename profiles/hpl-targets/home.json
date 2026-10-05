@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:home:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "HOME",
+  "recipient": "did:example:home-hub-4",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "home.climate.adjust",
+    "purposes": ["comfort-window"],
+    "requiredFields": ["preference.temperature_band"],
+    "optionalFields": ["presence.occupied"],
+    "deniedFields": ["health.diagnosis", "identity.contacts"],
+    "consentRequired": false,
+    "representation": "TRANSFORMED"
+  }],
+  "canonicalV2Effect": "NONE"
+}

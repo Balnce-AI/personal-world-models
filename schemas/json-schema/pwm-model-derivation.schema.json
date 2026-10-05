@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://personal-world-models.org/schema/pwm-model-derivation/1-0-0",
+  "title": "PWM Model Derivation",
+  "type": "object",
+  "required": ["derivationId", "method", "methodVersion", "evidenceRefs", "candidateModelId", "parameters", "createdAt", "status"],
+  "properties": {
+    "derivationId": {"type": "string"},
+    "method": {"type": "string"},
+    "methodVersion": {"type": "string"},
+    "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "candidateModelId": {"type": "string"},
+    "parameters": {"type": "object"},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "status": {"const": "CANDIDATE"}
+  },
+  "additionalProperties": false
+}

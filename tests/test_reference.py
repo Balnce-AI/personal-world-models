@@ -19,6 +19,16 @@ def test_projection_minimizes_and_excludes_sensitive_zone():
     assert "delivery.preferred_surface" in predicates
     assert "home.private_zone" not in predicates
 
+def test_projection_rejects_authority_decision_for_different_capabilities():
+    log,person=build_fixture(); state=Materializer().materialize(log)
+    d=AuthorityEngine().resolve({"navigate.allowed_zone"},[Constraint(person,"ALLOW",frozenset({"navigate.allowed_zone"}),"PERSONAL")])
+    req=ProjectionRequest("delivery","robot",("delivery.preferred_surface",),("map.export",),"PERSONAL")
+    try:
+        ProjectionCompiler().compile(state,req,d)
+        assert False, "mismatched authority decision was accepted"
+    except ValueError as error:
+        assert "not bound" in str(error)
+
 def test_deny_overrides_grant():
     constraints=[Constraint("owner","ALLOW",frozenset({"drive","export.map"}),"PERSONAL"),Constraint("oem","DENY",frozenset({"export.map"}),"PHYSICAL")]
     d=AuthorityEngine().resolve({"drive","export.map"},constraints)

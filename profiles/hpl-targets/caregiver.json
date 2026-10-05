@@ -1,0 +1,17 @@
+{
+  "targetProfileId": "urn:hpl:target-profile:caregiver:0.1.0",
+  "profileVersion": "0.1.0",
+  "targetClass": "CAREGIVER",
+  "recipient": "did:example:care-device-5",
+  "illustrative": true,
+  "capabilities": [{
+    "capabilityId": "caregiver.reminder.present",
+    "purposes": ["scheduled-reminder"],
+    "requiredFields": ["reminder.display_text", "reminder.time_window"],
+    "optionalFields": ["access.output_pacing"],
+    "deniedFields": ["health.full_record", "finance.insurance_id"],
+    "consentRequired": true,
+    "representation": "DIRECT"
+  }],
+  "canonicalV2Effect": "NONE"
+}
